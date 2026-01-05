@@ -1469,7 +1469,7 @@ p:empty {
     margin-bottom: 0;
 }
 .widget__footer .widget__title {
-    color: #fff;
+    color: #000;
     font-size: 18px;
     text-transform: uppercase;
 }

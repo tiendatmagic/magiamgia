@@ -1,4 +1,4 @@
-<div class="col-lg-2 col-sm-6 lg:tw-mx-16 tw-mb-2 sm:tw-mb-0">
+<div class="col-md-4 col-lg-3 tw-mb-2 sm:tw-mb-0">
     <aside class="widget widget--transparent widget__footer">
         @if ($config['name'])
             <div class="widget__header">

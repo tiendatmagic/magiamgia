@@ -12,135 +12,138 @@
   };
 @endphp
 
-<footer class="page-footer bg-dark pt-50" style="background-image: radial-gradient(circle, {{ $footerBackgroundFrom }}, {{ $footerBackgroundTo }}); padding-top: 30px; padding-bottom: 30px;">
+<footer class="tw-bg-white tw-pt-10 tw-pb-8 tw-border-t tw-border-gray-200">
+    <div class="tw-container tw-mx-auto tw-px-4 tw-max-w-7xl">
 
-  <div class="container">
-    <div class="row footerTop">
-      <div class="col-md-6 tw-mb-2 sm:tw-mb-0">
-        <aside class="widget widget--transparent widget__footer widget__about">
+        <div class="row footerTop">
 
-          @if (theme_option('footer_image'))
-          <a class="logoFooter" href="/">
-            <img src="{{ RvMedia::getImageUrl(theme_option('footer_image')) }}" alt="Logo" width="250" height="115" class="tw-mx-auto tw-w-[250px]">
-          </a>
-          @endif
-
-          @if (theme_option('footer_description'))
-          <div class="widget__content">
-            <p class="tw-whitespace-pre-wrap tw-mb-2">{{ theme_option('footer_description') }}</p>
-          </div>
-          @endif
-        </aside>
-      </div>
-
-      <div class="col-md-6 tw-mb-2 sm:tw-mb-0">
-        <aside class="widget widget--transparent widget__footer widget__about">
-          <div class="widget__content tw-relative tw-bottom-[3px]">
-
-            @if (theme_option('contact_phone'))
-            <p class="tw-pb-[5px] tw-flex tw-items-center tw-justify-left tw-gap-2 tw-text-left">
-
-              <svg class="svg-inline--fa fa-phone-volume tw-text-[#ef5a36] tw-size-5 tw-min-w-5 tw-w-5" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="phone-volume" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M280 0C408.1 0 512 103.9 512 232c0 13.3-10.7 24-24 24s-24-10.7-24-24c0-101.6-82.4-184-184-184c-13.3 0-24-10.7-24-24s10.7-24 24-24zm8 192a32 32 0 1 1 0 64 32 32 0 1 1 0-64zm-32-72c0-13.3 10.7-24 24-24c75.1 0 136 60.9 136 136c0 13.3-10.7 24-24 24s-24-10.7-24-24c0-48.6-39.4-88-88-88c-13.3 0-24-10.7-24-24zM117.5 1.4c19.4-5.3 39.7 4.6 47.4 23.2l40 96c6.8 16.3 2.1 35.2-11.6 46.3L144 207.3c33.3 70.4 90.3 127.4 160.7 160.7L345 318.7c11.2-13.7 30-18.4 46.3-11.6l96 40c18.6 7.7 28.5 28 23.2 47.4l-24 88C481.8 499.9 466 512 448 512C200.6 512 0 311.4 0 64C0 46 12.1 30.2 29.5 25.4l88-24z"></path>
-              </svg>
-              <a href="tel:{{ preg_replace('/\D/', '', theme_option('contact_phone')) }}">
-                {{ function_exists('format_phone') ? format_phone(theme_option('contact_phone')) : theme_option('contact_phone') }}
-
-              </a>
-            </p>
-            @endif
-
-            @if ($email = theme_option('contact_email'))
-            <p class="tw-pb-[5px] tw-flex tw-items-center tw-justify-left tw-gap-2 tw-text-left">
-
-              <svg class="svg-inline--fa fa-envelope-circle-check tw-text-[#ef5a36] tw-size-5 tw-min-w-5 tw-w-5" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="envelope-circle-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0l57.4-43c23.9-59.8 79.7-103.3 146.3-109.8l13.9-10.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48L48 64zM294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176 0 384c0 35.3 28.7 64 64 64l296.2 0C335.1 417.6 320 378.5 320 336c0-5.6 .3-11.1 .8-16.6l-26.4 19.8zM640 336a144 144 0 1 0 -288 0 144 144 0 1 0 288 0zm-76.7-43.3c6.2 6.2 6.2 16.4 0 22.6l-72 72c-6.2 6.2-16.4 6.2-22.6 0l-40-40c-6.2-6.2-6.2-16.4 0-22.6s16.4-6.2 22.6 0L480 353.4l60.7-60.7c6.2-6.2 16.4-6.2 22.6 0z"></path>
-              </svg>
-              {{ Html::mailto($email) }}
-            </p>
-            @endif
-
-            @if (theme_option('working_hours'))
-            <p class="tw-pb-[5px] tw-flex tw-items-center tw-justify-left tw-gap-2 tw-text-left">
-              <svg class="svg-inline--fa fa-clock tw-text-[#ef5a36] tw-size-5 tw-min-w-5 tw-w-5" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="clock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120l0 136c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2 280 120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"></path>
-              </svg>
-              {{ (theme_option('working_hours')) ? (theme_option('working_hours')) : null}}
-            </p>
-            @endif
-
-
-            @if ($address = theme_option('address'))
-            <p class="tw-pb-[5px] tw-text-left">
-              <svg class="svg-inline--fa fa-location-dot tw-text-[#ef5a36] tw-size-5 tw-min-w-5 tw-w-5" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="location-dot" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"></path>
-              </svg>
-              <strong>{{ (theme_option('name_address')) ? (theme_option('name_address') . ':') : null}} </strong>{{ $address }}
-            </p>
-            @endif
-
-            @if ($address2 = theme_option('address2'))
-            <p class="tw-pb-[5px] tw-text-left">
-              <svg class="svg-inline--fa fa-location-dot tw-text-[#ef5a36] tw-size-5 tw-min-w-5 tw-w-5" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="location-dot" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"></path>
-              </svg>
-              <strong>{{ (theme_option('name_address2')) ? (theme_option('name_address2') . ':') : null}} </strong>{{ $address2 }}
-            </p>
-            @endif
-
-          </div>
-        </aside>
-      </div>
-
-
-      {!! dynamic_sidebar('footer_sidebar') !!}
-
-    </div>
-  </div>
-
-
-
-  <div class="page-footer__bottom">
-    <div class="container">
-      <div class="row sm:tw-flex-row tw-items-center">
-        @if($copyright = theme_option('copyright'))
-        <div class="col-md-12 col-sm-12">
-          <div class="page-copyright tw-block {{ $footerCopyrightAlignmentClass }}">
-            <p>{!! Theme::getSiteCopyright() !!}</p>
-          </div>
-        </div>
-        @endif
-
-        @if ($socialLinks = Theme::getSocialLinks())
-        <div class="col-md-12 col-sm-12 text-end">
-          <div class="page-footer__social">
-
-            <div class="tw-flex tw-items-center tw-justify-center tw-gap-3 lg:tw-gap-5 tw-my-2.5 tw-flex-wrap">
-              @if (theme_option('text_footer_social'))
-              <p class="tw-text-base tw-text-white tw-font-bold tw-block tw-text-left tw-w-full sm:tw-w-auto">
-                {{ theme_option('text_footer_social') }}
-              </p>
-              @endif
-
-              <ul class="social social--simple">
-                @foreach($socialLinks as $socialLink)
-                @continue(! $icon = $socialLink->getIconHtml())
-                <li>
-                  <a {{ $socialLink->getAttributes() }}>
-                    {{ $icon }}
-                  </a>
-                </li>
-                @endforeach
-              </ul>
+              <div class="col-md-4 col-lg-3 tw-mb-2 sm:tw-mb-0">
+                <h3 class="tw-font-bold tw-text-gray-900 tw-text-base tw-mb-4">Tổng đài hỗ trợ</h3>
+                <div>
+                    <div>
+                        <p class="tw-font-bold tw-flex tw-items-center tw-mb-2">
+                          <i class="fa fa-phone-square tw-rotate-90 tw-text-[#da251c]"></i>
+                            <span class="tw-mr-2 tw-text-sm tw-ml-1 tw-font-medium">Phía Bắc & Trung</span>
+                        </p>
+                          <p class="tw-mb-1 tw-font-medium">Mua hàng: <span class="tw-text-blue-600 tw-font-bold">(024) 3568 6969</span></p>
+                          <p class="tw-mb-1 tw-font-medium">Bảo hành: <span class="tw-text-blue-600 tw-font-bold">(028) 38 333 222</span></p>
+                    </div>
+                    <div>
+                        <p class="tw-font-bold tw-flex tw-items-center tw-mb-2">
+                          <i class="fa fa-phone-square tw-rotate-90 tw-text-[#da251c]"></i>
+                            <span class="tw-mr-2 tw-text-sm tw-ml-1 tw-font-medium">Phía Nam</span>
+                        </p>
+                        <p class="tw-mb-1 tw-font-medium">Mua hàng: <span class="tw-text-blue-600 tw-font-bold">(028) 3833 6666</span></p>
+                        <p class="tw-mb-1 tw-font-medium">Bảo hành: <span class="tw-text-blue-600 tw-font-bold">(028) 38 333 222</span></p>
+                    </div>
+                    <div>
+                        <div class="tw-font-medium tw-flex tw-items-center tw-mb-2">
+                           <div class="tw-inline-block">
+                            <svg class="tw-text-[#da251c] tw-fill-[#da251c] tw-w-3.5 tw-h-3.5 tw-rotate-[230deg]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                              <path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z"/></svg>
+                           </div>
+                          <span class="tw-mr-2 tw-text-sm tw-ml-1 tw-font-medium">
+                            Thời gian
+                          </span>
+                        </div>
+                        <p class="tw-mb-1">8h - 19h (Thứ 2 - Thứ 6)</p>
+                        <p class="tw-mb-1">8h - 17h30 (Thứ 7, CN)</p>
+                    </div>
+                    <div class="tw-flex tw-my-4 tw-items-center tw-space-x-2">
+                          <span class="tw-font-medium">Chat Zalo</span>
+                          <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" class="tw-w-6 tw-h-6" alt="Zalo">
+                    </div>
+                </div>
             </div>
 
-          </div>
+            {!! dynamic_sidebar('footer_sidebar') !!}
+
+            <div class="col-md-12 col-lg-3 tw-mb-2 sm:tw-mb-0">
+                <h3 class="tw-font-bold tw-text-gray-900 tw-text-base lg:tw-mb-4 md:tw-mb-0">Kết nối với chúng tôi</h3>
+
+                @if ($socialLinks = Theme::getSocialLinks())
+                <ul class="social social--simple tw-flex lg:tw-block tw-flex-wrap tw-justify-center">
+                  @foreach($socialLinks as $socialLink)
+                  @continue(! $icon = $socialLink->getIconHtml())
+                  <li class="tw-flex tw-flex-col lg:tw-flex-row tw-items-center lg:tw-w-full">
+                    <a {{ $socialLink->getAttributes() }}>
+                      {{ $icon }}
+                    </a>
+                    <span class="tw-hidden sm:tw-block">{{ $socialLink->getName() }}</span>
+                  </li>
+                  @endforeach
+
+                  <li class="tw-flex tw-flex-col lg:tw-flex-row lg:tw-hidden tw-items-center lg:tw-w-full">
+                   <a href="#">
+                      <img src="{{ asset('storage/theme/image/apple-icon.svg') }}" class="tw-h-9" alt="App Store">
+                    </a>
+                      <span class="tw-hidden sm:tw-block">App Store</span>
+                  </li>
+
+                  <li class="tw-flex tw-flex-col lg:tw-flex-row lg:tw-hidden tw-items-center lg:tw-w-full">
+                   <a href="#">
+                      <img src="{{ asset('storage/theme/image/playstore-icon.svg') }}" class="tw-h-9" alt="Google Play">
+                    </a>
+                       <span class="tw-hidden sm:tw-block">Google Play</span>
+                  </li>
+                </ul>
+                @endif
+            </div>
         </div>
-        @endif
-      </div>
+
+        <div class="tw-border-t tw-border-gray-200 tw-py-4 tw-flex tw-flex-wrap tw-items-center tw-justify-between tw-gap-4">
+          <h3 class="tw-font-bold tw-text-gray-900 tw-text-base lg:tw-mb-4 md:tw-mb-0 tw-block lg:tw-hidden">Đã chứng nhận</h3>
+            <div class="tw-flex tw-items-center tw-flex-wrap tw-gap-4">
+                <span class="tw-text-lg tw-mr-5 tw-text-gray-800 tw-hidden lg:tw-block">Tải app META.vn nhận ưu đãi</span>
+
+
+                <div class="tw-space-x-6 tw-items-center tw-hidden lg:tw-flex">
+                  <div class="tw-flex tw-items-center tw-gap-1">
+                    <a href="#">
+                      <img src="{{ asset('storage/theme/image/apple-icon.svg') }}" class="tw-h-9" alt="App Store">
+                    </a>
+                      <div class="tw-font-bold tw-text-xs">App Store</div>
+                  </div>
+                  <div class="tw-flex tw-items-center tw-gap-1">
+                    <a href="#">
+                      <img src="{{ asset('storage/theme/image/playstore-icon.svg') }}" class="tw-h-9" alt="Google Play">
+                    </a>
+                       <div class="tw-font-bold tw-text-xs">Google Play</div>
+                  </div>
+                  <div class="tw-border tw-p-1">
+                      <img src="{{ asset('storage/theme/image/qrcode-ios.png') }}" class="tw-w-10 tw-h-10" alt="QR Code">
+                  </div>
+                </div>
+            </div>
+            <div class="tw-relative tw-w-full tw-right-1/2 tw-transform tw-translate-x-1/2 lg:tw-w-auto lg:tw-right-0 lg:tw-translate-x-0">
+                <img src="{{ asset('storage/theme/image/bo-cong-thuong.png') }}" class="tw-h-12 tw-mx-auto" alt="Đã thông báo bộ công thương">
+            </div>
+        </div>
+
+        <div class="tw-border-t tw-border-gray-200 tw-pt-2 tw-flex tw-flex-col lg:tw-flex-row tw-justify-between tw-gap-6 tw-text-[13px] tw-leading-relaxed">
+            <div class="lg:tw-w-1/2">
+              <div>
+
+                @if (theme_option('footer_description'))
+                <div class="widget__content">
+                  <h4 class="tw-text-lg tw-uppercase tw-mb-2">{{ theme_option('site_title') }}</h4>
+                  <p class="tw-whitespace-pre-wrap tw-mb-2">{{ theme_option('footer_description') }}</p>
+                </div>
+                @endif
+              </div>
+            </div>
+            <div class="lg:tw-w-1/2 lg:tw-text-left">
+              <div>
+                <p class="tw-text-sm tw-mb-1.5"><span class="tw-font-bold">HÀ NỘI:</span> 56 Duy Tân, P. Cầu Giấy. <span class="tw-font-bold">Điện thoại:</span> (024) 3568 6969</p>
+                <p class="tw-text-sm tw-mb-1.5"><span class="tw-font-bold">TP.HCM:</span> 716-718 Điện Biên Phủ, P. Vườn Lài. <span class="tw-font-bold">Điện thoại:</span> (028) 3833 6666</p>
+                <p class="tw-text-sm tw-mb-1.5"><span class="tw-font-bold">Email:</span> <a href="mailto:info@meta.vn" class="tw-text-blue-600 hover:tw-underline">info@meta.vn</a></p>
+              </div>
+
+            </div>
+        </div>
     </div>
-  </div>
 </footer>
+
 <div id="back2top">
   {!! BaseHelper::renderIcon('ti ti-arrow-narrow-up') !!}
 </div>

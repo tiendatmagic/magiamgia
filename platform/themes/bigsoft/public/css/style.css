@@ -587,7 +587,9 @@ p:empty {
 .social li {
     float: left;
     margin-right: 15px;
-    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    gap: 10px;
     align-items: center;
 }
 .social--white a {
@@ -1339,7 +1341,7 @@ p:empty {
     color: var(--color-1st);
 }
 .widget.widget__footer .widget__content .list li a {
-    color: #fff;
+    color: #000;
 }
 
 .widget .widget__header {
@@ -1444,8 +1446,9 @@ p:empty {
     margin-bottom: 0;
 }
 .widget__footer .widget__title {
-    color: #fff;
+    color: #000;
     font-size: 16px;
+    font-weight: bold;
 }
 .widget__footer .post__widget--simple {
     border-bottom: 0;
@@ -1552,7 +1555,7 @@ p:empty {
     font-size: 18px;
     font-weight: 400;
     line-height: 20px;
-    padding: 20px 0.5rem;
+    padding: 20px 1rem;
 }
 .navigation .menu-item > .sub-menu {
     opacity: 0;
@@ -1584,11 +1587,11 @@ p:empty {
     background-color: #fff;
     box-shadow: 0 0 1px rgba(34, 25, 25, 0.4);
     left: 0;
-    min-width: 240px;
+    min-width: 200px;
     position: absolute;
     top: 100%;
     z-index: 100;
-    border-radius: 8px;
+    border-radius: 4px;
     overflow: hidden;
 }
 .navigation .sub-menu > .menu-item {
@@ -1598,13 +1601,12 @@ p:empty {
     border-bottom: 0;
 }
 .navigation .sub-menu > .menu-item > a {
-    background-color: var(--color-1st);
-    color: #fff;
+    background-color: #eaeaea;
+    color: #515151;
     display: block;
     line-height: 1.4em;
     padding: 10px 20px;
-    text-transform: uppercase;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .navigation .sub-menu > .menu-item.active > a {
@@ -1679,7 +1681,7 @@ p:empty {
 }
 .navigation--light .menu-item:hover > a,
 .navigation--light .menu-item:hover > a .toggle-icon {
-    color: var(--color-1st);
+    color: #7a8896;
 }
 
 .navigation--light .menu-item.active > a {
@@ -1875,7 +1877,8 @@ p:empty {
     }
 }
 .navigation--fade .menu-item:hover > .sub-menu {
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
+    left: 50%;
 }
 .navigation--fadeUp .menu-item > .sub-menu {
     transform: translateY(30px);
@@ -1943,11 +1946,11 @@ p:empty {
     width: 100%;
 }
 .sub-menu--slideLeft .sub-menu > .menu-item:hover > a {
-    color: #000;
-    background-color: #fff;
-    /* padding-left: 30px; */
+    color: #7a8896;
 }
+
 .sub-menu--slideLeft .sub-menu > .menu-item:hover > a:before {
+    color: #7a8896;
     visibility: visible;
 }
 .margin-0 {
@@ -3421,11 +3424,6 @@ body {
     width: 15px;
     height: 15px;
  }
-
-.navigation--light .menu-item a span{
-    font-weight: 500;
-
-}
 
 .search-btn svg {
     color: var(--color-1st);
