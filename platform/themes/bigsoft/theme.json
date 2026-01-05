@@ -1,0 +1,17 @@
+{
+    "id": "botble/bigsoft",
+    "name": "Bignet Theme",
+    "namespace": "Theme\\BigSoft\\",
+    "description": "Interface designed by Bignet Solutions",
+    "author": "Bignet Solutions",
+    "version": "2.0.0",
+    "url": "https://bignet.vn",
+    "required_plugins": [
+        "blog",
+        "contact",
+        "gallery",
+        "language",
+        "block",
+        "member"
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "id": "al/service-contact-form",
+    "name": "Service Contact Form",
+    "namespace": "Botble\\ServiceContactForm\\",
+    "provider": "Botble\\ServiceContactForm\\Providers\\ServiceContactFormServiceProvider",
+    "author": "Bignet Solutions",
+    "url": "",
+    "version": "1.0.0",
+    "description": "Service detail contact form template"
+}

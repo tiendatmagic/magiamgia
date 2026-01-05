@@ -1,0 +1,11 @@
+{
+    "id": "al/service",
+    "name": "Service",
+    "namespace": "Botble\\Service\\",
+    "provider": "Botble\\Service\\Providers\\ServiceServiceProvider",
+    "author": "Bignet Solutions",
+    "url": "",
+    "version": "1.0.0",
+    "description": "",
+    "minimum_core_version": "7.2.3"
+}

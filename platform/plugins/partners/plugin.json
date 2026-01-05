@@ -1,0 +1,11 @@
+{
+    "id": "al/partners",
+    "name": "Partners",
+    "namespace": "Botble\\Partners\\",
+    "provider": "Botble\\Partners\\Providers\\PartnersServiceProvider",
+    "author": "Bignet",
+    "url": "",
+    "version": "1.0.0",
+    "description": "",
+    "minimum_core_version": "7.2.3"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "botble/robot-txt",
+  "name": "Robot TXT",
+  "namespace": "Botble\\RobotTxt\\",
+  "provider": "Botble\\RobotTxt\\Providers\\RobotTxtServiceProvider",
+  "author": "You",
+  "url": "",
+  "version": "1.0.0",
+  "description": "Allow editing the public/robots.txt file from admin panel"
+}
