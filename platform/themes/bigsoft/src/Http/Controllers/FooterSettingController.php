@@ -57,6 +57,8 @@ class FooterSettingController extends BaseController
             'footer_zalo_icon',
             'address_hn',
             'address_hcm',
+            'footer_address_hn_label',
+            'footer_address_hcm_label',
         ];
 
         $keys = array_merge($keys, $additional);

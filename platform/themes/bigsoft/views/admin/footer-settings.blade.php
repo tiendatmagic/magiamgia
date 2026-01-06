@@ -175,9 +175,21 @@
                         <h5 class="mt-4 mb-3">{{ __('Địa chỉ & Email') }}</h5>
 
                         <x-core::form.text-input
+                            name="footer_address_hn_label"
+                            :label="__('Nhãn địa chỉ 1')"
+                            :value="theme_option('footer_address_hn_label')"
+                        />
+
+                        <x-core::form.text-input
                             name="address_hn"
                             :label="__('Địa chỉ Hà Nội')"
                             :value="theme_option('address_hn')"
+                        />
+
+                        <x-core::form.text-input
+                            name="footer_address_hcm_label"
+                            :label="__('Nhãn địa chỉ 2')"
+                            :value="theme_option('footer_address_hcm_label')"
                         />
 
                         <x-core::form.text-input

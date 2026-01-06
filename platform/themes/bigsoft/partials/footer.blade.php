@@ -31,6 +31,8 @@ $contact_phone_south_warranty = theme_option('contact_phone_south_warranty');
 $working_hours_val = theme_option('working_hours');
 $working_hours_sat_val = theme_option('working_hours_sat');
 $contact_email_val = theme_option('contact_email');
+$footerAddressHnLabel = trim((string) theme_option('footer_address_hn_label')) ?: null;
+$footerAddressHcmLabel = trim((string) theme_option('footer_address_hcm_label')) ?: null;
 @endphp
 
 <footer class="tw-bg-white tw-pt-10 tw-pb-8 tw-border-t tw-border-gray-200">
@@ -155,11 +157,20 @@ $contact_email_val = theme_option('contact_email');
       <div class="lg:tw-w-1/2 lg:tw-text-left">
         <div>
           @if (theme_option('address_hn'))
-          <p class="tw-text-sm tw-mb-2.5"><span class="tw-font-bold">HÀ NỘI:</span> {{ theme_option('address_hn') }}</p>
+          <p class="tw-text-sm tw-mb-2.5">
+            @if ($footerAddressHnLabel)
+            <span class="tw-font-bold">{{ $footerAddressHnLabel }}:</span>
+            @endif
+            {{ theme_option('address_hn') }}
+          </p>
           @endif
 
           @if (theme_option('address_hcm'))
-          <p class="tw-text-sm tw-mb-2.5"><span class="tw-font-bold">TP.HCM:</span> {{ theme_option('address_hcm') }}
+          <p class="tw-text-sm tw-mb-2.5">
+            @if ($footerAddressHcmLabel)
+            <span class="tw-font-bold">{{ $footerAddressHcmLabel }}:</span>
+            @endif
+            {{ theme_option('address_hcm') }}
           </p>
           @endif
 
