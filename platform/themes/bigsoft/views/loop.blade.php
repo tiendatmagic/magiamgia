@@ -1,6 +1,5 @@
 @php
-	$layout = theme_option('blog_layout', 'default');
-	Theme::layout($layout === 'no-sidebar' ? 'default-no-sidebar' : $layout);
+	$layout = theme_option('blog_layout', 'default-no-sidebar');
 @endphp
 
 @include(Theme::getThemeNamespace() . '::views.templates.posts', compact('posts'))
