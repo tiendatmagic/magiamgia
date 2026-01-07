@@ -958,9 +958,7 @@ p:empty {
 .post__horizontal .post__meta span a:hover {
     color: var(--color-1st);
 }
-.post__horizontal .post__content {
-    margin-bottom: 15px;
-}
+
 .post__horizontal .post__content p {
     color: #000;
     font-size: 14px;
@@ -1016,7 +1014,7 @@ p:empty {
     z-index: 20;
 }
 .post__widget .post__header {
-    width: 100%
+    width: 100%;
 }
 .post__widget .post__title {
     color: #000;
@@ -1405,7 +1403,7 @@ p:empty {
     line-height: 1.6em;
 }
 
-.widget__about p.tw-whitespace-pre-wrap{
+.widget__about p.tw-whitespace-pre-wrap {
     font-size: 16px;
     line-height: 1.2rem;
 }
@@ -1691,7 +1689,7 @@ p:empty {
 
 .navigation--light .menu-item.active > a img {
     opacity: 0.5;
- }
+}
 .page-header {
     background-color: rgba(0, 0, 0, 0.9);
     border-bottom: 0;
@@ -1738,7 +1736,6 @@ p:empty {
 }
 .search-btn {
     float: right;
-    line-height: 60px;
     padding: 0 15px;
 }
 .search-btn i {
@@ -3419,91 +3416,95 @@ body {
     gap: 5px;
 }
 
-.navigation--light .menu-item a img{
+.navigation--light .menu-item a img {
     opacity: 1;
     width: 15px;
     height: 15px;
- }
+}
 
 .search-btn svg {
     color: var(--color-1st);
 }
 
-.detailFullSingleTour p, .policySingleTour p, .detailFullSingleServices p{
+.detailFullSingleTour p,
+.policySingleTour p,
+.detailFullSingleServices p {
     font-size: 16px;
     margin-bottom: 10px;
 }
 
-.detailFullSingleTour h3, .policySingleTour h3, .detailFullSingleServices h3 {
+.detailFullSingleTour h3,
+.policySingleTour h3,
+.detailFullSingleServices h3 {
     font-size: 22px;
     color: #374888;
     font-weight: bold;
     margin-bottom: 10px;
- }
+}
 
- .detailFullSingleTour .accordion-item h3, .policySingleTour .accordion-item h3 {
+.detailFullSingleTour .accordion-item h3,
+.policySingleTour .accordion-item h3 {
     margin-bottom: 0px;
- }
+}
 
- .detailFullSingleTour .table-responsive tr th,
- .detailFullSingleServices .table-responsive tr th
- {
+.detailFullSingleTour .table-responsive tr th,
+.detailFullSingleServices .table-responsive tr th {
     background-color: #f19135;
     color: #fff;
- }
+}
 
-
- .detailFullSingleTour ol, .policySingleTour ol,
- .detailFullSingleTour ul, .policySingleTour ul {
+.detailFullSingleTour ol,
+.policySingleTour ol,
+.detailFullSingleTour ul,
+.policySingleTour ul {
     padding-left: 20px;
- }
+}
 
-.detailFullSingleTour ul li, .policySingleTour ul li
- {
+.detailFullSingleTour ul li,
+.policySingleTour ul li {
     list-style-type: disc;
- }
+}
 
- .detailFullSingleTour ol li,
- .policySingleTour ol li
- {
+.detailFullSingleTour ol li,
+.policySingleTour ol li {
     list-style-type: decimal;
- }
+}
 
- .post.post__widget div img {
+.post.post__widget div img {
     width: 100%;
- }
+}
 
-
- .toc-container.table-of-content a {
+.toc-container.table-of-content a {
     color: #374888;
- }
-.page-header__left, .page-header__right {
+}
+.page-header__left,
+.page-header__right {
     padding: 22px 0;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
- }
+}
 
- .servicesTop p,
- .priceTopDes p,
- .partnerTopDes p,
- .contactformTopDes p {
+.servicesTop p,
+.priceTopDes p,
+.partnerTopDes p,
+.contactformTopDes p {
     margin-top: 0;
     margin-bottom: 1rem;
     font-size: 16px;
- }
-
- .listDetailServicesTitle {
-     padding: 15px;
-     font-size: 20px;
 }
 
-.listDetailServicesTitle strong{
+.listDetailServicesTitle {
+    padding: 15px;
+    font-size: 20px;
+}
+
+.listDetailServicesTitle strong {
     color: #0d6efd;
 }
 
-.table-responsive .table  {
+.table-responsive .table {
     font-size: 16px;
 }
 
@@ -3514,7 +3515,7 @@ body {
     font-size: 16px;
 }
 
-.table-striped>tbody>tr:nth-of-type(odd)>* {
+.table-striped > tbody > tr:nth-of-type(odd) > * {
     --bs-table-color-type: var(--bs-table-striped-color);
     --bs-table-bg-type: var(--bs-table-striped-bg);
 }
@@ -3530,16 +3531,19 @@ ul.bullet li {
     font-size: 16px;
 }
 
-ul.bullet b, strong {
+ul.bullet b,
+strong {
     font-weight: 700;
     color: inherit;
 }
 
-ul.bullet b, strong *{
+ul.bullet b,
+strong * {
     font-weight: 700;
 }
 
-.page-content ul.bullet b, strong {
+.page-content ul.bullet b,
+strong {
     font-weight: 700 !important;
     color: inherit;
 }
@@ -3558,7 +3562,8 @@ ul.bullet b, strong *{
 }
 
 @media (max-width: 767px) {
-   .table-responsive .table th:first-child, .table-responsive .table td:first-child {
+    .table-responsive .table th:first-child,
+    .table-responsive .table td:first-child {
         width: 40%;
         min-width: 240px;
         vertical-align: middle;
@@ -3566,7 +3571,8 @@ ul.bullet b, strong *{
 }
 
 @media (max-width: 767px) {
-    .table-responsive .table th:not(:first-child),  .table-responsive .table td:not(:first-child) {
+    .table-responsive .table th:not(:first-child),
+    .table-responsive .table td:not(:first-child) {
         width: auto;
         vertical-align: middle;
     }
@@ -3582,14 +3588,15 @@ ul.bullet b, strong *{
 }
 
 .page-content h2 {
-    font-size: calc(1.325rem + .9vw);
+    font-size: calc(1.325rem + 0.9vw);
 }
 
 .page-content h3 {
-    font-size: calc(1.3rem + .6vw);
+    font-size: calc(1.3rem + 0.6vw);
 }
 
-.page-content .ck-content .table table td, .ck-content .table table th {
+.page-content .ck-content .table table td,
+.ck-content .table table th {
     border: none !important;
 }
 
@@ -3618,26 +3625,25 @@ ul.bullet b, strong *{
         padding: 20px;
         border-radius: 10px;
     }
-
 }
 
-#navi-overlay-responsive > div.language_switcher{
-  margin-top: 48px;
+#navi-overlay-responsive > div.language_switcher {
+    margin-top: 48px;
 }
 
 .language_switcher .dropdown {
-  max-width: max-content;
+    max-width: max-content;
 }
 
-.language_switcher .dropdown li a:hover{
-  color: unset;
-  background-color: #eee;
- }
+.language_switcher .dropdown li a:hover {
+    color: unset;
+    background-color: #eee;
+}
 
 .language_switcher .dropdown .dropdown-menu.language_bar_chooser {
-  padding: 0;
+    padding: 0;
     min-width: max-content;
-  overflow: hidden;
+    overflow: hidden;
 }
 
 .language_switcher button.dropdown-toggle {
@@ -3660,9 +3666,9 @@ ul.bullet b, strong *{
 .language_switcher button.dropdown-toggle:active {
     background-color: unset;
     color: #000;
- }
+}
 
-.language_switcher ul.dropdown-menu li a{
+.language_switcher ul.dropdown-menu li a {
     padding: 3px 15px 3px 15px;
     display: flex !important;
     align-items: center;
@@ -3679,14 +3685,17 @@ ul.bullet b, strong *{
     width: 100%;
 }
 
-
 .language_switcher-mobile {
     display: none;
 }
 
- .tw-main-menu {
-        display: flex;
-        flex-direction: row;
+.tw-main-menu {
+    display: flex;
+    flex-direction: row;
+}
+
+.header-right-actions {
+    margin-top: 0px;
 }
 
 @media only screen and (max-width: 991px) {
@@ -3696,6 +3705,7 @@ ul.bullet b, strong *{
 
     .header-right-actions {
         gap: 6px;
+        margin-top: 15px;
     }
 
     .header-right-actions .search-btn {
@@ -3771,8 +3781,6 @@ ul.bullet b, strong *{
     .header-logo-center-bar {
         padding-right: 180px;
     }
-
-
 }
 
 @media (min-width: 1000px) {
@@ -3800,11 +3808,12 @@ ul.bullet b, strong *{
         left: 0;
         right: auto;
     }
-
 }
 
-
-.datepicker .datepicker-switch, .datepicker .next, .datepicker .prev, .datepicker tfoot tr th {
+.datepicker .datepicker-switch,
+.datepicker .next,
+.datepicker .prev,
+.datepicker tfoot tr th {
     font-weight: bold !important;
 }
 
@@ -3823,9 +3832,9 @@ thead tr th {
     padding: 0.5rem;
 }
 .ck-content .table tbody tr:nth-child(odd) td {
-    background-color: #f2f2f2 ;
-color: rgb(33, 37, 41);
-    font-family: 'system-ui', sans-serif, sans-serif;
+    background-color: #f2f2f2;
+    color: rgb(33, 37, 41);
+    font-family: "system-ui", sans-serif, sans-serif;
     font-weight: 400;
     padding: 0.5rem;
 }
