@@ -52,31 +52,88 @@ Theme::set('breadcrumbBannerImage', RvMedia::getImageUrl($bannerImage));
         <div class="ck-content">{!! BaseHelper::clean($post->content) !!}</div>
         <div class="fb-like" data-href="{{ request()->url() }}" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div>
     </div>
-    @php $relatedPosts = get_related_posts($post->id, 2); @endphp
+    @php
+        $maxInterest = 8;
+        $categoryIds = $post->categories->pluck('id')->all();
 
-    @if ($relatedPosts->isNotEmpty())
-    <footer class="post__footer">
-        <div class="row">
-            @foreach ($relatedPosts as $relatedItem)
-            <div class="col-md-6 col-sm-6 col-12">
-                <div class="post__relate-group @if ($loop->last) post__relate-group--right text-end @else text-start @endif">
-                    <h4 class="relate__title">@if ($loop->first) {{ __('Previous Post') }} @else {{ __('Next Post') }} @endif</h4>
-                    <article class="post post--related">
-                        <div class="post__thumbnail"><a href="{{ preg_match('/\.html$/i', $relatedItem->url) ? preg_replace('/(\.html)+$/i', '.html', $relatedItem->url) : $relatedItem->url . '.html' }}" title="{{ $relatedItem->name }}" class="post__overlay"></a>
-                            {{ RvMedia::image($relatedItem->image, $relatedItem->name, 'thumb') }}
+        $interestPosts = collect();
+
+        if (! empty($categoryIds)) {
+            $interestPosts = \Botble\Blog\Models\Post::query()
+                ->where('id', '!=', $post->id)
+                ->wherePublished()
+                ->whereHas('categories', function ($q) use ($categoryIds) {
+                    $q->whereIn('categories.id', $categoryIds);
+                })
+                ->with(['slugable', 'categories', 'author'])
+                ->orderByDesc('created_at')
+                ->limit($maxInterest)
+                ->get();
+        }
+
+        if ($interestPosts->count() < $maxInterest) {
+            $remaining = $maxInterest - $interestPosts->count();
+            $excludeIds = $interestPosts->pluck('id')->push($post->id)->all();
+
+            $latest = \Botble\Blog\Models\Post::query()
+                ->wherePublished()
+                ->whereNotIn('id', $excludeIds)
+                ->with(['slugable', 'categories', 'author'])
+                ->orderByDesc('created_at')
+                ->limit($remaining)
+                ->get();
+
+            $interestPosts = $interestPosts->concat($latest);
+        }
+
+        $cols = max(1, min(6, (int) theme_option('blog_grid_cols', 2)));
+        $colsSm = max(1, min(6, (int) theme_option('blog_grid_cols_sm', 2)));
+        $colsMd = max(1, min(6, (int) theme_option('blog_grid_cols_md', 3)));
+        $colsLg = max(1, min(6, (int) theme_option('blog_grid_cols_lg', 4)));
+        $colsXl = max(1, min(6, (int) theme_option('blog_grid_cols_xl', 4)));
+
+        $gridClass = sprintf(
+            'tw-grid tw-grid-cols-%d sm:tw-grid-cols-%d md:tw-grid-cols-%d lg:tw-grid-cols-3 xl:tw-grid-cols-4 tw-gap-6',
+            $cols,
+            $colsSm,
+            $colsMd,
+            $colsLg,
+            $colsXl
+        );
+    @endphp
+
+    @if ($interestPosts->isNotEmpty())
+        <section class="tw-mt-8 tw-mb-4">
+            <h4 class="tw-text-xl tw-font-semibold tw-mb-4">{{ __('You may also like') }}</h4>
+            <div class="{{ $gridClass }}">
+                @foreach ($interestPosts as $relatedItem)
+                    <article class="post post__horizontal tw-rounded-xl tw-overflow-hidden tw-shadow-md hover:tw-shadow-xl tw-border-gray-100 tw-border tw-flex tw-flex-col tw-transition-all clearfix">
+                        <div class="post__thumbnail tw-relative" style="width: 100%">
+                            {{ RvMedia::image($relatedItem->image, $relatedItem->name, 'medium') }}
+                            <a
+                                class="post__overlay"
+                                href="{{ preg_match('/\.html$/i', $relatedItem->url) ? preg_replace('/(\.html)+$/i', '.html', $relatedItem->url) : $relatedItem->url . '.html' }}"
+                                title="{{ $relatedItem->name }}"
+                            ></a>
+
                         </div>
-                        <header class="post__header">
-                            <p><a href="
-                                        {{ preg_match('/\.html$/i', $relatedItem->url) ? preg_replace('/(\.html)+$/i', '.html', $relatedItem->url) : $relatedItem->url . '.html' }}
-                                        " class="post__title"> {{ $relatedItem->name }}</a></p>
-                            <div class="post__meta"></div>
-                        </header>
+                        <div class="post__content-wrap" style="width: 100%">
+                            <header class="post__header">
+                                <h3 class="post__title" style="width: 100%;">
+                                    <a
+                                        href="{{ preg_match('/\.html$/i', $relatedItem->url) ? preg_replace('/(\.html)+$/i', '.html', $relatedItem->url) : $relatedItem->url . '.html' }}" class="tw-line-clamp-3"
+                                        title="{{ $relatedItem->name }}"
+                                    >{{ $relatedItem->name }}</a></h3>
+
+                            </header>
+                            <div class="post__content tw-p-0 tw-mt-3">
+                                <p class="tw-line-clamp-3">{{ $relatedItem->description }}</p>
+                            </div>
+                        </div>
                     </article>
-                </div>
+                @endforeach
             </div>
-            @endforeach
-        </div>
-    </footer>
+        </section>
     @endif
     <br>
     {!! apply_filters(BASE_FILTER_PUBLIC_COMMENT_AREA, null, $post) !!}
