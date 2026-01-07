@@ -37,7 +37,9 @@
         <div class="page-content error-page">
             @if ($notFoundImage)
                 <div class="tw-mb-4">
+                    <div class="tw-w-full tw-max-w-sm tw-mx-auto">
                     {{ RvMedia::image($notFoundImage, $notFoundTitle ?: __('404 - Not found')) }}
+                    </div>
                 </div>
             @endif
 
@@ -49,8 +51,6 @@
 
             @if ($notFoundTitle)
                 <h4>{{ $notFoundTitle }}</h4>
-            @else
-                <h4>{{ __('This may have occurred because of several reasons') }}:</h4>
             @endif
 
             @if ($notFoundContent)
@@ -70,4 +70,11 @@
         </div>
     </div>
 </section>
+
+<style>
+header, footer  {
+    display: none;
+}
+</style>
+
 {!! Theme::partial('footer') !!}

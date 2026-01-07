@@ -117,5 +117,8 @@
     "Address label 1": "Nhãn địa chỉ 1",
     "Address label 2": "Nhãn địa chỉ 2",
     "Search Post": "Tìm kiếm Bài viết",
-    "It seems we can't find what you're looking for": "Có vẻ như chúng tôi không thể tìm thấy những gì bạn đang tìm kiếm"
+    "Search Result For: \":query\"": "Kết quả tìm kiếm cho: \":query\"",
+    "It seems we can't find what you're looking for": "Có vẻ như chúng tôi không thể tìm thấy những gì bạn đang tìm kiếm",
+    "Please try again in a few minutes, or alternatively return to the homepage by <a href=\":link\">clicking here</a>.": "Để quay trở về trang chủ, hãy bấm vào <a href=\":link\">Tại đây</a>.",
+    "Type to search...": "Gõ để tìm kiếm..."
 }
