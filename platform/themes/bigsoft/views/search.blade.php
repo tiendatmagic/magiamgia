@@ -216,7 +216,7 @@ BaseHelper::stringify(request()->input('q'))])) @endphp
     </section>
 
 
-    <div class="container tw-mt-[-130px]">
+    <div class="container {{ $posts->isNotEmpty() ? 'tw-mt-[-130px]' : '' }}">
         <div class="{{ $gridClass }}">
             @if ($posts->isNotEmpty())
             @foreach ($posts as $post)
