@@ -36,7 +36,7 @@ $footerAddressHcmLabel = trim((string) theme_option('footer_address_hcm_label'))
 @endphp
 
 <footer class="tw-bg-white tw-pt-10 tw-pb-8 tw-border-t tw-border-gray-200">
-  <div class="tw-container tw-mx-auto tw-px-4 tw-max-w-7xl">
+  <div class="container">
 
     <div class="row footerTop">
 
@@ -186,7 +186,7 @@ $footerAddressHcmLabel = trim((string) theme_option('footer_address_hcm_label'))
     </div>
   </div>
 
-  <div class="tw-container tw-mx-auto tw-px-4 tw-max-w-7xl">
+  <div class="container">
     @if($copyright = theme_option('copyright'))
     <div class="col-md-8 col-sm-6">
       <div class="page-copyright tw-block  {{ $footerCopyrightAlignmentClass }}">

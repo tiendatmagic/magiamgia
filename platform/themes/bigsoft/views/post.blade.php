@@ -25,6 +25,8 @@ Theme::set('breadcrumbBannerImage', RvMedia::getImageUrl($bannerImage));
 {!! Theme::partial('breadcrumb-posts', ['post' => $post]) !!}
 
 <article class="post post--single">
+
+    <div class="tw-p-[25px] tw-shadow-xl tw-rounded-xl tw-bg-white tw-border tw-border-gray-200">
     <header class="post__header">
         <h1 class="post__title">{{ $post->name }}</h1>
         <div class="post__meta">
@@ -52,6 +54,8 @@ Theme::set('breadcrumbBannerImage', RvMedia::getImageUrl($bannerImage));
         <div class="ck-content">{!! BaseHelper::clean($post->content) !!}</div>
         <div class="fb-like" data-href="{{ request()->url() }}" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div>
     </div>
+    </div>
+
     @php
         $maxInterest = 8;
         $categoryIds = $post->categories->pluck('id')->all();
@@ -101,6 +105,7 @@ Theme::set('breadcrumbBannerImage', RvMedia::getImageUrl($bannerImage));
             $colsXl
         );
     @endphp
+
 
     @if ($interestPosts->isNotEmpty())
         <section class="tw-mt-8 tw-mb-4">
