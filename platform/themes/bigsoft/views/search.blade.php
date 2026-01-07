@@ -9,7 +9,7 @@
     $colsXl = max(1, min(6, (int) theme_option('blog_grid_cols_xl', 4)));
 
     $gridClass = sprintf(
-        'tw-grid tw-grid-cols-%d sm:tw-grid-cols-%d md:tw-grid-cols-%d lg:tw-grid-cols-%d xl:tw-grid-cols-%d tw-gap-6',
+        'tw-grid tw-grid-cols-%d sm:tw-grid-cols-%d md:tw-grid-cols-%d lg:tw-grid-cols-%d xl:tw-grid-cols-%d tw-gap-6 grid-interest-posts',
         $cols,
         $colsSm,
         $colsMd,

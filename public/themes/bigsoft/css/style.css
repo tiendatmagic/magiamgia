@@ -1297,6 +1297,9 @@ p:empty {
     font-size: calc(1.375rem + 1.5vw);
     font-weight: 600;
     letter-spacing: 0.05em;
+}
+
+.grid-interest-posts .post__header .post__title {
     height: 64px;
 }
 
@@ -3681,7 +3684,6 @@ strong {
 
 .page-content h1 {
     font-size: calc(1.375rem + 1.5vw);
-    text-transform: uppercase;
 }
 
 .page-content h2 {
@@ -3943,4 +3945,14 @@ thead tr th {
     color: rgb(33, 37, 41);
     font-weight: 400;
     padding: 0.5rem;
+}
+
+.section-content .page-content {
+    box-shadow:
+        0 4px 6px -1px rgb(0 0 0 / 0.1),
+        0 2px 4px -2px rgb(0 0 0 / 0.1);
+    padding: 20px;
+    padding-bottom: 0px;
+    border: 1px solid #eee;
+    border-radius: 20px;
 }
