@@ -38,8 +38,7 @@ $notFoundImage = theme_option('404_page_image');
 
       <div class="tw-mx-auto tw-mt-6 tw-text-center">
         <a href="{{ BaseHelper::getHomepageUrl() }}"
-          class="tw-p-3 tw-text-white lg:tw-m-0 tw-inline  tw-border-0 tw-rounded-xl tw-overflow-hidden tw-cursor-pointer tw-no-underline"
-          style="background-color: {{ theme_option('primary_color', '#AF0F26') }};">QUAY
+          class="tw-py-[13px] tw-px-[20px] tw-text-white lg:tw-m-0 tw-inline tw-border-0 tw-overflow-hidden tw-cursor-pointer tw-no-underline tw-bg-[#005ae0] hover:tw-bg-[#f97e2b] tw-rounded-full tw-font-medium">QUAY
           VỀ TRANG CHỦ</a>
       </div>
 
