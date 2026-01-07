@@ -935,7 +935,7 @@ p:empty {
     letter-spacing: 0;
 }
 .post__horizontal .post__title:hover a {
-    color: var(--color-1st);
+    text-decoration: underline;
 }
 .post__horizontal .post__meta {
     margin-bottom: 10px;

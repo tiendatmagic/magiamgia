@@ -935,7 +935,7 @@ p:empty {
     letter-spacing: 0;
 }
 .post__horizontal .post__title:hover a {
-    color: var(--color-1st);
+    text-decoration: underline;
 }
 .post__horizontal .post__meta {
     margin-bottom: 10px;
@@ -998,9 +998,17 @@ p:empty {
 }
 
 .breadcrumb-item {
-    --breadcrumb-base: var(--primary-color, #039910);
-    --breadcrumb-light: color-mix(in srgb, var(--breadcrumb-base) 88%, white 12%);
-    --breadcrumb-lighter: color-mix(in srgb, var(--breadcrumb-base) 78%, white 22%);
+    --breadcrumb-base: var(--primary-color);
+    --breadcrumb-light: color-mix(
+        in srgb,
+        var(--breadcrumb-base) 88%,
+        white 12%
+    );
+    --breadcrumb-lighter: color-mix(
+        in srgb,
+        var(--breadcrumb-base) 78%,
+        white 22%
+    );
 }
 
 .breadcrumb-item a:after,
