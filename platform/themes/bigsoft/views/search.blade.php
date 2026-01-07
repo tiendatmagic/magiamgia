@@ -203,9 +203,9 @@ BaseHelper::stringify(request()->input('q'))])) @endphp
                         <div class="hero-widget-wrap">
                             <div class="hero-title">
                                 <div class="hero-heading-container">
-                                    <h1 class="hero-heading-title tw-text-3xl tw-text-white">
+                                    <div class="hero-heading-title tw-text-3xl tw-text-white">
                                         {{ __('Search Result For: ":query"', ['query' => BaseHelper::stringify(request()->input('q'))]) }}
-                                    </h1>
+                                    </div>
                                 </div>
                             </div>
                         </div>
