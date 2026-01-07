@@ -6,17 +6,23 @@ Theme::layout($layout === 'no-sidebar' ? 'default-no-sidebar' : $layout);
 use Illuminate\Support\Facades\Request;
 $currentUri = Request::path();
 
-if (! str_ends_with($currentUri, '.html') && $post->id) {
-abort(404);
+// Only check .html suffix if post exists and current URL doesn't match
+if ($post->id && !str_ends_with($currentUri, '.html')) {
+    $expectedUrl = $post->url . (str_ends_with($post->url, '.html') ? '' : '.html');
+    if ($currentUri !== trim($expectedUrl, '/')) {
+        abort(404);
+    }
 }
 
 Theme::set('section-name', $post->name);
-$post->loadMissing('metadata');
+$post->loadMissing(['metadata', 'categories']);
 
 if ($bannerImage = $post->getMetaData('banner_image', true)) {
 Theme::set('breadcrumbBannerImage', RvMedia::getImageUrl($bannerImage));
 }
 @endphp
+
+{!! Theme::partial('breadcrumb-posts', ['post' => $post]) !!}
 
 <article class="post post--single">
     <header class="post__header">

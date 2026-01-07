@@ -15,7 +15,7 @@
         $colsXl = max(1, min(6, (int) theme_option('blog_grid_cols_xl', 4)));
 
         $gridClass = sprintf(
-            'tw-grid tw-grid-cols-%d sm:tw-grid-cols-%d md:tw-grid-cols-%d lg:tw-grid-cols-%d xl:tw-grid-cols-%d tw-gap-x-6 tw-gap-y-0',
+            'tw-grid tw-grid-cols-%d sm:tw-grid-cols-%d md:tw-grid-cols-%d lg:tw-grid-cols-%d xl:tw-grid-cols-%d tw-gap-6',
             $cols,
             $colsSm,
             $colsMd,
@@ -26,38 +26,30 @@
     <div class="{{ $gridClass }}">
         @if ($posts->isNotEmpty())
         @foreach ($posts as $post)
-            <article
-                    class="tw-flex tw-flex-col tw-overflow-hidden tw-w-full tw-h-auto tw-transition-all">
+            <article class="post post__horizontal tw-rounded-xl tw-overflow-hidden tw-shadow-md hover:tw-shadow-xl tw-border-gray-100 tw-border tw-flex tw-flex-col tw-transition-all clearfix">
+                <div class="post__thumbnail tw-relative" style="width: 100%">
+                    {{ RvMedia::image($post->image, $post->name, 'medium') }}
+                    <a
+                        class="post__overlay"
+                        href="{{ preg_match('/\.html$/i', $post->url) ? preg_replace('/(\.html)+$/i', '.html', $post->url) : $post->url . '.html' }}"
+                        title="{{ $post->name }}"
+                    ></a>
 
-                    <div class="lg:tw-max-h-[168px] tw-h-auto tw-relative">
-                        <a
-                            href="{{ preg_match('/\.html$/i', $post->url) ? preg_replace('/(\.html)+$/i', '.html', $post->url) : $post->url . '.html' }}"
-                            title="{{ $post->name }}"
-                            class="tw-block tw-w-full tw-h-full"
-                        >
-                            {{ RvMedia::image(
-                                $post->image,
-                                $post->name,
-                                'high',
-                                false,
-                                ['class' => 'tw-w-full tw-h-full']
-                            ) }}
-                        </a>
-
-                    </div>
-
-                    <div class="tw-p-[15px] tw-flex tw-flex-col">
-                        <h3 class="tw-h-12">
+                </div>
+                <div class="post__content-wrap" style="width: 100%">
+                    <header class="post__header">
+                        <h3 class="post__title" style="width: 100%;">
                             <a
-                                href="{{ preg_match('/\.html$/i', $post->url) ? preg_replace('/(\.html)+$/i', '.html', $post->url) : $post->url . '.html' }}"
+                                href="{{ preg_match('/\.html$/i', $post->url) ? preg_replace('/(\.html)+$/i', '.html', $post->url) : $post->url . '.html' }}" class="tw-line-clamp-3"
                                 title="{{ $post->name }}"
-                                class="tw-text-[#0d6efd] hover:tw-text-[#0a58ca] tw-text-[20px] tw-font-bold tw-line-clamp-2 tw-text-center"
-                            >
-                                {{ $post->name }}
-                            </a>
-                        </h3>
+                            >{{ $post->name }}</a></h3>
+
+                    </header>
+                    <div class="post__content tw-p-0 tw-mt-3">
+                        <p class="tw-line-clamp-3">{{ $post->description }}</p>
                     </div>
-                </article>
+                </div>
+            </article>
         @endforeach
 
         @else
@@ -67,7 +59,7 @@
         @endif
     </div>
 
-    <div class="page-pagination text-right">
-            {!! $posts->links() !!}
+    <div class="page-pagination tw-px-4 tw-py-6 tw-text-right">
+        {!! $posts->links() !!}
     </div>
 </div>
