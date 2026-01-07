@@ -156,6 +156,7 @@
     "Run": "Run",
     "Search result": "Search result",
     "Search result for: \":query\"": "Search result for: \":query\"",
+    "Search Post": "Search Post",
     "Search...": "Search...",
     "Select categories": "Select categories",
     "Send": "Send",
@@ -224,5 +225,6 @@
     "Enter Youtube Link": "Enter Youtube Link",
     "Enter Twitter Link": "Enter Twitter Link",
     "Enter Google Link": "Enter Google Link",
-    "Zalo Phone": "Zalo Phone"
+    "Zalo Phone": "Zalo Phone",
+    "It seems we can't find what you're looking for": "It seems we can't find what you're looking for"
 }
