@@ -32,6 +32,11 @@ class Voucher extends BaseModel
     'expired_at' => 'date',
   ];
 
+  public function getDiscountTypeAttribute($value)
+  {
+    return trans('plugins/voucher::voucher.discount.' . $value);
+  }
+
   public function provider(): BelongsTo
   {
     return $this->belongsTo(Provider::class, 'provider_id');

@@ -34,7 +34,7 @@ return [
     'select_category' => '-- Chọn danh mục --',
   ],
   'discount' => [
-    'percent' => 'Giảm theo %',
-    'amount' => 'Giảm theo số tiền',
+    'percent' => 'Phần trăm (%)',
+    'amount' => 'Số tiền',
   ],
 ];

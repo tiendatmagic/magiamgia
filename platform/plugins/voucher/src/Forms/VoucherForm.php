@@ -35,10 +35,14 @@ class VoucherForm extends FormAbstract
       ->add('provider_id', SelectField::class, SelectFieldOption::make()
         ->label(trans('plugins/voucher::voucher.fields.provider'))
         ->choices(['' => trans('plugins/voucher::voucher.helpers.select_provider')] + $providers)
+        ->required()
         ->toArray())
       ->add('category', SelectField::class, SelectFieldOption::make()
         ->label(trans('plugins/voucher::voucher.fields.category'))
         ->choices(['' => trans('plugins/voucher::voucher.helpers.select_category')])
+        ->selected($this->getModel()?->category)
+        ->addAttribute('data-saved-value', $this->getModel()?->category ?: '')
+        ->required()
         ->toArray())
       ->add('code', TextField::class, [
         'label' => trans('plugins/voucher::voucher.fields.code'),
@@ -49,9 +53,11 @@ class VoucherForm extends FormAbstract
           'percent' => trans('plugins/voucher::voucher.discount.percent'),
           'amount' => trans('plugins/voucher::voucher.discount.amount'),
         ])
+        ->required()
         ->toArray())
       ->add('discount_value', TextField::class, [
         'label' => trans('plugins/voucher::voucher.fields.discount_value'),
+        'required' => true,
         'attributes' => [
           'type' => 'number',
           'step' => '0.01',
@@ -89,6 +95,7 @@ class VoucherForm extends FormAbstract
       ->add('expired_at', DatePickerField::class, DatePickerFieldOption::make()
         ->label(trans('plugins/voucher::voucher.fields.expired_at'))
         ->defaultValue('')
+        ->required()
         ->toArray())
       ->add('status', SelectField::class, StatusFieldOption::make()->toArray())
       ->setBreakFieldPoint('status');

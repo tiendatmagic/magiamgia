@@ -11,7 +11,8 @@
       });
       const data = await res.json();
       const payload = data.data || data;
-      return (payload && payload.categories) ? payload.categories : [];
+      const categories = (payload && payload.categories) ? payload.categories : [];
+      return categories;
     } catch (e) {
       return [];
     }
@@ -34,6 +35,7 @@
       }
       select.appendChild(opt);
     });
+
   }
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -41,19 +43,76 @@
     const categorySelect = document.querySelector('select[name="category"]');
     if (!providerSelect || !categorySelect) return;
 
-    const initialCategory = categorySelect.value;
+    let initialCategory = categorySelect.getAttribute('data-saved-value') || '';
+    console.log('Initial category from data attribute:', initialCategory);
 
     async function refresh() {
       const providerId = providerSelect.value;
+      console.log('Refreshing categories for provider:', providerId);
       const categories = await fetchCategories(providerId);
       setOptions(categorySelect, categories, initialCategory);
     }
 
+    // Load categories on page load (preserves saved category for edit pages)
+    refresh();
+
     providerSelect.addEventListener('change', function () {
       categorySelect.value = '';
+      initialCategory = '';
       refresh();
     });
+  });
 
-    refresh();
+  // Initialize datetime picker with time support for expired_at field
+  document.addEventListener('DOMContentLoaded', function () {
+    // Check for flatpickr date picker
+    const datePickerWrappers = document.querySelectorAll('.datepicker');
+    datePickerWrappers.forEach(function (wrapper) {
+      const input = wrapper.querySelector('input[name="expired_at"]');
+      if (!input) return;
+
+      const enableTime = input.getAttribute('data-enable-time') === 'true' || input.getAttribute('data-enable-time') === '1';
+      const dateFormat = input.getAttribute('data-date-format') || 'Y-m-d';
+
+      if (enableTime && typeof flatpickr !== 'undefined') {
+        // Re-initialize with time enabled
+        const fpInstance = input._flatpickr;
+        if (fpInstance) {
+          fpInstance.destroy();
+        }
+
+        flatpickr(wrapper, {
+          dateFormat: dateFormat,
+          enableTime: true,
+          time_24hr: true,
+          wrap: true,
+          locale: window.siteEditorLocale === 'vi' ? 'vn' : (window.siteEditorLocale || 'en'),
+        });
+      }
+    });
+
+    // Fallback: Bootstrap datetimepicker if available
+    var $picker = jQuery('#datetimepicker-expired_at');
+    if ($picker.length > 0 && typeof moment !== 'undefined' && jQuery.fn.datetimepicker) {
+      $picker.datetimepicker({
+        format: 'YYYY-MM-DD HH:mm:ss',
+        stepping: 1,
+        useCurrent: false,
+        showTodayButton: true,
+        showClear: true,
+        showClose: true,
+        icons: {
+          today: 'ti ti-calendar-check',
+          clear: 'ti ti-x',
+          close: 'ti ti-x',
+          date: 'ti ti-calendar',
+          up: 'ti ti-chevron-up',
+          down: 'ti ti-chevron-down',
+          previous: 'ti ti-chevron-left',
+          next: 'ti ti-chevron-right',
+          time: 'ti ti-clock'
+        }
+      });
+    }
   });
 })();

@@ -9,8 +9,8 @@ class VoucherRequest extends Request
   public function rules(): array
   {
     return [
-      'provider_id' => 'nullable|integer',
-      'category' => 'nullable|string|max:250',
+      'provider_id' => 'required|integer',
+      'category' => 'required|string|max:250',
       'code' => 'nullable|string|max:250',
       'discount_type' => 'required|in:percent,amount',
       'discount_value' => 'required|numeric|min:0',
@@ -19,7 +19,7 @@ class VoucherRequest extends Request
       'note' => 'nullable|string',
       'apply_url' => 'nullable|string|max:2048',
       'banner_url' => 'nullable|string|max:2048',
-      'expired_at' => 'nullable|date',
+      'expired_at' => 'required|date_format:Y-m-d',
       'status' => 'required|string',
     ];
   }

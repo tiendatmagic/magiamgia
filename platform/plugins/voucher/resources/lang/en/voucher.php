@@ -35,6 +35,6 @@ return [
   ],
   'discount' => [
     'percent' => 'Percent (%)',
-    'amount' => 'Amount (VND)',
+    'amount' => 'Amount',
   ],
 ];
