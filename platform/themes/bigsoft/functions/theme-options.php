@@ -50,6 +50,16 @@ app('events')->listen(RenderingThemeOptionSettings::class, function () {
             ],
         ])
         ->setField([
+            'id' => 'search_no_result_image',
+            'section_id' => 'opt-text-subsection-general',
+            'type' => 'mediaImage',
+            'label' => __('Search no result image'),
+            'attributes' => [
+                'name' => 'search_no_result_image',
+                'value' => null,
+            ],
+        ])
+        ->setField([
             'id' => 'facebook_comment_enabled_in_gallery',
             'section_id' => 'opt-text-subsection-facebook-integration',
             'type' => 'customSelect',
