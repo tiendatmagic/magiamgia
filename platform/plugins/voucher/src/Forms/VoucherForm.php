@@ -92,12 +92,12 @@ class VoucherForm extends FormAbstract
       ->add('banner_url', TextField::class, [
         'label' => trans('plugins/voucher::voucher.fields.banner_url'),
       ])
+      ->add('status', SelectField::class, StatusFieldOption::make()->toArray())
       ->add('expired_at', DatePickerField::class, DatePickerFieldOption::make()
         ->label(trans('plugins/voucher::voucher.fields.expired_at'))
         ->defaultValue('')
         ->required()
         ->toArray())
-      ->add('status', SelectField::class, StatusFieldOption::make()->toArray())
       ->setBreakFieldPoint('status');
   }
 }

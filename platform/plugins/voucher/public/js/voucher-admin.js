@@ -44,11 +44,9 @@
     if (!providerSelect || !categorySelect) return;
 
     let initialCategory = categorySelect.getAttribute('data-saved-value') || '';
-    console.log('Initial category from data attribute:', initialCategory);
 
     async function refresh() {
       const providerId = providerSelect.value;
-      console.log('Refreshing categories for provider:', providerId);
       const categories = await fetchCategories(providerId);
       setOptions(categorySelect, categories, initialCategory);
     }

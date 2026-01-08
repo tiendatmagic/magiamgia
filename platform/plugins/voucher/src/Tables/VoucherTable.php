@@ -6,6 +6,7 @@ use Botble\Table\Abstracts\TableAbstract;
 use Botble\Table\Actions\DeleteAction;
 use Botble\Table\Actions\EditAction;
 use Botble\Table\Columns\Column;
+use Botble\Table\Columns\LinkableColumn;
 use Botble\Table\Columns\CreatedAtColumn;
 use Botble\Table\Columns\StatusColumn;
 use Botble\Table\HeaderActions\CreateHeaderAction;
@@ -21,7 +22,9 @@ class VoucherTable extends TableAbstract
       ->addHeaderAction(CreateHeaderAction::make()->route('voucher-coupon.create'))
       ->addColumns([
         Column::make('id')->title('ID')->width(20),
-        Column::make('code')->title(trans('plugins/voucher::voucher.fields.code')),
+        LinkableColumn::make('code')
+          ->title(trans('plugins/voucher::voucher.fields.code'))
+          ->route('voucher-coupon.edit'),
         Column::make('discount_type')->title(trans('plugins/voucher::voucher.fields.discount_type'))->width(120),
         Column::make('discount_value')->title(trans('plugins/voucher::voucher.fields.discount_value'))->width(120),
         StatusColumn::make(),
