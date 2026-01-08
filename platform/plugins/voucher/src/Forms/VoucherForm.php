@@ -46,6 +46,7 @@ class VoucherForm extends FormAbstract
         ->toArray())
       ->add('code', TextField::class, [
         'label' => trans('plugins/voucher::voucher.fields.code'),
+        'required' => true,
       ])
       ->add('discount_type', SelectField::class, SelectFieldOption::make()
         ->label(trans('plugins/voucher::voucher.fields.discount_type'))

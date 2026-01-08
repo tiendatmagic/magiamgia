@@ -32,9 +32,11 @@ class Voucher extends BaseModel
     'expired_at' => 'date',
   ];
 
-  public function getDiscountTypeAttribute($value)
+  protected $appends = ['discount_type_label'];
+
+  public function getDiscountTypeLabelAttribute()
   {
-    return trans('plugins/voucher::voucher.discount.' . $value);
+    return trans('plugins/voucher::voucher.discount.' . $this->attributes['discount_type'] ?? 'percent');
   }
 
   public function provider(): BelongsTo

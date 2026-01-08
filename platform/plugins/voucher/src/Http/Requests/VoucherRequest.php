@@ -11,7 +11,7 @@ class VoucherRequest extends Request
     return [
       'provider_id' => 'required|integer',
       'category' => 'required|string|max:250',
-      'code' => 'nullable|string|max:250',
+      'code' => 'required|string|max:250',
       'discount_type' => 'required|in:percent,amount',
       'discount_value' => 'required|numeric|min:0',
       'max_discount' => 'nullable|numeric|min:0',

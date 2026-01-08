@@ -25,7 +25,12 @@ class VoucherTable extends TableAbstract
         LinkableColumn::make('code')
           ->title(trans('plugins/voucher::voucher.fields.code'))
           ->route('voucher-coupon.edit'),
-        Column::make('discount_type')->title(trans('plugins/voucher::voucher.fields.discount_type'))->width(120),
+        Column::make('discount_type')
+          ->title(trans('plugins/voucher::voucher.fields.discount_type'))
+          ->width(120)
+          ->formatStateUsing(function ($state) {
+            return trans('plugins/voucher::voucher.discount.' . $state);
+          }),
         Column::make('discount_value')->title(trans('plugins/voucher::voucher.fields.discount_value'))->width(120),
         StatusColumn::make(),
         CreatedAtColumn::make(),
