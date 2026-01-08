@@ -1,0 +1,40 @@
+<?php
+
+return [
+  'name' => 'Voucher',
+  'providers' => 'Providers',
+  'coupons' => 'Coupons',
+  'provider_create' => 'Create provider',
+  'coupon_create' => 'Create voucher',
+  'fields' => [
+    'name' => 'Title',
+    'logo' => 'Logo',
+    'description' => 'Description',
+    'button_1_text' => 'Button 1 text',
+    'button_1_url' => 'Button 1 link',
+    'button_2_text' => 'Button 2 text',
+    'button_2_url' => 'Button 2 link',
+    'tags' => 'Categories (tags)',
+    'accordions' => 'Accordion',
+    'provider' => 'Provider',
+    'category' => 'Industry',
+    'code' => 'Code',
+    'discount_type' => 'Discount type',
+    'discount_value' => 'Discount value',
+    'max_discount' => 'Max discount',
+    'min_order' => 'Minimum order',
+    'note' => 'Note',
+    'apply_url' => 'Apply link',
+    'banner_url' => 'Banner link',
+    'expired_at' => 'Expiry date',
+  ],
+  'helpers' => [
+    'tags' => 'Enter tags separated by commas. Example: Fashion, Electronics',
+    'select_provider' => '-- Select provider --',
+    'select_category' => '-- Select category --',
+  ],
+  'discount' => [
+    'percent' => 'Percent (%)',
+    'amount' => 'Amount (VND)',
+  ],
+];

@@ -1,0 +1,11 @@
+{
+  "id": "bng/voucher",
+  "name": "Voucher",
+  "namespace": "Botble\\Voucher\\",
+  "provider": "Botble\\Voucher\\Providers\\VoucherServiceProvider",
+  "author": "Bignet Solutions",
+  "url": "https://bignet.vn",
+  "version": "1.0.0",
+  "description": "",
+  "minimum_core_version": "7.2.3"
+}

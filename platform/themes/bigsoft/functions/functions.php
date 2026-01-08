@@ -54,7 +54,7 @@ DashboardMenu::default()->beforeRetrieving(function () {
         'priority' => 2.4,
         'parent_id' => 'cms-core-appearance',
         'name' => __('Header'),
-        'url' => fn () => route('theme.header'),
+        'url' => fn() => route('theme.header'),
         'permissions' => ['theme.options'],
     ]);
 
@@ -63,7 +63,7 @@ DashboardMenu::default()->beforeRetrieving(function () {
         'priority' => 2.5,
         'parent_id' => 'cms-core-appearance',
         'name' => __('Footer'),
-        'url' => fn () => route('theme.footer'),
+        'url' => fn() => route('theme.footer'),
         'permissions' => ['theme.options'],
     ]);
 
@@ -72,7 +72,7 @@ DashboardMenu::default()->beforeRetrieving(function () {
         'priority' => 2.6,
         'parent_id' => 'cms-core-appearance',
         'name' => __('Blog Layout'),
-        'url' => fn () => route('theme.blog-layout'),
+        'url' => fn() => route('theme.blog-layout'),
         'permissions' => ['theme.options'],
     ]);
 
@@ -82,7 +82,7 @@ DashboardMenu::default()->beforeRetrieving(function () {
             'priority' => 2.7,
             'parent_id' => 'cms-core-appearance',
             'name' => __('Service Layout'),
-            'url' => fn () => route('theme.service-layout'),
+            'url' => fn() => route('theme.service-layout'),
             'permissions' => ['theme.options'],
         ]);
     }
@@ -92,7 +92,7 @@ DashboardMenu::default()->beforeRetrieving(function () {
         'priority' => 3.5,
         'parent_id' => 'cms-core-appearance',
         'name' => __('404'),
-        'url' => fn () => route('theme.404'),
+        'url' => fn() => route('theme.404'),
         'permissions' => ['theme.options'],
     ]);
 });
@@ -106,6 +106,7 @@ app('events')->listen(RouteMatched::class, function () {
     register_page_template([
         'no-sidebar' => __('No sidebar'),
         'default-no-sidebar' => 'Default No Sidebar Page',
+        'giao-dien-ma-giam-gia' => 'Giao dien Ma Giam Gia Page',
     ]);
 
     app('events')->listen(RenderingWidgetSettings::class, function () {

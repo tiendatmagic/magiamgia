@@ -1,0 +1,40 @@
+<?php
+
+return [
+  'name' => 'Voucher',
+  'providers' => 'Nhà cung cấp',
+  'coupons' => 'Mã giảm giá',
+  'provider_create' => 'Thêm nhà cung cấp',
+  'coupon_create' => 'Thêm mã giảm giá',
+  'fields' => [
+    'name' => 'Tiêu đề',
+    'logo' => 'Logo',
+    'description' => 'Mô tả',
+    'button_1_text' => 'Tên nút 1',
+    'button_1_url' => 'Link nút 1',
+    'button_2_text' => 'Tên nút 2',
+    'button_2_url' => 'Link nút 2',
+    'tags' => 'Danh mục',
+    'accordions' => 'Accordion',
+    'provider' => 'Nhà cung cấp',
+    'category' => 'Danh mục',
+    'code' => 'Mã',
+    'discount_type' => 'Loại giảm',
+    'discount_value' => 'Giảm bao nhiêu',
+    'max_discount' => 'Tối đa',
+    'min_order' => 'ĐH tối thiểu',
+    'note' => 'Lưu ý',
+    'apply_url' => 'Link áp dụng',
+    'banner_url' => 'Link đến banner',
+    'expired_at' => 'Hạn sử dụng',
+  ],
+  'helpers' => [
+    'tags' => 'Nhập tag ngăn cách bằng dấu phẩy. Ví dụ: Thời trang, Điện tử',
+    'select_provider' => '-- Chọn nhà cung cấp --',
+    'select_category' => '-- Chọn danh mục --',
+  ],
+  'discount' => [
+    'percent' => 'Giảm theo %',
+    'amount' => 'Giảm theo số tiền',
+  ],
+];

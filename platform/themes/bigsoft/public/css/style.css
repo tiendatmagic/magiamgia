@@ -1710,10 +1710,6 @@ p:empty {
     font-size: 14px;
 }
 
-.navigation .sub-menu > .menu-item.active > a {
-    color: #fff;
-}
-
 .navigation--mobile {
     background-color: #fff;
     border-top: 2px solid var(--color-1st);
