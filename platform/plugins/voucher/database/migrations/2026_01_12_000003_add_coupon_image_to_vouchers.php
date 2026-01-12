@@ -5,17 +5,17 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class() extends Migration {
-    public function up(): void
-    {
-        Schema::table('bng_vouchers', function (Blueprint $table) {
-            $table->string('coupon_image')->nullable()->after('banner_url');
-        });
-    }
+  public function up(): void
+  {
+    Schema::table('bng_vouchers', function (Blueprint $table) {
+      $table->string('coupon_image')->nullable()->after('banner_url');
+    });
+  }
 
-    public function down(): void
-    {
-        Schema::table('bng_vouchers', function (Blueprint $table) {
-            $table->dropColumn('coupon_image');
-        });
-    }
+  public function down(): void
+  {
+    Schema::table('bng_vouchers', function (Blueprint $table) {
+      $table->dropColumn('coupon_image');
+    });
+  }
 };

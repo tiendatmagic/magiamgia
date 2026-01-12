@@ -3992,3 +3992,58 @@ thead tr th {
 .accordion-button::after {
     display: none;
 }
+
+.see-more {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 15px;
+    justify-content: center;
+    background: rgba(245, 245, 245, 0.5411764706);
+    z-index: 9;
+    gap: 2px;
+}
+
+.see-more .arrows {
+    width: 60px;
+    height: 72px;
+    transform: scale(0.5);
+}
+
+.see-more .arrows path.a1 {
+    animation-delay: -1s;
+    -webkit-animation-delay: -1s;
+}
+
+.see-more .arrows path.a2 {
+    animation-delay: -0.5s;
+    -webkit-animation-delay: -0.5s;
+}
+
+.see-more .arrows path.a3 {
+    animation-delay: 0s;
+    -webkit-animation-delay: 0s;
+}
+
+.see-more .arrows path {
+    stroke: #000;
+    fill: transparent;
+    stroke-width: 4px;
+    animation: arrow 2s infinite;
+    -webkit-animation: arrow 2s infinite;
+}
+
+@keyframes arrow {
+    0% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}

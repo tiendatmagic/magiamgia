@@ -25,13 +25,13 @@
          </div>
        </div>
 
-       <div class="tw-flex tw-justify-evenly tw-flex-wrap tw-my-3">
-         <button class="tw-bg-[#cc2c62] tw-text-white tw-px-6 tw-py-3 tw-rounded-md tw-my-3 tw-text-base tw-font-medium tw-shadow-md">
+       <div class="tw-flex tw-justify-evenly tw-flex-wrap tw-gap-3 tw-my-5">
+         <button class="tw-bg-[#cc2c62] tw-text-white tw-px-6 tw-py-3 tw-rounded-md tw-text-base tw-font-medium tw-shadow-md">
            Tải App Nhận Voucher Độc Quyền
            <i class="fa fa-mouse-pointer"></i>
          </button>
 
-         <button class="tw-bg-[#2c92cc] tw-text-white tw-px-6 tw-py-3 tw-rounded-md tw-my-3 tw-text-base tw-font-medium tw-shadow-md">
+         <button class="tw-bg-[#2c92cc] tw-text-white tw-px-6 tw-py-3 tw-rounded-md tw-text-base tw-font-medium tw-shadow-md">
            GẮN TAG SHOPEE LIVE
            <i class="fa fa-mouse-pointer"></i>
          </button>
@@ -159,780 +159,113 @@
          <div class="tw-border-t tw-border-gray-500 tw-w-1/2 tw-mx-auto"></div>
        </div>
 
-       <div class="tw-container tw-mx-auto tw-px-4 tw-py-6 tw-max-w-6xl">
-         <div
-           class="tw-flex tw-gap-2 tw-overflow-x-auto tw-mb-4 tw-pb-2 tw-text-xs">
-           <button
-             class="tw-flex tw-items-center tw-gap-1 tw-border tw-bg-white tw-px-3 tw-py-1.5 tw-rounded-full tw-whitespace-nowrap">
-             Tất cả
-           </button>
-           <button
-             class="tw-flex tw-items-center tw-gap-1 tw-border tw-bg-white tw-px-3 tw-py-1.5 tw-rounded-full tw-whitespace-nowrap">
-             Danh mục 1
-           </button>
-           <button
-             class="tw-flex tw-items-center tw-gap-1 tw-border tw-bg-white tw-px-3 tw-py-1.5 tw-rounded-full tw-whitespace-nowrap">
-             Danh mục 2
-           </button>
-           <button
-             class="tw-flex tw-items-center tw-gap-1 tw-border tw-bg-white tw-px-3 tw-py-1.5 tw-rounded-full tw-whitespace-nowrap">
-             Danh mục 3
-           </button>
-           <button
-             class="tw-flex tw-items-center tw-gap-1 tw-border tw-bg-white tw-px-3 tw-py-1.5 tw-rounded-full tw-whitespace-nowrap">
-             Danh mục 4
-           </button>
+       <div class="tw-bg-[#fbfbfb] tw-border tw-border-gray-200 tw-rounded-xl tw-shadow-lg tw-p-5 tw-my-5">
+         <div>
+           <h4 class="tw-text-xl tw-pb-[8px] tw-font-semibold tw-text-[#464646]">Danh mục</h4>
          </div>
-
-         <div
-           class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-4 tw-mb-8">
-           <div
-             class="tw-flex tw-bg-white tw-rounded-lg tw-shadow-sm tw-overflow-hidden tw-h-32 tw-border tw-border-gray-100">
-             <div
-               class="coupon-left tw-w-1/3 tw-bg-coupon_green tw-flex tw-flex-col tw-items-center tw-justify-center tw-text-white tw-p-2 tw-text-center">
-               <div
-                 class="tw-w-8 tw-h-8 tw-rounded-full tw-bg-white/20 tw-flex tw-items-center tw-justify-center tw-mb-1">
-                 <i class="fa fa-video"></i>
-               </div>
-               <div class="tw-font-bold tw-text-lg">Giảm 50%</div>
-               <div class="tw-text-[10px] tw-opacity-90">Tối đa 25k</div>
-             </div>
-             <div
-               class="tw-w-2/3 tw-p-3 tw-flex tw-flex-col tw-justify-between tw-relative">
-               <div>
-                 <div class="tw-flex tw-gap-1 tw-mb-1">
-                   <span
-                     class="tw-text-[10px] tw-bg-orange-100 tw-text-brand tw-px-1 tw-rounded">Shopee Video</span>
-                 </div>
-                 <p class="tw-text-xs tw-text-gray-500 tw-line-clamp-2">
-                   Đơn từ 0Đ. Áp dụng cho một số sản phẩm...
-                 </p>
-               </div>
-
-               <div class="tw-flex tw-justify-between tw-items-end">
-                 <div class="tw-text-[10px] tw-text-gray-400">HSD: 31/01</div>
-                 <div class="tw-flex tw-gap-1">
-                   <button
-                     class="tw-border tw-border-brand tw-text-brand tw-text-xs tw-px-2 tw-py-1 tw-rounded hover:tw-bg-orange-50">
-                     Chi tiết
-                   </button>
-                   <button
-                     class="tw-bg-brand tw-text-white tw-text-xs tw-px-3 tw-py-1 tw-rounded hover:tw-bg-brand_dark">
-                     Lưu mã
-                   </button>
-                 </div>
-               </div>
-             </div>
-           </div>
-
-           <div
-             class="tw-flex tw-bg-white tw-rounded-lg tw-shadow-sm tw-overflow-hidden tw-h-32 tw-border tw-border-gray-100">
-             <div
-               class="coupon-left tw-w-1/3 tw-bg-coupon_green tw-flex tw-flex-col tw-items-center tw-justify-center tw-text-white tw-p-2 tw-text-center">
-               <div
-                 class="tw-w-8 tw-h-8 tw-rounded-full tw-bg-white/20 tw-flex tw-items-center tw-justify-center tw-mb-1">
-                 <i class="fa fa-percent"></i>
-               </div>
-               <div class="tw-font-bold tw-text-lg">Giảm 30K</div>
-               <div class="tw-text-[10px] tw-opacity-90">Đơn từ 150K</div>
-             </div>
-             <div class="tw-w-2/3 tw-p-3 tw-flex tw-flex-col tw-justify-between">
-               <div>
-                 <div class="tw-flex tw-gap-1 tw-mb-1">
-                   <span
-                     class="tw-text-[10px] tw-bg-blue-100 tw-text-blue-600 tw-px-1 tw-rounded">Toàn sàn</span>
-                 </div>
-                 <p class="tw-text-xs tw-text-gray-500 tw-line-clamp-2">
-                   Giảm 30K cho đơn hàng từ 150K...
-                 </p>
-               </div>
-               <div class="tw-flex tw-justify-between tw-items-end">
-                 <div class="tw-text-[10px] tw-text-gray-400">HSD: 25/01</div>
-                 <div class="tw-flex tw-gap-1">
-                   <button
-                     class="tw-bg-gray-200 tw-text-gray-600 tw-text-xs tw-px-3 tw-py-1 tw-rounded">
-                     Đã lưu
-                   </button>
-                 </div>
-               </div>
-             </div>
-           </div>
-
-           <div
-             class="tw-flex tw-bg-white tw-rounded-lg tw-shadow-sm tw-overflow-hidden tw-h-32 tw-border tw-border-gray-100">
-             <div
-               class="coupon-left tw-w-1/3 tw-bg-coupon_green tw-flex tw-flex-col tw-items-center tw-justify-center tw-text-white tw-p-2 tw-text-center">
-               <div
-                 class="tw-w-8 tw-h-8 tw-rounded-full tw-bg-white/20 tw-flex tw-items-center tw-justify-center tw-mb-1">
-                 <i class="fa fa-truck"></i>
-               </div>
-               <div class="tw-font-bold tw-text-lg">FreeShip</div>
-               <div class="tw-text-[10px] tw-opacity-90">Tối đa 70K</div>
-             </div>
-             <div class="tw-w-2/3 tw-p-3 tw-flex tw-flex-col tw-justify-between">
-               <div>
-                 <div class="tw-flex tw-gap-1 tw-mb-1">
-                   <span
-                     class="tw-text-[10px] tw-bg-green-100 tw-text-green-600 tw-px-1 tw-rounded">Extra</span>
-                 </div>
-                 <p class="tw-text-xs tw-text-gray-500 tw-line-clamp-2">
-                   Mã miễn phí vận chuyển Xtra...
-                 </p>
-               </div>
-               <div class="tw-flex tw-justify-between tw-items-end">
-                 <div class="tw-text-[10px] tw-text-gray-400">Sắp hết</div>
-                 <div class="tw-flex tw-gap-1">
-                   <button
-                     class="tw-bg-brand tw-text-white tw-text-xs tw-px-3 tw-py-1 tw-rounded hover:tw-bg-brand_dark">
-                     Lưu mã
-                   </button>
-                 </div>
-               </div>
-             </div>
-           </div>
-
-           <div
-             class="tw-flex tw-bg-white tw-rounded-lg tw-shadow-sm tw-overflow-hidden tw-h-32 tw-border tw-border-gray-100">
-             <div
-               class="coupon-left tw-w-1/3 tw-bg-gray-500 tw-flex tw-flex-col tw-items-center tw-justify-center tw-text-white tw-p-2 tw-text-center">
-               <div class="tw-font-bold tw-text-lg">Giảm 10%</div>
-               <div class="tw-text-[10px] tw-opacity-90">Hết lượt</div>
-             </div>
-             <div
-               class="tw-w-2/3 tw-p-3 tw-flex tw-flex-col tw-justify-between tw-opacity-60">
-               <div>
-                 <div class="tw-flex tw-gap-1 tw-mb-1">
-                   <span
-                     class="tw-text-[10px] tw-bg-gray-100 tw-text-gray-600 tw-px-1 tw-rounded">Hoàn Xu</span>
-                 </div>
-                 <p class="tw-text-xs tw-text-gray-500 tw-line-clamp-2">
-                   Hoàn 10% xu tối đa 50k...
-                 </p>
-               </div>
-               <div class="tw-flex tw-justify-between tw-items-end">
-                 <div class="tw-text-[10px] tw-text-gray-400">Đã hết</div>
-                 <button
-                   class="tw-bg-gray-300 tw-text-white tw-text-xs tw-px-3 tw-py-1 tw-rounded tw-cursor-not-allowed">
-                   Hết mã
-                 </button>
-               </div>
-             </div>
-           </div>
-
-           <div
-             class="tw-flex tw-bg-white tw-rounded-lg tw-shadow-sm tw-overflow-hidden tw-h-32 tw-border tw-border-gray-100">
-             <div
-               class="coupon-left tw-w-1/3 tw-bg-coupon_green tw-flex tw-flex-col tw-items-center tw-justify-center tw-text-white tw-p-2 tw-text-center">
-               <div class="tw-font-bold tw-text-lg">Giảm 15%</div>
-               <div class="tw-text-[10px] tw-opacity-90">Hàng Quốc Tế</div>
-             </div>
-             <div class="tw-w-2/3 tw-p-3 tw-flex tw-flex-col tw-justify-between">
-               <div>
-                 <div class="tw-flex tw-gap-1 tw-mb-1">
-                   <span
-                     class="tw-text-[10px] tw-bg-purple-100 tw-text-purple-600 tw-px-1 tw-rounded">Quốc Tế</span>
-                 </div>
-                 <p class="tw-text-xs tw-text-gray-500 tw-line-clamp-2">
-                   Giảm 15% tối đa 100K...
-                 </p>
-               </div>
-               <div class="tw-flex tw-justify-between tw-items-end">
-                 <div class="tw-text-[10px] tw-text-gray-400">Còn ít</div>
-                 <div class="tw-flex tw-gap-1">
-                   <button
-                     class="tw-bg-brand tw-text-white tw-text-xs tw-px-3 tw-py-1 tw-rounded hover:tw-bg-brand_dark">
-                     Lưu mã
-                   </button>
-                 </div>
-               </div>
-             </div>
-           </div>
-
-           <div
-             class="tw-flex tw-bg-white tw-rounded-lg tw-shadow-sm tw-overflow-hidden tw-h-32 tw-border tw-border-gray-100">
-             <div
-               class="coupon-left tw-w-1/3 tw-bg-coupon_green tw-flex tw-flex-col tw-items-center tw-justify-center tw-text-white tw-p-2 tw-text-center">
-               <div class="tw-font-bold tw-text-lg">Giảm 12%</div>
-               <div class="tw-text-[10px] tw-opacity-90">Điện Tử</div>
-             </div>
-             <div class="tw-w-2/3 tw-p-3 tw-flex tw-flex-col tw-justify-between">
-               <div>
-                 <div class="tw-flex tw-gap-1 tw-mb-1">
-                   <span
-                     class="tw-text-[10px] tw-bg-blue-100 tw-text-blue-600 tw-px-1 tw-rounded">EL</span>
-                 </div>
-                 <p class="tw-text-xs tw-text-gray-500 tw-line-clamp-2">
-                   Giảm 12% tối đa 300K cho đơn từ 1Tr...
-                 </p>
-               </div>
-               <div class="tw-flex tw-justify-between tw-items-end">
-                 <div class="tw-text-[10px] tw-text-gray-400">HSD: 31/01</div>
-                 <div class="tw-flex tw-gap-1">
-                   <button
-                     class="tw-bg-brand tw-text-white tw-text-xs tw-px-3 tw-py-1 tw-rounded hover:tw-bg-brand_dark">
-                     Lưu mã
-                   </button>
-                 </div>
-               </div>
-             </div>
-           </div>
-         </div>
-
-         <div class="tw-flex tw-justify-center tw-mb-8">
-           <div class="tw-animate-bounce tw-text-gray-400">
-             <i class="fa fa-angles-down tw-text-2xl"></i>
-           </div>
-         </div>
-
-         <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-3 tw-gap-4 tw-mb-8">
-           <div
-             class="tw-bg-orange-500 tw-rounded-lg tw-h-32 tw-flex tw-items-center tw-justify-center tw-relative tw-overflow-hidden tw-shadow-md">
-             <div
-               class="tw-absolute tw-inset-0 tw-bg-gradient-to-r tw-from-orange-600 tw-to-orange-400"></div>
-             <div class="tw-relative tw-text-center tw-text-white">
-               <h3 class="tw-font-black tw-text-2xl tw-italic">50.000</h3>
-               <p class="tw-text-sm">BÓNG</p>
-               <p
-                 class="tw-text-xs tw-mt-1 tw-bg-white tw-text-orange-600 tw-inline-block tw-px-2 tw-rounded-full">
-                 Săn ngay
-               </p>
-             </div>
-           </div>
-           <div
-             class="tw-bg-blue-400 tw-rounded-lg tw-h-32 tw-flex tw-items-center tw-justify-center tw-relative tw-overflow-hidden tw-shadow-md">
-             <div
-               class="tw-absolute tw-inset-0 tw-bg-gradient-to-r tw-from-blue-400 tw-to-cyan-300"></div>
-             <div class="tw-relative tw-text-center tw-text-white">
-               <h3 class="tw-font-black tw-text-3xl">25.12</h3>
-               <p class="tw-text-sm">Voucher 1 triệu</p>
-               <p class="tw-text-[10px]">Chia kho 50 tỷ</p>
-             </div>
-           </div>
-           <div
-             class="tw-bg-red-700 tw-rounded-lg tw-h-32 tw-flex tw-items-center tw-justify-center tw-relative tw-overflow-hidden tw-shadow-md">
-             <div
-               class="tw-absolute tw-inset-0 tw-bg-gradient-to-br tw-from-red-800 tw-to-red-600"></div>
-             <div class="tw-relative tw-text-center tw-text-white">
-               <h3 class="tw-font-black tw-text-xl">LỊCH SALE</h3>
-               <p class="tw-text-sm">Tháng 1/2026</p>
-               <p class="tw-text-xs tw-mt-1 tw-underline">Xem chi tiết</p>
-             </div>
-           </div>
-         </div>
-
-         <section class="tw-bg-white tw-rounded-lg tw-shadow-sm tw-p-6 tw-mb-8">
-           <h2
-             class="tw-text-lg tw-font-bold tw-text-orange-500 tw-mb-4 tw-border-l-4 tw-border-orange-500 tw-pl-3">
-             Câu hỏi thường gặp
-           </h2>
-
-           <div class="tw-space-y-4">
-             <div class="tw-border-b tw-border-gray-100 tw-pb-4">
-               <div
-                 class="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer tw-text-brand tw-font-medium">
-                 <i class="fa fa-arrow-down"></i>
-                 <span>1. Mã giảm giá Shopee là gì?</span>
-               </div>
-               <div class="tw-mt-3 tw-text-gray-600 tw-text-sm tw-leading-relaxed">
-                 <p class="tw-mb-2">
-                   Mã giảm giá Shopee (hay voucher Shopee) là một đoạn ký tự hoặc
-                   một nút lưu mã do Shopee hoặc Shop phát hành. Khi bạn nhập mã
-                   này hoặc chọn voucher đã lưu ở bước thanh toán, bạn sẽ được giảm
-                   một số tiền nhất định.
-                 </p>
-
-                 <div
-                   class="tw-bg-gray-50 tw-p-4 tw-rounded tw-border tw-border-gray-200 tw-my-3">
-                   <div class="tw-flex tw-items-center tw-gap-4 tw-mb-2">
-                     <div
-                       class="tw-w-1/2 tw-bg-white tw-border tw-border-dashed tw-border-brand tw-p-2 tw-rounded tw-flex tw-justify-between tw-items-center">
-                       <div class="tw-flex tw-items-center tw-gap-2">
-                         <div class="tw-bg-brand tw-text-white tw-p-1 tw-rounded">
-                           <i class="fa fa-ticket"></i>
-                         </div>
-                         <div>
-                           <div class="tw-font-bold tw-text-brand">Giảm 8%</div>
-                           <div class="tw-text-xs">Đơn tối thiểu 500k</div>
-                         </div>
-                       </div>
-                       <button class="tw-text-brand tw-text-xs tw-font-bold">
-                         Dùng ngay
-                       </button>
-                     </div>
-                     <div
-                       class="tw-w-1/2 tw-bg-white tw-border tw-border-dashed tw-border-brand tw-p-2 tw-rounded tw-flex tw-justify-between tw-items-center">
-                       <div class="tw-flex tw-items-center tw-gap-2">
-                         <div class="tw-bg-brand tw-text-white tw-p-1 tw-rounded">
-                           <i class="fa fa-truck"></i>
-                         </div>
-                         <div>
-                           <div class="tw-font-bold tw-text-brand">
-                             Giảm 15k Ship
-                           </div>
-                           <div class="tw-text-xs">Đơn tối thiểu 0đ</div>
-                         </div>
-                       </div>
-                       <button class="tw-text-brand tw-text-xs tw-font-bold">
-                         Dùng ngay
-                       </button>
-                     </div>
-                   </div>
-                   <p class="tw-text-xs tw-text-center tw-italic">
-                     Ví dụ về mã giảm giá Shopee
-                   </p>
-                 </div>
-
-                 <div class="tw-flex tw-gap-2 tw-justify-center tw-mt-4">
-                   <div class="tw-w-1/2 tw-border tw-rounded tw-overflow-hidden">
-                     <div
-                       class="tw-bg-gray-200 tw-h-48 tw-flex tw-items-center tw-justify-center tw-text-gray-400 tw-flex-col">
-                       <i class="fa fa-image tw-text-3xl"></i>
-                       <span class="tw-text-xs tw-mt-2">Ảnh hướng dẫn 1</span>
-                     </div>
-                   </div>
-                   <div class="tw-w-1/2 tw-border tw-rounded tw-overflow-hidden">
-                     <div
-                       class="tw-bg-gray-200 tw-h-48 tw-flex tw-items-center tw-justify-center tw-text-gray-400 tw-flex-col">
-                       <i class="fa fa-image tw-text-3xl"></i>
-                       <span class="tw-text-xs tw-mt-2">Ảnh hướng dẫn 2</span>
-                     </div>
-                   </div>
-                 </div>
-               </div>
-             </div>
-
-             <div class="tw-border-b tw-border-gray-100 tw-pb-2">
-               <div
-                 class="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer hover:tw-text-brand">
-                 <i class="fa fa-arrow-right tw-text-gray-400"></i>
-                 <span class="tw-font-medium tw-text-blue-600">2. Lấy mã giảm giá Shopee ở đâu?</span>
-               </div>
-             </div>
-             <div class="tw-border-b tw-border-gray-100 tw-pb-2">
-               <div
-                 class="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer hover:tw-text-brand">
-                 <i class="fa fa-arrow-right tw-text-gray-400"></i>
-                 <span class="tw-font-medium tw-text-blue-600">3. Sử dụng mã giảm giá như thế nào?</span>
-               </div>
-             </div>
-             <div class="tw-border-b tw-border-gray-100 tw-pb-2">
-               <div
-                 class="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer hover:tw-text-brand">
-                 <i class="fa fa-arrow-right tw-text-gray-400"></i>
-                 <span class="tw-font-medium tw-text-blue-600">4. Tại sao tôi không áp dụng được mã?</span>
-               </div>
-             </div>
-             <div class="tw-border-b tw-border-gray-100 tw-pb-2">
-               <div
-                 class="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer hover:tw-text-brand">
-                 <i class="fa fa-arrow-right tw-text-gray-400"></i>
-                 <span class="tw-font-medium tw-text-blue-600">5. Mã hoàn xu Shopee là gì?</span>
-               </div>
-             </div>
-           </div>
-         </section>
-       </div>
-
-       <div class="tw-text-gray-700 tw-text-sm tw-antialiased">
-         <div class="tw-container tw-mx-auto tw-px-4 tw-py-6 tw-max-w-6xl">
+         <div class="tw-mx-auto tw-w-full">
            <div
              class="tw-flex tw-gap-2 tw-overflow-x-auto tw-mb-4 tw-pb-2 tw-text-xs">
              <button
-               class="tw-flex tw-items-center tw-gap-1 tw-border tw-border-brand tw-text-brand tw-bg-orange-50 tw-px-3 tw-py-1.5 tw-rounded-full tw-whitespace-nowrap">
+               class="tw-flex tw-items-center tw-gap-1 tw-border-2 tw-bg-white tw-px-3 tw-py-1.5 tw-rounded-full tw-whitespace-nowrap tw-gray-500 tw-text-base">
                Tất cả
              </button>
              <button
-               class="tw-border tw-border-gray-300 tw-px-3 tw-py-1.5 tw-rounded-full tw-bg-white hover:tw-border-brand tw-whitespace-nowrap">
-               Mã FreeShip
+               class="tw-flex tw-items-center tw-gap-1 tw-border-2 tw-bg-white tw-px-3 tw-py-1.5 tw-rounded-full tw-whitespace-nowrap tw-gray-500 tw-text-base">
+               Danh mục 1
              </button>
              <button
-               class="tw-border tw-border-gray-300 tw-px-3 tw-py-1.5 tw-rounded-full tw-bg-white hover:tw-border-brand tw-whitespace-nowrap">
-               Shopee Video
+               class="tw-flex tw-items-center tw-gap-1 tw-border-2 tw-bg-white tw-px-3 tw-py-1.5 tw-rounded-full tw-whitespace-nowrap tw-gray-500 tw-text-base">
+               Danh mục 2
              </button>
              <button
-               class="tw-border tw-border-gray-300 tw-px-3 tw-py-1.5 tw-rounded-full tw-bg-white hover:tw-border-brand tw-whitespace-nowrap">
-               Hàng Quốc Tế
+               class="tw-flex tw-items-center tw-gap-1 tw-border-2 tw-bg-white tw-px-3 tw-py-1.5 tw-rounded-full tw-whitespace-nowrap tw-gray-500 tw-text-base">
+               Danh mục 3
              </button>
              <button
-               class="tw-border tw-border-gray-300 tw-px-3 tw-py-1.5 tw-rounded-full tw-bg-white hover:tw-border-brand tw-whitespace-nowrap">
-               Điện Tử
-             </button>
-             <button
-               class="tw-border tw-border-gray-300 tw-px-3 tw-py-1.5 tw-rounded-full tw-bg-white hover:tw-border-brand tw-whitespace-nowrap">
-               Làm Đẹp
+               class="tw-flex tw-items-center tw-gap-1 tw-border-2 tw-bg-white tw-px-3 tw-py-1.5 tw-rounded-full tw-whitespace-nowrap tw-gray-500 tw-text-base">
+               Danh mục 4
              </button>
            </div>
 
            <div
-             class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-4 tw-mb-8">
-             <div
-               class="tw-flex tw-bg-white tw-rounded-lg tw-shadow-sm tw-overflow-hidden tw-h-32 tw-border tw-border-gray-100">
-               <div
-                 class="coupon-left tw-w-1/3 tw-bg-coupon_green tw-flex tw-flex-col tw-items-center tw-justify-center tw-text-white tw-p-2 tw-text-center">
-                 <div
-                   class="tw-w-8 tw-h-8 tw-rounded-full tw-bg-white/20 tw-flex tw-items-center tw-justify-center tw-mb-1">
-                   <i class="fa fa-video"></i>
-                 </div>
-                 <div class="tw-font-bold tw-text-lg">Giảm 50%</div>
-                 <div class="tw-text-[10px] tw-opacity-90">Tối đa 25k</div>
-               </div>
-               <div
-                 class="tw-w-2/3 tw-p-3 tw-flex tw-flex-col tw-justify-between tw-relative">
-                 <div>
-                   <div class="tw-flex tw-gap-1 tw-mb-1">
-                     <span
-                       class="tw-text-[10px] tw-bg-orange-100 tw-text-brand tw-px-1 tw-rounded">Shopee Video</span>
-                   </div>
-                   <p class="tw-text-xs tw-text-gray-500 tw-line-clamp-2">
-                     Đơn từ 0Đ. Áp dụng cho một số sản phẩm...
-                   </p>
-                 </div>
-
-                 <div class="tw-flex tw-justify-between tw-items-end">
-                   <div class="tw-text-[10px] tw-text-gray-400">HSD: 31/01</div>
-                   <div class="tw-flex tw-gap-1">
-                     <button
-                       class="tw-border tw-border-brand tw-text-brand tw-text-xs tw-px-2 tw-py-1 tw-rounded hover:tw-bg-orange-50">
-                       Chi tiết
-                     </button>
-                     <button
-                       class="tw-bg-brand tw-text-white tw-text-xs tw-px-3 tw-py-1 tw-rounded hover:tw-bg-brand_dark">
-                       Lưu mã
-                     </button>
-                   </div>
-                 </div>
-               </div>
-             </div>
+             class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-3">
 
              <div
-               class="tw-flex tw-bg-white tw-rounded-lg tw-shadow-sm tw-overflow-hidden tw-h-32 tw-border tw-border-gray-100">
+               class="tw-flex tw-bg-white tw-rounded-lg tw-shadow-md tw-overflow-visible tw-border tw-h-full tw-min-h-[140px] tw-border-gray-200 tw-relative">
                <div
-                 class="coupon-left tw-w-1/3 tw-bg-coupon_green tw-flex tw-flex-col tw-items-center tw-justify-center tw-text-white tw-p-2 tw-text-center">
-                 <div
-                   class="tw-w-8 tw-h-8 tw-rounded-full tw-bg-white/20 tw-flex tw-items-center tw-justify-center tw-mb-1">
-                   <i class="fa fa-percent"></i>
-                 </div>
-                 <div class="tw-font-bold tw-text-lg">Giảm 30K</div>
-                 <div class="tw-text-[10px] tw-opacity-90">Đơn từ 150K</div>
-               </div>
-               <div class="tw-w-2/3 tw-p-3 tw-flex tw-flex-col tw-justify-between">
-                 <div>
-                   <div class="tw-flex tw-gap-1 tw-mb-1">
-                     <span
-                       class="tw-text-[10px] tw-bg-blue-100 tw-text-blue-600 tw-px-1 tw-rounded">Toàn sàn</span>
+                 class="coupon-left tw-w-2/5 xl:tw-w-1/3 tw-bg-[#f97e2b] tw-flex tw-flex-col tw-items-center tw-justify-center tw-text-white tw-p-2 tw-text-center tw-border-r-2 tw-border-dashed tw-border-white tw-rounded-s-lg tw-relative after:tw-absolute after:tw-w-10 after:tw-h-10 after:tw-rounded-full after:tw-bg-[#fbfbfb] after:tw-top-1/2 after:-tw-translate-y-1/2 after:-tw-left-5">
+
+                 <div class="tw-flex tw-flex-col tw-justify-between tw-h-full">
+                   <div>
+                     <div
+                       class="tw-w-10 tw-h-10 tw-rounded-full tw-flex tw-items-center tw-justify-center tw-mb-1 tw-mx-auto">
+                       <img src="https://cf.shopee.vn/file/vn-11134004-820l4-mep9uuear7d07f" alt="" class="tw-min-w-10 tw-min-h-10 tw-w-10 tw-h-10 tw-bg-[#fe5722 tw-border-2 tw-border-solid tw-border-white tw-p-1 tw-rounded-full">
+                     </div>
+                     <div class="tw-font-medium tw-text-sm tw-max-w-[100px] tw-mx-auto">
+                       Xử lý bởi Shopee
+                     </div>
                    </div>
-                   <p class="tw-text-xs tw-text-gray-500 tw-line-clamp-2">
-                     Giảm 30K cho đơn hàng từ 150K...
-                   </p>
-                 </div>
-                 <div class="tw-flex tw-justify-between tw-items-end">
-                   <div class="tw-text-[10px] tw-text-gray-400">HSD: 25/01</div>
-                   <div class="tw-flex tw-gap-1">
-                     <button
-                       class="tw-bg-gray-200 tw-text-gray-600 tw-text-xs tw-px-3 tw-py-1 tw-rounded">
-                       Đã lưu
-                     </button>
+
+                   <div>
+                     <div class="tw-text-xs tw-opacity-90 tw-mt-1.5">
+                       <i class="fa fa-clock"></i>
+                       HSD: 29/01/2025
+                     </div>
                    </div>
                  </div>
-               </div>
-             </div>
 
-             <div
-               class="tw-flex tw-bg-white tw-rounded-lg tw-shadow-sm tw-overflow-hidden tw-h-32 tw-border tw-border-gray-100">
-               <div
-                 class="coupon-left tw-w-1/3 tw-bg-coupon_green tw-flex tw-flex-col tw-items-center tw-justify-center tw-text-white tw-p-2 tw-text-center">
-                 <div
-                   class="tw-w-8 tw-h-8 tw-rounded-full tw-bg-white/20 tw-flex tw-items-center tw-justify-center tw-mb-1">
-                   <i class="fa fa-truck"></i>
-                 </div>
-                 <div class="tw-font-bold tw-text-lg">FreeShip</div>
-                 <div class="tw-text-[10px] tw-opacity-90">Tối đa 70K</div>
-               </div>
-               <div class="tw-w-2/3 tw-p-3 tw-flex tw-flex-col tw-justify-between">
-                 <div>
-                   <div class="tw-flex tw-gap-1 tw-mb-1">
-                     <span
-                       class="tw-text-[10px] tw-bg-green-100 tw-text-green-600 tw-px-1 tw-rounded">Extra</span>
-                   </div>
-                   <p class="tw-text-xs tw-text-gray-500 tw-line-clamp-2">
-                     Mã miễn phí vận chuyển Xtra...
-                   </p>
-                 </div>
-                 <div class="tw-flex tw-justify-between tw-items-end">
-                   <div class="tw-text-[10px] tw-text-gray-400">Sắp hết</div>
-                   <div class="tw-flex tw-gap-1">
-                     <button
-                       class="tw-bg-brand tw-text-white tw-text-xs tw-px-3 tw-py-1 tw-rounded hover:tw-bg-brand_dark">
-                       Lưu mã
-                     </button>
-                   </div>
-                 </div>
-               </div>
-             </div>
-
-             <div
-               class="tw-flex tw-bg-white tw-rounded-lg tw-shadow-sm tw-overflow-hidden tw-h-32 tw-border tw-border-gray-100">
-               <div
-                 class="coupon-left tw-w-1/3 tw-bg-gray-500 tw-flex tw-flex-col tw-items-center tw-justify-center tw-text-white tw-p-2 tw-text-center">
-                 <div class="tw-font-bold tw-text-lg">Giảm 10%</div>
-                 <div class="tw-text-[10px] tw-opacity-90">Hết lượt</div>
                </div>
                <div
-                 class="tw-w-2/3 tw-p-3 tw-flex tw-flex-col tw-justify-between tw-opacity-60">
-                 <div>
-                   <div class="tw-flex tw-gap-1 tw-mb-1">
-                     <span
-                       class="tw-text-[10px] tw-bg-gray-100 tw-text-gray-600 tw-px-1 tw-rounded">Hoàn Xu</span>
-                   </div>
-                   <p class="tw-text-xs tw-text-gray-500 tw-line-clamp-2">
-                     Hoàn 10% xu tối đa 50k...
-                   </p>
-                 </div>
-                 <div class="tw-flex tw-justify-between tw-items-end">
-                   <div class="tw-text-[10px] tw-text-gray-400">Đã hết</div>
-                   <button
-                     class="tw-bg-gray-300 tw-text-white tw-text-xs tw-px-3 tw-py-1 tw-rounded tw-cursor-not-allowed">
-                     Hết mã
-                   </button>
-                 </div>
-               </div>
-             </div>
-
-             <div
-               class="tw-flex tw-bg-white tw-rounded-lg tw-shadow-sm tw-overflow-hidden tw-h-32 tw-border tw-border-gray-100">
-               <div
-                 class="coupon-left tw-w-1/3 tw-bg-coupon_green tw-flex tw-flex-col tw-items-center tw-justify-center tw-text-white tw-p-2 tw-text-center">
-                 <div class="tw-font-bold tw-text-lg">Giảm 15%</div>
-                 <div class="tw-text-[10px] tw-opacity-90">Hàng Quốc Tế</div>
-               </div>
-               <div class="tw-w-2/3 tw-p-3 tw-flex tw-flex-col tw-justify-between">
-                 <div>
-                   <div class="tw-flex tw-gap-1 tw-mb-1">
-                     <span
-                       class="tw-text-[10px] tw-bg-purple-100 tw-text-purple-600 tw-px-1 tw-rounded">Quốc Tế</span>
-                   </div>
-                   <p class="tw-text-xs tw-text-gray-500 tw-line-clamp-2">
-                     Giảm 15% tối đa 100K...
-                   </p>
-                 </div>
-                 <div class="tw-flex tw-justify-between tw-items-end">
-                   <div class="tw-text-[10px] tw-text-gray-400">Còn ít</div>
-                   <div class="tw-flex tw-gap-1">
-                     <button
-                       class="tw-bg-brand tw-text-white tw-text-xs tw-px-3 tw-py-1 tw-rounded hover:tw-bg-brand_dark">
-                       Lưu mã
-                     </button>
-                   </div>
-                 </div>
-               </div>
-             </div>
-
-             <div
-               class="tw-flex tw-bg-white tw-rounded-lg tw-shadow-sm tw-overflow-hidden tw-h-32 tw-border tw-border-gray-100">
-               <div
-                 class="coupon-left tw-w-1/3 tw-bg-coupon_green tw-flex tw-flex-col tw-items-center tw-justify-center tw-text-white tw-p-2 tw-text-center">
-                 <div class="tw-font-bold tw-text-lg">Giảm 12%</div>
-                 <div class="tw-text-[10px] tw-opacity-90">Điện Tử</div>
-               </div>
-               <div class="tw-w-2/3 tw-p-3 tw-flex tw-flex-col tw-justify-between">
-                 <div>
-                   <div class="tw-flex tw-gap-1 tw-mb-1">
-                     <span
-                       class="tw-text-[10px] tw-bg-blue-100 tw-text-blue-600 tw-px-1 tw-rounded">EL</span>
-                   </div>
-                   <p class="tw-text-xs tw-text-gray-500 tw-line-clamp-2">
-                     Giảm 12% tối đa 300K cho đơn từ 1Tr...
-                   </p>
-                 </div>
-                 <div class="tw-flex tw-justify-between tw-items-end">
-                   <div class="tw-text-[10px] tw-text-gray-400">HSD: 31/01</div>
-                   <div class="tw-flex tw-gap-1">
-                     <button
-                       class="tw-bg-brand tw-text-white tw-text-xs tw-px-3 tw-py-1 tw-rounded hover:tw-bg-brand_dark">
-                       Lưu mã
-                     </button>
-                   </div>
-                 </div>
-               </div>
-             </div>
-           </div>
-
-           <div class="tw-flex tw-justify-center tw-mb-8">
-             <div class="tw-animate-bounce tw-text-gray-400">
-               <i class="fa fa-angles-down tw-text-2xl"></i>
-             </div>
-           </div>
-
-           <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-3 tw-gap-4 tw-mb-8">
-             <div
-               class="tw-bg-orange-500 tw-rounded-lg tw-h-32 tw-flex tw-items-center tw-justify-center tw-relative tw-overflow-hidden tw-shadow-md">
-               <div
-                 class="tw-absolute tw-inset-0 tw-bg-gradient-to-r tw-from-orange-600 tw-to-orange-400"></div>
-               <div class="tw-relative tw-text-center tw-text-white">
-                 <h3 class="tw-font-black tw-text-2xl tw-italic">50.000</h3>
-                 <p class="tw-text-sm">BÓNG</p>
-                 <p
-                   class="tw-text-xs tw-mt-1 tw-bg-white tw-text-orange-600 tw-inline-block tw-px-2 tw-rounded-full">
-                   Săn ngay
-                 </p>
-               </div>
-             </div>
-             <div
-               class="tw-bg-blue-400 tw-rounded-lg tw-h-32 tw-flex tw-items-center tw-justify-center tw-relative tw-overflow-hidden tw-shadow-md">
-               <div
-                 class="tw-absolute tw-inset-0 tw-bg-gradient-to-r tw-from-blue-400 tw-to-cyan-300"></div>
-               <div class="tw-relative tw-text-center tw-text-white">
-                 <h3 class="tw-font-black tw-text-3xl">25.12</h3>
-                 <p class="tw-text-sm">Voucher 1 triệu</p>
-                 <p class="tw-text-[10px]">Chia kho 50 tỷ</p>
-               </div>
-             </div>
-             <div
-               class="tw-bg-red-700 tw-rounded-lg tw-h-32 tw-flex tw-items-center tw-justify-center tw-relative tw-overflow-hidden tw-shadow-md">
-               <div
-                 class="tw-absolute tw-inset-0 tw-bg-gradient-to-br tw-from-red-800 tw-to-red-600"></div>
-               <div class="tw-relative tw-text-center tw-text-white">
-                 <h3 class="tw-font-black tw-text-xl">LỊCH SALE</h3>
-                 <p class="tw-text-sm">Tháng 1/2026</p>
-                 <p class="tw-text-xs tw-mt-1 tw-underline">Xem chi tiết</p>
-               </div>
-             </div>
-           </div>
-
-           <section class="tw-bg-white tw-rounded-lg tw-shadow-sm tw-p-6 tw-mb-8">
-             <h2
-               class="tw-text-lg tw-font-bold tw-text-orange-500 tw-mb-4 tw-border-l-4 tw-border-orange-500 tw-pl-3">
-               Câu hỏi thường gặp
-             </h2>
-
-             <div class="tw-space-y-4">
-               <div class="tw-border-b tw-border-gray-100 tw-pb-4">
-                 <div
-                   class="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer tw-text-brand tw-font-medium">
-                   <i class="fa fa-arrow-down"></i>
-                   <span>1. Mã giảm giá Shopee là gì?</span>
-                 </div>
-                 <div class="tw-mt-3 tw-text-gray-600 tw-text-sm tw-leading-relaxed">
-                   <p class="tw-mb-2">
-                     Mã giảm giá Shopee (hay voucher Shopee) là một đoạn ký tự hoặc
-                     một nút lưu mã do Shopee hoặc Shop phát hành. Khi bạn nhập mã
-                     này hoặc chọn voucher đã lưu ở bước thanh toán, bạn sẽ được giảm
-                     một số tiền nhất định.
-                   </p>
-
-                   <div
-                     class="tw-bg-gray-50 tw-p-4 tw-rounded tw-border tw-border-gray-200 tw-my-3">
-                     <div class="tw-flex tw-items-center tw-gap-4 tw-mb-2">
-                       <div
-                         class="tw-w-1/2 tw-bg-white tw-border tw-border-dashed tw-border-brand tw-p-2 tw-rounded tw-flex tw-justify-between tw-items-center">
-                         <div class="tw-flex tw-items-center tw-gap-2">
-                           <div class="tw-bg-brand tw-text-white tw-p-1 tw-rounded">
-                             <i class="fa fa-ticket"></i>
-                           </div>
-                           <div>
-                             <div class="tw-font-bold tw-text-brand">Giảm 8%</div>
-                             <div class="tw-text-xs">Đơn tối thiểu 500k</div>
-                           </div>
-                         </div>
-                         <button class="tw-text-brand tw-text-xs tw-font-bold">
-                           Dùng ngay
-                         </button>
+                 class="tw-w-3/5 xl:tw-w-2/3 tw-rounded-e-lg tw-p-2 tw-flex tw-flex-col tw-justify-between tw-bg-white tw-relative after:tw-absolute after:tw-w-10 after:tw-h-10 after:tw-rounded-full after:tw-bg-[#fbfbfb] after:-tw-translate-y-1/2 after:tw-top-1/2 after:-tw-right-5">
+                 <div class="tw-flex tw-flex-col tw-justify-between tw-h-full">
+                   <div>
+                     <div class="tw-flex tw-items-center tw-text-xs tw-leading-5">
+                       <div class="tw-text-xs tw-font-semibold">
+                         Giảm
                        </div>
-                       <div
-                         class="tw-w-1/2 tw-bg-white tw-border tw-border-dashed tw-border-brand tw-p-2 tw-rounded tw-flex tw-justify-between tw-items-center">
-                         <div class="tw-flex tw-items-center tw-gap-2">
-                           <div class="tw-bg-brand tw-text-white tw-p-1 tw-rounded">
-                             <i class="fa fa-truck"></i>
-                           </div>
-                           <div>
-                             <div class="tw-font-bold tw-text-brand">
-                               Giảm 15k Ship
-                             </div>
-                             <div class="tw-text-xs">Đơn tối thiểu 0đ</div>
-                           </div>
-                         </div>
-                         <button class="tw-text-brand tw-text-xs tw-font-bold">
-                           Dùng ngay
-                         </button>
+
+                       <div class="tw-text-lg tw-leading-[28px] md:tw-text-[24px] md:tw-leading-[32px] tw-ml-1 tw-text-[#f97e2b]">
+                         <span class="tw-font-bold">30%</span>
                        </div>
                      </div>
-                     <p class="tw-text-xs tw-text-center tw-italic">
-                       Ví dụ về mã giảm giá Shopee
-                     </p>
+
+                     <div class="tw-text-xs tw-leading-4 tw-mb-1">
+                       <span class="tw-text-xs">ĐH tối thiểu:</span>
+                       <span class="tw-font-semibold">200.000đ</span>
+                     </div>
+
+                     <div class="tw-text-xs tw-leading-4 tw-font-medium tw-italic tw-text-gray-500">
+                       <span class="tw-text-[#f97e2b] tw-font-medium">
+                         Lưu ý:</span> Voucher áp dụng cho một số sản phẩm ...
+                       <span class="tw-text-black tw-font-normal tw-text-[11px] tw-leading-[16px]">Xem chi tiết</span>
+
+                     </div>
                    </div>
 
-                   <div class="tw-flex tw-gap-2 tw-justify-center tw-mt-4">
-                     <div class="tw-w-1/2 tw-border tw-rounded tw-overflow-hidden">
-                       <div
-                         class="tw-bg-gray-200 tw-h-48 tw-flex tw-items-center tw-justify-center tw-text-gray-400 tw-flex-col">
-                         <i class="fa fa-image tw-text-3xl"></i>
-                         <span class="tw-text-xs tw-mt-2">Ảnh hướng dẫn 1</span>
-                       </div>
-                     </div>
-                     <div class="tw-w-1/2 tw-border tw-rounded tw-overflow-hidden">
-                       <div
-                         class="tw-bg-gray-200 tw-h-48 tw-flex tw-items-center tw-justify-center tw-text-gray-400 tw-flex-col">
-                         <i class="fa fa-image tw-text-3xl"></i>
-                         <span class="tw-text-xs tw-mt-2">Ảnh hướng dẫn 2</span>
-                       </div>
+                   <div>
+                     <div class="tw-flex tw-w-full tw-items-center tw-justify-between">
+                       <a href="###" class="tw-text-xs tw-italic tw-underline tw-text-[#08bce0]">List áp dụng</a>
+
+                       <a href="###" class="tw-text-xs tw-font-medium tw-px-5 tw-py-1.5 tw-text-white tw-bg-[#d96a09] tw-rounded w-ml-1">Đến Banner</a>
                      </div>
                    </div>
                  </div>
                </div>
-
-               <div class="tw-border-b tw-border-gray-100 tw-pb-2">
-                 <div
-                   class="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer hover:tw-text-brand">
-                   <i class="fa fa-arrow-right tw-text-gray-400"></i>
-                   <span class="tw-font-medium tw-text-blue-600">2. Lấy mã giảm giá Shopee ở đâu?</span>
-                 </div>
-               </div>
-               <div class="tw-border-b tw-border-gray-100 tw-pb-2">
-                 <div
-                   class="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer hover:tw-text-brand">
-                   <i class="fa fa-arrow-right tw-text-gray-400"></i>
-                   <span class="tw-font-medium tw-text-blue-600">3. Sử dụng mã giảm giá như thế nào?</span>
-                 </div>
-               </div>
-               <div class="tw-border-b tw-border-gray-100 tw-pb-2">
-                 <div
-                   class="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer hover:tw-text-brand">
-                   <i class="fa fa-arrow-right tw-text-gray-400"></i>
-                   <span class="tw-font-medium tw-text-blue-600">4. Tại sao tôi không áp dụng được mã?</span>
-                 </div>
-               </div>
-               <div class="tw-border-b tw-border-gray-100 tw-pb-2">
-                 <div
-                   class="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer hover:tw-text-brand">
-                   <i class="fa fa-arrow-right tw-text-gray-400"></i>
-                   <span class="tw-font-medium tw-text-blue-600">5. Mã hoàn xu Shopee là gì?</span>
-                 </div>
-               </div>
              </div>
-           </section>
+
+           </div>
          </div>
 
-         <div class="tw-text-white tw-py-8">
-           <div class="tw-container tw-mx-auto tw-px-4 tw-text-center">
-             <div class="tw-mb-4 tw-flex tw-justify-center tw-items-center tw-gap-2">
-               <div
-                 class="tw-w-8 tw-h-8 tw-bg-brand tw-rounded tw-flex tw-items-center tw-justify-center tw-text-white tw-font-bold tw-text-xs">
-                 <i class="fa fa-bag-shopping"></i>
-               </div>
-               <span class="tw-font-bold tw-text-xl">Mã Giảm Giá</span>
-             </div>
-             <p class="tw-text-xs tw-text-gray-400 tw-mb-4 tw-max-w-2xl tw-mx-auto">
-               Trang tổng hợp mã giảm giá Shopee miễn phí. Chúng tôi không bán hàng,
-               chúng tôi chỉ giúp bạn mua sắm tiết kiệm hơn.
-               <br />Lưu ý: Các mã giảm giá có thể hết lượt sử dụng bất cứ lúc nào.
-             </p>
-             <div
-               class="tw-border-t tw-border-gray-700 tw-pt-4 tw-text-xs tw-text-gray-500">
-               &copy; 2026 MagiamgiaShopee. All rights reserved.
-             </div>
-           </div>
+         <div id="loadMore" class="see-more tw-rounded-2xl tw-flex tw-flex-col tw-items-center tw-justify-center tw-cursor-pointer"><svg class="arrows">
+             <path d="M0 0 L30 32 L60 0" class="a1"></path>
+             <path d="M0 20 L30 52 L60 20" class="a2"></path>
+             <path d="M0 40 L30 72 L60 40" class="a3"></path>
+           </svg>
+           <p class="tw-text-[14px] tw-leading-[21px]">Xem thêm Voucher</p>
          </div>
        </div>
+
 
      </div>
    </div>
