@@ -61,6 +61,29 @@
     });
   });
 
+  // Show discount unit badge (% or VND) next to "Giảm bao nhiêu" label
+  document.addEventListener('DOMContentLoaded', function () {
+    const discountTypeSelect = document.querySelector('select[name="discount_type"]');
+    const discountLabel = document.querySelector('label[for="discount_value"]');
+    if (!discountTypeSelect || !discountLabel) return;
+
+    let badge = discountLabel.querySelector('[data-discount-unit-indicator]');
+    if (!badge) {
+      badge = document.createElement('span');
+      badge.className = 'badge ms-2 bg-white';
+      badge.setAttribute('data-discount-unit-indicator', '');
+      discountLabel.appendChild(badge);
+    }
+
+    const updateBadge = function () {
+      const val = discountTypeSelect.value;
+      badge.textContent = val === 'percent' ? '%' : 'VND';
+    };
+
+    updateBadge();
+    discountTypeSelect.addEventListener('change', updateBadge);
+  });
+
   // Initialize datetime picker with time support for expired_at field
   document.addEventListener('DOMContentLoaded', function () {
     // Check for flatpickr date picker

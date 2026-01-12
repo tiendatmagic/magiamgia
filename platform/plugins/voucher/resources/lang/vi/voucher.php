@@ -27,6 +27,7 @@ return [
     'apply_url' => 'Link áp dụng',
     'banner_url' => 'Link đến banner',
     'expired_at' => 'Hạn sử dụng',
+    'coupon_image' => 'Hình ảnh mã giảm giá',
   ],
   'helpers' => [
     'tags' => 'Nhập tag ngăn cách bằng dấu phẩy. Ví dụ: Thời trang, Điện tử',

@@ -4,6 +4,7 @@ namespace Botble\Voucher\Forms;
 
 use Botble\Base\Facades\Assets;
 use Botble\Base\Forms\FieldOptions\StatusFieldOption;
+use Botble\Base\Forms\FieldOptions\TextFieldOption;
 use Botble\Base\Forms\Fields\HtmlField;
 use Botble\Base\Forms\Fields\MediaImageField;
 use Botble\Base\Forms\Fields\TextareaField;
@@ -56,17 +57,45 @@ class ProviderForm extends FormAbstract
         'html' => '<hr class="my-4">',
         'wrapper' => false,
       ])
-      ->add('button_1_text', TextField::class, [
-        'label' => trans('plugins/voucher::voucher.fields.button_1_text'),
+      ->add('provider_buttons_row1_open', HtmlField::class, [
+        'html' => '<div class="row">',
+        'wrapper' => false,
       ])
-      ->add('button_1_url', TextField::class, [
-        'label' => trans('plugins/voucher::voucher.fields.button_1_url'),
+      ->add('button_1_text', TextField::class, TextFieldOption::make()
+        ->label(trans('plugins/voucher::voucher.fields.button_1_text'))
+        ->wrapperAttributes([
+          'class' => $this->formHelper->getConfig('defaults.wrapper_class') . ' col-md-6',
+        ])
+        ->toArray())
+      ->add('button_1_url', TextField::class, TextFieldOption::make()
+        ->label(trans('plugins/voucher::voucher.fields.button_1_url'))
+        ->wrapperAttributes([
+          'class' => $this->formHelper->getConfig('defaults.wrapper_class') . ' col-md-6',
+        ])
+        ->toArray())
+      ->add('provider_buttons_row1_close', HtmlField::class, [
+        'html' => '</div>',
+        'wrapper' => false,
       ])
-      ->add('button_2_text', TextField::class, [
-        'label' => trans('plugins/voucher::voucher.fields.button_2_text'),
+      ->add('provider_buttons_row2_open', HtmlField::class, [
+        'html' => '<div class="row">',
+        'wrapper' => false,
       ])
-      ->add('button_2_url', TextField::class, [
-        'label' => trans('plugins/voucher::voucher.fields.button_2_url'),
+      ->add('button_2_text', TextField::class, TextFieldOption::make()
+        ->label(trans('plugins/voucher::voucher.fields.button_2_text'))
+        ->wrapperAttributes([
+          'class' => $this->formHelper->getConfig('defaults.wrapper_class') . ' col-md-6',
+        ])
+        ->toArray())
+      ->add('button_2_url', TextField::class, TextFieldOption::make()
+        ->label(trans('plugins/voucher::voucher.fields.button_2_url'))
+        ->wrapperAttributes([
+          'class' => $this->formHelper->getConfig('defaults.wrapper_class') . ' col-md-6',
+        ])
+        ->toArray())
+      ->add('provider_buttons_row2_close', HtmlField::class, [
+        'html' => '</div>',
+        'wrapper' => false,
       ])
       ->add('tags', TextField::class, [
         'label' => trans('plugins/voucher::voucher.fields.tags'),

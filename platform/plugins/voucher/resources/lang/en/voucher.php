@@ -27,6 +27,7 @@ return [
     'apply_url' => 'Apply link',
     'banner_url' => 'Banner link',
     'expired_at' => 'Expiry date',
+    'coupon_image' => 'Coupon image',
   ],
   'helpers' => [
     'tags' => 'Enter tags separated by commas. Example: Fashion, Electronics',

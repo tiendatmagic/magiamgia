@@ -22,6 +22,7 @@ class Voucher extends BaseModel
     'note',
     'apply_url',
     'banner_url',
+    'coupon_image',
     'expired_at',
     'status',
   ];

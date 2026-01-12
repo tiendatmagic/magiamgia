@@ -3939,12 +3939,56 @@ thead tr th {
     padding: 0.5rem;
 }
 
-/* .section-content .page-content {
+#page-wrap .accordion-button:focus {
+    box-shadow: none;
+}
+
+#page-wrap .accordion-button:focus,
+#page-wrap .accordion-button:not(.collapsed) {
+    box-shadow: none;
+    background-color: #fff;
+}
+
+.accordion-button {
+    --accordion-icon-orange: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='%23F97E2B'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3' /%3E%3C/svg%3E");
+    --accordion-icon-blue: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='%232563EB'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3' /%3E%3C/svg%3E");
+    --bs-accordion-btn-icon: var(--accordion-icon-orange);
+    --bs-accordion-btn-active-icon: var(--accordion-icon-blue);
+    justify-content: flex-start;
+    --tw-shadow:
+        0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --tw-shadow-colored:
+        0 4px 6px -1px var(--tw-shadow-color),
+        0 2px 4px -2px var(--tw-shadow-color);
     box-shadow:
-        0 4px 6px -1px rgb(0 0 0 / 0.1),
-        0 2px 4px -2px rgb(0 0 0 / 0.1);
-    padding: 20px;
-    padding-bottom: 0px;
-    border: 1px solid #eee;
-    border-radius: 20px;
-} */
+        var(--tw-ring-offset-shadow, 0 0 #0000),
+        var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.accordion-button,
+.accordion-button:not(.collapsed) {
+    color: #0586a8;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.accordion-button::before {
+    flex-shrink: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 0.75rem;
+    content: "";
+    background-image: var(--bs-accordion-btn-icon);
+    background-repeat: no-repeat;
+    background-size: 1.25rem;
+    transition: transform 0.2s ease-in-out;
+}
+
+.accordion-button:not(.collapsed)::before {
+    background-image: var(--bs-accordion-btn-active-icon);
+    transform: rotate(90deg);
+}
+
+.accordion-button::after {
+    display: none;
+}
