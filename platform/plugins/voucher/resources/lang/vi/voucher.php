@@ -28,6 +28,8 @@ return [
     'banner_url' => 'Link đến banner',
     'expired_at' => 'Hạn sử dụng',
     'coupon_image' => 'Hình ảnh mã giảm giá',
+    'is_hot' => 'Mã giảm giá hot',
+    'is_hot_help' => 'Đánh dấu nếu đây là mã giảm giá hot',
   ],
   'helpers' => [
     'tags' => 'Nhập tag ngăn cách bằng dấu phẩy. Ví dụ: Thời trang, Điện tử',

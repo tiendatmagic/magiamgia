@@ -28,6 +28,8 @@ return [
     'banner_url' => 'Banner link',
     'expired_at' => 'Expiry date',
     'coupon_image' => 'Coupon image',
+    'is_hot' => 'Hot coupon',
+    'is_hot_help' => 'Mark if this is a hot/featured coupon',
   ],
   'helpers' => [
     'tags' => 'Enter tags separated by commas. Example: Fashion, Electronics',

@@ -25,12 +25,14 @@ class Voucher extends BaseModel
     'coupon_image',
     'expired_at',
     'status',
+    'is_hot',
   ];
 
   protected $casts = [
     'status' => BaseStatusEnum::class,
     'note' => SafeContent::class,
     'expired_at' => 'date',
+    'is_hot' => 'boolean',
   ];
 
   protected $appends = ['discount_type_label'];

@@ -3949,7 +3949,7 @@ thead tr th {
     background-color: #fff;
 }
 
-.accordion-button {
+#page-wrap .accordion-button {
     --accordion-icon-orange: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='%23F97E2B'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3' /%3E%3C/svg%3E");
     --accordion-icon-blue: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='%232563EB'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3' /%3E%3C/svg%3E");
     --bs-accordion-btn-icon: var(--accordion-icon-orange);
@@ -3965,14 +3965,14 @@ thead tr th {
         var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.accordion-button,
-.accordion-button:not(.collapsed) {
+#page-wrap.accordion-button,
+#page-wrap .accordion-button:not(.collapsed) {
     color: #0586a8;
     font-size: 20px;
     font-weight: bold;
 }
 
-.accordion-button::before {
+#page-wrap .accordion-button::before {
     flex-shrink: 0;
     width: 1.25rem;
     height: 1.25rem;
@@ -3984,7 +3984,7 @@ thead tr th {
     transition: transform 0.2s ease-in-out;
 }
 
-.accordion-button:not(.collapsed)::before {
+#page-wrap .accordion-button:not(.collapsed)::before {
     background-image: var(--bs-accordion-btn-active-icon);
     transform: rotate(90deg);
 }
@@ -3993,6 +3993,10 @@ thead tr th {
     display: none;
 }
 
+#page-wrap .accordion-item {
+    --tw-border-opacity: 1;
+    border-color: rgb(243 244 246 / var(--tw-border-opacity, 1));
+}
 .see-more {
     display: flex;
     align-items: center;

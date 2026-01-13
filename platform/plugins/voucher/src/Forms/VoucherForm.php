@@ -7,6 +7,7 @@ use Botble\Base\Forms\FieldOptions\DatePickerFieldOption;
 use Botble\Base\Forms\FieldOptions\SelectFieldOption;
 use Botble\Base\Forms\FieldOptions\StatusFieldOption;
 use Botble\Base\Forms\FieldOptions\TextFieldOption;
+use Botble\Base\Forms\Fields\CheckboxField;
 use Botble\Base\Forms\Fields\HtmlField;
 use Botble\Base\Forms\Fields\DatePickerField;
 use Botble\Base\Forms\Fields\MediaImageField;
@@ -137,6 +138,12 @@ class VoucherForm extends FormAbstract
       ])
       ->add('banner_url', TextField::class, [
         'label' => trans('plugins/voucher::voucher.fields.banner_url'),
+      ])
+      ->add('is_hot', CheckboxField::class, [
+        'label' => trans('plugins/voucher::voucher.fields.is_hot'),
+        'help_block' => [
+          'text' => trans('plugins/voucher::voucher.fields.is_hot_help'),
+        ],
       ])
       ->add('status', SelectField::class, StatusFieldOption::make()->toArray())
       ->add('expired_at', DatePickerField::class, DatePickerFieldOption::make()
