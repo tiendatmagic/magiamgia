@@ -5,9 +5,9 @@ namespace Botble\Voucher\Forms;
 use Botble\Base\Facades\Assets;
 use Botble\Base\Forms\FieldOptions\StatusFieldOption;
 use Botble\Base\Forms\FieldOptions\TextFieldOption;
+use Botble\Base\Forms\Fields\EditorField;
 use Botble\Base\Forms\Fields\HtmlField;
 use Botble\Base\Forms\Fields\MediaImageField;
-use Botble\Base\Forms\Fields\TextareaField;
 use Botble\Base\Forms\Fields\TextField;
 use Botble\Base\Forms\Fields\SelectField;
 use Botble\Base\Forms\FormAbstract;
@@ -47,11 +47,8 @@ class ProviderForm extends FormAbstract
       ->add('logo', MediaImageField::class, [
         'label' => trans('plugins/voucher::voucher.fields.logo'),
       ])
-      ->add('description', TextareaField::class, [
+      ->add('description', EditorField::class, [
         'label' => trans('plugins/voucher::voucher.fields.description'),
-        'attr' => [
-          'rows' => 3,
-        ],
       ])
       ->add('provider_buttons_hr', HtmlField::class, [
         'html' => '<hr class="my-4">',
@@ -104,11 +101,25 @@ class ProviderForm extends FormAbstract
         ],
         'value' => $this->normalizeTagsToString($this->getModel()?->tags),
       ])
-      ->add('accordions', HtmlField::class, [
-        'label' => trans('plugins/voucher::voucher.fields.accordions'),
-        'html' => view('plugins/voucher::admin.partials.accordion-field', [
-          'value' => $this->getModel()?->accordions,
+      ->add('accordions_divider', HtmlField::class, [
+        'html' => '<hr class="my-4">',
+        'wrapper' => false,
+      ])
+      ->add('accordions_header_card', HtmlField::class, [
+        'html' => view('plugins/voucher::admin.partials.accordion-card', [
+          'title' => trans('plugins/voucher::voucher.fields.accordions_header'),
+          'name' => 'accordions_header',
+          'value' => $this->getModel()?->accordions_header,
         ])->render(),
+        'wrapper' => false,
+      ])
+      ->add('accordions_footer_card', HtmlField::class, [
+        'html' => view('plugins/voucher::admin.partials.accordion-card', [
+          'title' => trans('plugins/voucher::voucher.fields.accordions_footer'),
+          'name' => 'accordions_footer',
+          'value' => $this->getModel()?->accordions_footer,
+        ])->render(),
+        'wrapper' => false,
       ])
       ->add('status', SelectField::class, StatusFieldOption::make()->toArray())
       ->setBreakFieldPoint('status');

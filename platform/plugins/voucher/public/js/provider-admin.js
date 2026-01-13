@@ -21,25 +21,69 @@
   function renderItem(container, item) {
     var wrapper = document.createElement('div');
     wrapper.className = 'card mb-2';
+    var uniqueId = 'accordion_content_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    var itemId = 'item_' + uniqueId;
 
     wrapper.innerHTML = [
       '<div class="card-body">',
-      '  <div class="d-flex justify-content-between align-items-center mb-2">',
-      '    <div class="fw-semibold">Accordion item</div>',
-      '    <button type="button" class="btn btn-sm btn-danger voucher-accordion-remove">&times;</button>',
+      '  <div class="d-flex justify-content-between align-items-center mb-3">',
+      '    <div class="fw-bold text-primary voucher-accordion-title-toggle" style="cursor: pointer; user-select: none; flex: 1;" data-bs-toggle="collapse" data-bs-target="#' + itemId + '">',
+      '      <i class="fa fa-chevron-right voucher-accordion-toggle" style="width: 16px; display: inline-block;"></i> Accordion Item',
+      '    </div>',
+      '    <div class="d-flex gap-2">',
+      '      <div class="btn-group btn-group-sm" role="group">',
+      '        <button type="button" class="btn btn-outline-secondary voucher-accordion-move-up" title="Lên trên"><i class="fa fa-arrow-up mx-auto"></i></button>',
+      '        <button type="button" class="btn btn-outline-secondary voucher-accordion-move-down" title="Xuống dưới"><i class="fa fa-arrow-down mx-auto"></i></button>',
+      '      </div>',
+      '      <button type="button" class="btn btn-sm btn-danger voucher-accordion-remove"><i class="fa fa-trash"></i> Xóa</button>',
+      '    </div>',
       '  </div>',
-      '  <div class="mb-2">',
-      '    <label class="form-label">Tiêu đề</label>',
-      '    <input type="text" class="form-control voucher-accordion-title" value="' + (item.title || '').replace(/"/g, '&quot;') + '">',
-      '  </div>',
-      '  <div>',
-      '    <label class="form-label">Nội dung</label>',
-      '    <textarea class="form-control voucher-accordion-content" rows="3">' + (item.content || '') + '</textarea>',
+      '  <div id="' + itemId + '" class="collapse show">',
+      '    <div class="mb-3">',
+      '      <label class="form-label fw-semibold">Tiêu đề <span class="text-danger">*</span></label>',
+      '      <input type="text" class="form-control voucher-accordion-title" placeholder="Nhập tiêu đề accordion..." value="' + (item.title || '').replace(/"/g, '&quot;') + '">',
+      '    </div>',
+      '    <div>',
+      '      <label class="form-label fw-semibold">Nội dung <span class="text-danger">*</span></label>',
+      '      <textarea id="' + uniqueId + '" class="form-control voucher-accordion-content" rows="4" placeholder="Nhập nội dung chi tiết...">' + (item.content || '') + '</textarea>',
+      '    </div>',
       '  </div>',
       '</div>'
     ].join('');
 
     container.appendChild(wrapper);
+
+    // Add collapse/expand toggle icon
+    var titleToggle = wrapper.querySelector('.voucher-accordion-title-toggle');
+    var toggleIcon = wrapper.querySelector('.voucher-accordion-toggle');
+    var collapseEl = wrapper.querySelector('#' + itemId);
+
+    if (titleToggle && toggleIcon && collapseEl) {
+      titleToggle.addEventListener('click', function (e) {
+        var isShown = collapseEl.classList.contains('show');
+        if (isShown) {
+          toggleIcon.classList.remove('fa-chevron-down');
+          toggleIcon.classList.add('fa-chevron-right');
+        } else {
+          toggleIcon.classList.remove('fa-chevron-right');
+          toggleIcon.classList.add('fa-chevron-down');
+        }
+      });
+    }
+
+    // Initialize editor with retry logic
+    var retryCount = 0;
+    var maxRetries = 10;
+    var initEditor = function () {
+      if (window.EDITOR && window.EDITOR.initCkEditor) {
+        window.EDITOR.initCkEditor(uniqueId, {});
+      } else if (retryCount < maxRetries) {
+        retryCount++;
+        setTimeout(initEditor, 300);
+      }
+    };
+
+    initEditor();
   }
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -52,20 +96,47 @@
       var list = root.querySelector('.voucher-accordion-items');
       var hidden = root.querySelector('.voucher-accordion-json');
       var addBtn = root.querySelector('.voucher-accordion-add');
+      var emptyState = root.querySelector('.voucher-accordion-empty-state');
+
+      function updateEmptyState() {
+        var hasItems = list.querySelectorAll('.card').length > 0;
+        if (emptyState) {
+          emptyState.style.display = hasItems ? 'none' : 'block';
+        }
+      }
 
       function sync() {
         var current = [];
         list.querySelectorAll('.card').forEach(function (card) {
           var title = (card.querySelector('.voucher-accordion-title') || {}).value || '';
-          var content = (card.querySelector('.voucher-accordion-content') || {}).value || '';
+          var contentTextarea = card.querySelector('.voucher-accordion-content');
+          var content = '';
+
+          if (contentTextarea) {
+            var textareaId = contentTextarea.id;
+            // Get content from CKEditor if initialized
+            if (window.EDITOR && window.EDITOR.CKEDITOR && window.EDITOR.CKEDITOR[textareaId]) {
+              content = window.EDITOR.CKEDITOR[textareaId].getData() || '';
+            } else {
+              content = contentTextarea.value || '';
+            }
+          }
+
           current.push({ title: title, content: content });
         });
 
         hidden.value = serialize(current);
+        updateEmptyState();
       }
 
       // Initial
       list.innerHTML = '';
+      // Re-add empty state after clearing
+      if (emptyState) {
+        var emptyClone = emptyState.cloneNode(true);
+        list.appendChild(emptyClone);
+        emptyState = emptyClone;
+      }
       items.forEach(function (it) { renderItem(list, it || {}); });
       sync();
 
@@ -78,15 +149,53 @@
         var btn = e.target.closest('.voucher-accordion-remove');
         if (!btn) return;
         var card = btn.closest('.card');
-        if (card) card.remove();
+        if (card) {
+          // Destroy CKEditor instance before removing
+          var contentTextarea = card.querySelector('.voucher-accordion-content');
+          if (contentTextarea && window.EDITOR && window.EDITOR.CKEDITOR && window.EDITOR.CKEDITOR[contentTextarea.id]) {
+            window.EDITOR.CKEDITOR[contentTextarea.id].destroy();
+            delete window.EDITOR.CKEDITOR[contentTextarea.id];
+          }
+          card.remove();
+        }
         sync();
       });
 
-      root.addEventListener('input', function (e) {
-        if (e.target.matches('.voucher-accordion-title, .voucher-accordion-content')) {
+      // Handle move up button
+      root.addEventListener('click', function (e) {
+        var btn = e.target.closest('.voucher-accordion-move-up');
+        if (!btn) return;
+        var card = btn.closest('.card');
+        if (card && card.previousElementSibling) {
+          card.parentNode.insertBefore(card, card.previousElementSibling);
           sync();
         }
       });
+
+      // Handle move down button
+      root.addEventListener('click', function (e) {
+        var btn = e.target.closest('.voucher-accordion-move-down');
+        if (!btn) return;
+        var card = btn.closest('.card');
+        if (card && card.nextElementSibling) {
+          card.parentNode.insertBefore(card.nextElementSibling, card);
+          sync();
+        }
+      });
+
+      root.addEventListener('input', function (e) {
+        if (e.target.matches('.voucher-accordion-title')) {
+          sync();
+        }
+      });
+
+      // Sync when form is submitted to ensure CKEditor content is captured
+      var form = root.closest('form');
+      if (form) {
+        form.addEventListener('submit', function () {
+          sync();
+        });
+      }
     });
 
     // Tags chip input: transform input[name="tags"] into a chip editor

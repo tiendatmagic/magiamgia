@@ -20,6 +20,7 @@ class VoucherRequest extends Request
       'apply_url' => 'nullable|string|max:2048',
       'banner_url' => 'nullable|string|max:2048',
       'coupon_image' => 'nullable|string|max:2048',
+      'is_hot' => 'nullable|in:0,1',
       'expired_at' => 'required|date_format:Y-m-d',
       'status' => 'required|string',
     ];

@@ -10,6 +10,7 @@ use Botble\Voucher\Http\Requests\VoucherRequest;
 use Botble\Voucher\Models\Provider;
 use Botble\Voucher\Models\Voucher;
 use Botble\Voucher\Tables\VoucherTable;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class VoucherController extends BaseController
@@ -74,7 +75,9 @@ class VoucherController extends BaseController
   public function loadMore(Request $request)
   {
     $providerSlug = (string) $request->query('provider');
-    $offset = max(0, (int) $request->query('offset', 18));
+    $offset = max(0, (int) $request->query('offset', 0));
+    $limit = max(1, (int) $request->query('limit', 9));
+    $category = trim((string) $request->query('category', ''));
 
     $provider = Provider::query()
       ->whereHas('slugable', function ($query) use ($providerSlug) {
@@ -87,16 +90,32 @@ class VoucherController extends BaseController
       return $this->httpResponse()->setError()->setMessage(__('Provider not found'));
     }
 
-    $items = Voucher::query()
+    $today = Carbon::now()->startOfDay();
+
+    $query = Voucher::query()
       ->where('status', BaseStatusEnum::PUBLISHED)
       ->where('provider_id', $provider->getKey())
+      ->where(function ($builder) use ($today) {
+        $builder
+          ->whereNull('expired_at')
+          ->orWhereDate('expired_at', '>=', $today);
+      });
+
+    if ($category !== '') {
+      $query->where('category', $category);
+    }
+
+    $items = $query
+      ->orderByRaw('CASE WHEN expired_at IS NULL THEN 1 ELSE 0 END')
+      ->orderBy('expired_at')
       ->orderByDesc('created_at')
       ->skip($offset)
-      ->take(9)
+      ->take($limit)
       ->get();
 
     $html = view('plugins/voucher::public.partials.voucher-items', [
       'vouchers' => $items,
+      'provider' => $provider,
     ])->render();
 
     return $this->httpResponse()->setData([

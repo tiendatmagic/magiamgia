@@ -44,16 +44,7 @@ class Voucher extends BaseModel
 
   public function setIsHotAttribute($value)
   {
-    $this->attributes['is_hot'] = ($value === 'on' || $value === true || $value === 1) ? 1 : 0;
-  }
-
-  protected static function booted()
-  {
-    static::saving(function ($model) {
-      if (!isset($model->attributes['is_hot'])) {
-        $model->attributes['is_hot'] = 0;
-      }
-    });
+    $this->attributes['is_hot'] = (int) filter_var($value, FILTER_VALIDATE_BOOLEAN);
   }
 
   public function provider(): BelongsTo

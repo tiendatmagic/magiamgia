@@ -35,6 +35,36 @@ class Provider extends BaseModel
     'accordions' => 'array',
   ];
 
+  public function getAccordionsHeaderAttribute(): array
+  {
+    $accordions = $this->accordions;
+
+    if (! is_array($accordions)) {
+      return [];
+    }
+
+    if (array_key_exists('header', $accordions)) {
+      return is_array($accordions['header'] ?? null) ? $accordions['header'] : [];
+    }
+
+    return $accordions;
+  }
+
+  public function getAccordionsFooterAttribute(): array
+  {
+    $accordions = $this->accordions;
+
+    if (! is_array($accordions)) {
+      return [];
+    }
+
+    if (array_key_exists('footer', $accordions)) {
+      return is_array($accordions['footer'] ?? null) ? $accordions['footer'] : [];
+    }
+
+    return $accordions;
+  }
+
   public function slugable(): MorphOne
   {
     return $this->morphOne(Slug::class, 'reference')->select([

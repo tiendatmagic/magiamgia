@@ -4,10 +4,11 @@ namespace Botble\Voucher\Forms;
 
 use Botble\Base\Facades\Assets;
 use Botble\Base\Forms\FieldOptions\DatePickerFieldOption;
+use Botble\Base\Forms\FieldOptions\OnOffFieldOption;
 use Botble\Base\Forms\FieldOptions\SelectFieldOption;
 use Botble\Base\Forms\FieldOptions\StatusFieldOption;
 use Botble\Base\Forms\FieldOptions\TextFieldOption;
-use Botble\Base\Forms\Fields\CheckboxField;
+use Botble\Base\Forms\Fields\OnOffField;
 use Botble\Base\Forms\Fields\HtmlField;
 use Botble\Base\Forms\Fields\DatePickerField;
 use Botble\Base\Forms\Fields\MediaImageField;
@@ -139,16 +140,15 @@ class VoucherForm extends FormAbstract
       ->add('banner_url', TextField::class, [
         'label' => trans('plugins/voucher::voucher.fields.banner_url'),
       ])
-      ->add('is_hot', CheckboxField::class, [
-        'label' => trans('plugins/voucher::voucher.fields.is_hot'),
-        'help_block' => [
-          'text' => trans('plugins/voucher::voucher.fields.is_hot_help'),
-        ],
-        'attr' => [
-          'value' => 1,
-          'data-off-value' => 0,
-        ],
-      ])
+      ->add(
+        'is_hot',
+        OnOffField::class,
+        OnOffFieldOption::make()
+          ->label(trans('plugins/voucher::voucher.fields.is_hot'))
+          ->helperText(trans('plugins/voucher::voucher.fields.is_hot_help'))
+          ->defaultValue((bool) $this->getModel()?->is_hot)
+          ->toArray()
+      )
       ->add('status', SelectField::class, StatusFieldOption::make()->toArray())
       ->add('expired_at', DatePickerField::class, DatePickerFieldOption::make()
         ->label(trans('plugins/voucher::voucher.fields.expired_at'))

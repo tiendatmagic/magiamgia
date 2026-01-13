@@ -5,9 +5,10 @@ namespace Botble\Voucher\Services;
 use Botble\Base\Enums\BaseStatusEnum;
 use Botble\SeoHelper\Facades\SeoHelper;
 use Botble\Slug\Models\Slug;
-use Botble\Theme\Facades\Theme;
+use Botble\Voucher\Http\Controllers\PublicController;
 use Botble\Voucher\Models\Provider;
 use Botble\Voucher\Models\Voucher;
+use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 
@@ -43,19 +44,55 @@ class VoucherService
       ->with(['slugable'])
       ->firstOrFail();
 
-    $vouchers = Voucher::query()
+    $today = Carbon::now()->startOfDay();
+
+    $baseQuery = Voucher::query()
       ->where('status', BaseStatusEnum::PUBLISHED)
       ->where('provider_id', $provider->getKey())
-      ->orderByDesc('created_at')
+      ->where(function ($query) use ($today) {
+        $query
+          ->whereNull('expired_at')
+          ->orWhereDate('expired_at', '>=', $today);
+      });
+
+    $orderByExpiry = function ($query) {
+      return $query
+        ->orderByRaw('CASE WHEN expired_at IS NULL THEN 1 ELSE 0 END')
+        ->orderBy('expired_at')
+        ->orderByDesc('created_at');
+    };
+
+    $vouchers = $orderByExpiry(clone $baseQuery)
       ->take(18)
       ->get();
 
+    $hotVouchers = $orderByExpiry(clone $baseQuery)
+      ->where('is_hot', true)
+      ->take(9)
+      ->get();
+
+    $categories = $provider->tags ?? [];
+    if (! $categories) {
+      $categories = (clone $baseQuery)
+        ->whereNotNull('category')
+        ->distinct()
+        ->orderBy('category')
+        ->pluck('category')
+        ->all();
+    }
+
     SeoHelper::setTitle($provider->name);
+
+    // Pass data to controller for processing
+    request()->merge(compact('vouchers', 'hotVouchers', 'categories'));
+
+    $controller = app(PublicController::class);
+    $response = $controller->showProvider($provider, request());
 
     return [
       'view' => 'voucher-provider',
       'default_view' => 'plugins/voucher::public.provider',
-      'data' => compact('provider', 'vouchers'),
+      'data' => $response->getData(),
       'slug' => $provider->slug,
     ];
   }
