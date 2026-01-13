@@ -60,6 +60,23 @@
                </div>
              </div>
            </div>
+
+           <div class="accordion-item">
+             <h2 class="accordion-header">
+               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                 data-bs-target="#collapseHeader2" aria-expanded="false" aria-controls="collapseHeader2">
+                 🔥79+ Mã Shopee Từ 9H - 21H Ngày 12/01
+               </button>
+             </h2>
+             <div id="collapseHeader2" class="accordion-collapse collapse" data-bs-parent="#accordionHeader">
+               <div class="accordion-body">
+
+                 Nội dung mẫu
+
+
+               </div>
+             </div>
+           </div>
          </div>
        </div>
 
