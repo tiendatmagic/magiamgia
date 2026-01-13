@@ -42,6 +42,20 @@ class Voucher extends BaseModel
     return trans('plugins/voucher::voucher.discount.' . $this->attributes['discount_type'] ?? 'percent');
   }
 
+  public function setIsHotAttribute($value)
+  {
+    $this->attributes['is_hot'] = ($value === 'on' || $value === true || $value === 1) ? 1 : 0;
+  }
+
+  protected static function booted()
+  {
+    static::saving(function ($model) {
+      if (!isset($model->attributes['is_hot'])) {
+        $model->attributes['is_hot'] = 0;
+      }
+    });
+  }
+
   public function provider(): BelongsTo
   {
     return $this->belongsTo(Provider::class, 'provider_id');

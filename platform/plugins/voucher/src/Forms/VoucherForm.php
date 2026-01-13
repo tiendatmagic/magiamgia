@@ -144,6 +144,10 @@ class VoucherForm extends FormAbstract
         'help_block' => [
           'text' => trans('plugins/voucher::voucher.fields.is_hot_help'),
         ],
+        'attr' => [
+          'value' => 1,
+          'data-off-value' => 0,
+        ],
       ])
       ->add('status', SelectField::class, StatusFieldOption::make()->toArray())
       ->add('expired_at', DatePickerField::class, DatePickerFieldOption::make()
