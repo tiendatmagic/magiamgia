@@ -27,6 +27,7 @@ class Voucher extends BaseModel
     'expired_at',
     'status',
     'is_hot',
+    'show_homepage_hot',
   ];
 
   protected $casts = [
@@ -34,6 +35,7 @@ class Voucher extends BaseModel
     'note' => SafeContent::class,
     'expired_at' => 'datetime',
     'is_hot' => 'boolean',
+    'show_homepage_hot' => 'boolean',
   ];
 
   protected $appends = ['discount_type_label'];
@@ -46,6 +48,11 @@ class Voucher extends BaseModel
   public function setIsHotAttribute($value)
   {
     $this->attributes['is_hot'] = (int) filter_var($value, FILTER_VALIDATE_BOOLEAN);
+  }
+
+  public function setShowHomepageHotAttribute($value)
+  {
+    $this->attributes['show_homepage_hot'] = (int) filter_var($value, FILTER_VALIDATE_BOOLEAN);
   }
 
   /**

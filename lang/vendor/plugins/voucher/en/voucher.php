@@ -32,6 +32,8 @@ return [
     'coupon_image' => 'Coupon image',
     'is_hot' => 'Hot coupon',
     'is_hot_help' => 'Mark if this is a hot/featured coupon',
+    'show_homepage_hot' => 'Show hot coupon on homepage',
+    'show_homepage_hot_help' => 'Mark if you want to display this hot coupon on the homepage',
   ],
   'accordion_section_title' => 'Accordion Configuration (Expandable Content)',
   'helpers' => [

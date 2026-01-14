@@ -149,6 +149,15 @@ class VoucherForm extends FormAbstract
           ->defaultValue((bool) $this->getModel()?->is_hot)
           ->toArray()
       )
+      ->add(
+        'show_homepage_hot',
+        OnOffField::class,
+        OnOffFieldOption::make()
+          ->label(trans('plugins/voucher::voucher.fields.show_homepage_hot'))
+          ->helperText(trans('plugins/voucher::voucher.fields.show_homepage_hot_help'))
+          ->defaultValue((bool) $this->getModel()?->show_homepage_hot)
+          ->toArray()
+      )
       ->add('status', SelectField::class, StatusFieldOption::make()->toArray())
       ->add('expired_at', DatePickerField::class, DatePickerFieldOption::make()
         ->label(trans('plugins/voucher::voucher.fields.expired_at'))

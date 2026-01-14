@@ -8,7 +8,9 @@ return new class() extends Migration {
   public function up(): void
   {
     Schema::table('bng_vouchers', function (Blueprint $table) {
-      $table->string('coupon_image')->nullable()->after('banner_url');
+      if (!Schema::hasColumn('bng_vouchers', 'coupon_image')) {
+        $table->string('coupon_image')->nullable()->after('banner_url');
+      }
     });
   }
 

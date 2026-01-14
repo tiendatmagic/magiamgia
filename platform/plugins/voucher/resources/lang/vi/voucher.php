@@ -32,6 +32,8 @@ return [
     'coupon_image' => 'Hình ảnh mã giảm giá',
     'is_hot' => 'Mã giảm giá hot',
     'is_hot_help' => 'Đánh dấu nếu đây là mã giảm giá hot',
+    'show_homepage_hot' => 'Mã giảm giá hot hiển thị trang chủ',
+    'show_homepage_hot_help' => 'Đánh dấu nếu muốn hiển thị mã giảm giá hot này ở trang chủ',
   ],
   'accordion_section_title' => 'Cấu hình Accordion (Nội dung có thể mở rộng)',
   'helpers' => [

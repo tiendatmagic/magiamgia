@@ -106,6 +106,7 @@ app('events')->listen(RouteMatched::class, function () {
     register_page_template([
         'no-sidebar' => __('No sidebar'),
         'default-no-sidebar' => 'Default No Sidebar Page',
+        'home-page' => 'Home Page',
         'giao-dien-ma-giam-gia' => 'Giao dien Ma Giam Gia Page',
     ]);
 
