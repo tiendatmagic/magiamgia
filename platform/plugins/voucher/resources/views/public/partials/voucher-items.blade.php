@@ -18,11 +18,23 @@
     $categoryLabel = $voucher->category ?: __('plugins/voucher::voucher.public.other_category');
     $logo = $voucher->coupon_image ?: $providerLogo;
 
-    $now = Carbon::now()->startOfDay();
-    $expiredAt = $voucher->expired_at ? $voucher->expired_at->copy()->startOfDay() : null;
-    $daysLeft = $expiredAt ? $now->diffInDays($expiredAt, false) : null;
+    // Model accessor automatically converts expired_at to GMT+7
+    $now = Carbon::now('Asia/Ho_Chi_Minh');
+    $expiredAt = $voucher->expired_at; // Already in GMT+7 from model accessor
+
+    // Calculate remaining time in minutes
+    $minutesLeft = $expiredAt ? (int) $now->diffInMinutes($expiredAt, false) : null;
+    $hoursLeft = $minutesLeft !== null ? (int) floor($minutesLeft / 60) : null;
+    $daysLeft = $hoursLeft !== null ? (int) floor($hoursLeft / 24) : null;
+
+    // Safe values (max to 0 if expired)
     $daysLeftSafe = $daysLeft !== null ? max(0, $daysLeft) : null;
-    $expiringSoon = $daysLeftSafe !== null && $daysLeftSafe <= 5 && $daysLeftSafe >= 0;
+    $hoursLeftSafe = $hoursLeft !== null ? max(0, $hoursLeft % 24) : null;
+    $minutesLeftSafe = $minutesLeft !== null ? max(0, $minutesLeft % 60) : null;
+
+    // Determine expiry status
+    $isExpired = $minutesLeft !== null && $minutesLeft <= 0;
+    $expiringSoon = !$isExpired && $daysLeftSafe !== null && $daysLeftSafe == 0 && $minutesLeftSafe > 0;
 
     $expiredDate = $expiredAt ? $expiredAt->format('d/m/Y') : __('plugins/voucher::voucher.public.no_expiry');
     $minOrder = $voucher->min_order ? number_format((float) $voucher->min_order, 0, '.', ',') . 'đ' : __('plugins/voucher::voucher.public.no_limit');
@@ -44,11 +56,23 @@
 
             <div>
                 <div class="tw-text-xs tw-opacity-90 tw-mt-1.5">
-                    @if($expiringSoon)
-                        <span class="tw-bg-red-500 tw-text-white tw-font-semibold tw-px-2 tw-py-1 tw-rounded-lg tw-text-xs tw-inline-flex tw-items-center tw-gap-1 tw-border tw-border-gray-200">
-                            <i class="fa fa-clock"></i>
-                            {{ __('plugins/voucher::voucher.public.days_left', ['days' => $daysLeftSafe]) }}
+                    @if($isExpired)
+                        <span class="tw-bg-gray-400 tw-text-white tw-font-semibold tw-px-2 tw-py-1 tw-rounded-lg tw-text-xs tw-inline-flex tw-items-center tw-gap-1 tw-border tw-border-gray-200">
+                            <i class="fa fa-exclamation-circle"></i>
+                            {{ __('plugins/voucher::voucher.public.no_expiry') }}
                         </span>
+                    @elseif($expiringSoon)
+                        @if($minutesLeft < 60)
+                            <span class="tw-bg-red-500 tw-text-white tw-font-semibold tw-px-2 tw-py-1 tw-rounded-lg tw-text-xs tw-inline-flex tw-items-center tw-gap-1 tw-border tw-border-gray-200">
+                                <i class="fa fa-clock"></i>
+                                {{ __('plugins/voucher::voucher.public.minutes_left', ['minutes' => $minutesLeftSafe]) }}
+                            </span>
+                        @else
+                            <span class="tw-bg-red-500 tw-text-white tw-font-semibold tw-px-2 tw-py-1 tw-rounded-lg tw-text-xs tw-inline-flex tw-items-center tw-gap-1 tw-border tw-border-gray-200">
+                                <i class="fa fa-clock"></i>
+                                {{ __('plugins/voucher::voucher.public.hours_left', ['hours' => $hoursLeftSafe]) }}
+                            </span>
+                        @endif
                     @else
                         <span>
                             <i class="fa fa-clock"></i>
@@ -92,7 +116,7 @@
             </div>
         </div>
     </div>
-    <div class="coupon-detail tw-absolute tw-shadow-md tw-rounded-lg tw-top-0 tw-left-0 tw-bg-white tw-w-full tw-p-4 tw-hidden tw-z-10">
+    <div class="coupon-detail tw-absolute tw-shadow-md tw-rounded-lg tw-top-0 tw-left-0 tw-bg-white tw-w-full tw-p-4 tw-hidden tw-z-50">
         <div class="tw-text-[#f97e2b] tw-font-medium tw-text-3xl">
             {{ __('plugins/voucher::voucher.public.discount_prefix') }} {{ $discountText }}
         </div>

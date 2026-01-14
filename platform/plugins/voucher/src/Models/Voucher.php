@@ -6,6 +6,7 @@ use Botble\Base\Casts\SafeContent;
 use Botble\Base\Enums\BaseStatusEnum;
 use Botble\Base\Models\BaseModel;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Carbon\Carbon;
 
 class Voucher extends BaseModel
 {
@@ -31,7 +32,7 @@ class Voucher extends BaseModel
   protected $casts = [
     'status' => BaseStatusEnum::class,
     'note' => SafeContent::class,
-    'expired_at' => 'date',
+    'expired_at' => 'datetime',
     'is_hot' => 'boolean',
   ];
 
@@ -45,6 +46,47 @@ class Voucher extends BaseModel
   public function setIsHotAttribute($value)
   {
     $this->attributes['is_hot'] = (int) filter_var($value, FILTER_VALIDATE_BOOLEAN);
+  }
+
+  /**
+   * Set the expired_at attribute
+   * Accepts both date strings (YYYY-MM-DD) and datetime strings
+   * Date-only strings are set to START of day (00:00:00)
+   */
+  public function setExpiredAtAttribute($value)
+  {
+    if (!$value) {
+      $this->attributes['expired_at'] = null;
+      return;
+    }
+
+    try {
+      // If value is a Carbon instance
+      if ($value instanceof Carbon) {
+        $this->attributes['expired_at'] = $value->toDateTimeString();
+      }
+      // If value is a string
+      elseif (is_string($value)) {
+        // If only date (YYYY-MM-DD), append 00:00:00
+        if (preg_match('/^\d{4}-\d{2}-\d{2}$/', $value)) {
+          $this->attributes['expired_at'] = $value . ' 00:00:00';
+        }
+        // If datetime format (YYYY-MM-DD HH:MM:SS), use as-is
+        elseif (preg_match('/^\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2}$/', $value)) {
+          $this->attributes['expired_at'] = $value;
+        }
+        // Parse other formats with Carbon
+        else {
+          $carbon = Carbon::parse($value, 'Asia/Ho_Chi_Minh');
+          $this->attributes['expired_at'] = $carbon->toDateTimeString();
+        }
+      } else {
+        $carbon = Carbon::parse($value, 'Asia/Ho_Chi_Minh');
+        $this->attributes['expired_at'] = $carbon->toDateTimeString();
+      }
+    } catch (\Exception $e) {
+      $this->attributes['expired_at'] = null;
+    }
   }
 
   public function provider(): BelongsTo

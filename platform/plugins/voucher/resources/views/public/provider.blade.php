@@ -122,9 +122,15 @@
 			</div>
 
 			<div class="tw-text-center tw-mt-4">
-				<button type="button" class="tw-inline-flex tw-items-center tw-justify-center tw-gap-2 tw-border tw-border-[#f97e2b] tw-text-[#f97e2b] tw-font-medium tw-px-5 tw-py-2 tw-rounded-lg hover:tw-bg-[#f97e2b] hover:tw-text-white tw-transition" id="voucher-load-more">
-					{{ __('plugins/voucher::voucher.public.load_more') }}
-				</button>
+				<div id="loadMore" class="see-more tw-rounded-2xl tw-flex tw-flex-col tw-items-center tw-justify-center tw-cursor-pointer">
+					<svg class="arrows" width="60" height="72" viewBox="0 0 60 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M0 0 L30 32 L60 0" class="a1" stroke="currentColor" stroke-width="2" fill="none"></path>
+						<path d="M0 20 L30 52 L60 20" class="a2" stroke="currentColor" stroke-width="2" fill="none"></path>
+						<path d="M0 40 L30 72 L60 40" class="a3" stroke="currentColor" stroke-width="2" fill="none"></path>
+					</svg>
+					<p class="tw-text-[14px] tw-leading-[21px] js-loadmore-label">{{ __('plugins/voucher::voucher.public.load_more_voucher') }}</p>
+					<p class="tw-text-[14px] tw-leading-[21px] js-loadmore-loading" style="display:none;">{{ __('plugins/voucher::voucher.public.loading') }}</p>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -199,7 +205,9 @@
 	(function () {
 		const list = document.getElementById('voucher-list');
 		const loadingEl = document.getElementById('voucher-loading');
-		const btn = document.getElementById('voucher-load-more');
+		const loadMoreEl = document.getElementById('loadMore');
+		const loadMoreLoading = loadMoreEl ? loadMoreEl.querySelector('.js-loadmore-loading') : null;
+		const loadMoreLabel = loadMoreEl ? loadMoreEl.querySelector('.js-loadmore-label') : null;
 		const categoryButtons = document.querySelectorAll('[data-voucher-category]');
 		if (!list) return;
 
@@ -222,10 +230,12 @@
 				button.classList.toggle('tw-opacity-70', isLoading);
 				button.classList.toggle('tw-cursor-not-allowed', isLoading);
 			});
-			if (btn) {
-				btn.disabled = isLoading;
-				btn.classList.toggle('tw-opacity-70', isLoading);
-				btn.classList.toggle('tw-cursor-not-allowed', isLoading);
+			if (loadMoreEl) {
+				loadMoreEl.classList.toggle('tw-opacity-70', isLoading);
+				loadMoreEl.classList.toggle('tw-cursor-not-allowed', isLoading);
+				loadMoreEl.classList.toggle('tw-pointer-events-none', isLoading);
+				if (loadMoreLoading) loadMoreLoading.style.display = isLoading ? 'block' : 'none';
+				if (loadMoreLabel) loadMoreLabel.style.display = isLoading ? 'none' : 'block';
 			}
 		};
 
@@ -234,9 +244,8 @@
 		};
 
 		const setButtonState = function (hasMore) {
-			if (!btn) return;
-			btn.style.display = hasMore ? 'inline-flex' : 'none';
-			btn.disabled = false;
+			if (!loadMoreEl) return;
+			loadMoreEl.style.display = hasMore ? 'flex' : 'none';
 		};
 
 		const markActiveCategory = function (category) {
@@ -305,7 +314,7 @@
 			}
 		};
 
-		btn && btn.addEventListener('click', function () {
+		loadMoreEl && loadMoreEl.addEventListener('click', function () {
 			fetchVouchers(false);
 		});
 
@@ -324,18 +333,32 @@
 			});
 		});
 
-		if (btn && initialOffset < 18) {
-			btn.style.display = 'none';
+		if (loadMoreEl && initialOffset < 18) {
+			loadMoreEl.style.display = 'none';
 		}
 
-		// Coupon detail toggle on click
+		// Coupon detail toggle on click (ensure overlay above others)
 		document.addEventListener('click', function(e) {
 			const couponCard = e.target.closest('.coupon-card');
-			if (couponCard) {
-				const couponDetail = couponCard.querySelector('.coupon-detail');
-				if (couponDetail) {
-					couponDetail.classList.toggle('tw-hidden');
-				}
+			if (!couponCard) return;
+			const couponDetail = couponCard.querySelector('.coupon-detail');
+			if (!couponDetail) return;
+
+			const willOpen = couponDetail.classList.contains('tw-hidden');
+
+			// Close all other open details and reset z-index
+			document.querySelectorAll('.coupon-card .coupon-detail:not(.tw-hidden)').forEach(function (el) {
+				el.classList.add('tw-hidden');
+				const parent = el.closest('.coupon-card');
+				if (parent) parent.classList.remove('tw-z-50');
+			});
+
+			if (willOpen) {
+				couponDetail.classList.remove('tw-hidden');
+				couponCard.classList.add('tw-z-50');
+			} else {
+				couponDetail.classList.add('tw-hidden');
+				couponCard.classList.remove('tw-z-50');
 			}
 		});
 	})();
