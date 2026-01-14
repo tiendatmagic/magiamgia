@@ -78,7 +78,7 @@
 	@if($hotVouchers->isNotEmpty())
 		<div class="tw-bg-[#fbfbfb] tw-border tw-border-gray-100 tw-rounded-xl tw-shadow-lg tw-p-5 tw-my-5">
 			<div>
-				<h4 class="tw-text-xl tw-pb-[8px] tw-font-semibold tw-text-[#464646]">{{ __('Mã giảm giá HOT') }}</h4>
+				<h4 class="tw-text-xl tw-pb-[8px] tw-font-semibold tw-text-[#464646]">{{ __('plugins/voucher::voucher.public.hot_voucher') }}</h4>
 			</div>
 
 			<div class="tw-mx-auto tw-w-full">
@@ -91,12 +91,12 @@
 
 	<div class="tw-bg-[#fbfbfb] tw-border tw-border-gray-100 tw-rounded-xl tw-shadow-lg tw-p-5 tw-my-5">
 		<div>
-			<h4 class="tw-text-xl tw-pb-[8px] tw-font-semibold tw-text-[#464646]">{{ __('Danh mục') }}</h4>
+			<h4 class="tw-text-xl tw-pb-[8px] tw-font-semibold tw-text-[#464646]">{{ __('plugins/voucher::voucher.public.categories') }}</h4>
 		</div>
 		<div class="tw-mx-auto tw-w-full">
 			<div class="tw-flex tw-gap-2 tw-overflow-x-auto tw-mb-4 tw-pb-2 tw-text-xs">
 				<button data-voucher-category="" class="tw-flex tw-items-center tw-gap-1 tw-border-2 tw-bg-[#f97e2b] tw-text-white tw-border-[#f97e2b] tw-px-3 tw-py-1.5 tw-rounded-full tw-whitespace-nowrap tw-text-base">
-					{{ __('Tất cả') }}
+					{{ __('plugins/voucher::voucher.public.all') }}
 				</button>
 				@foreach($categories as $category)
 					<button data-voucher-category="{{ $category }}" class="tw-flex tw-items-center tw-gap-1 tw-border-2 tw-bg-white tw-text-gray-700 tw-border-gray-200 tw-px-3 tw-py-1.5 tw-rounded-full tw-whitespace-nowrap tw-text-base">
@@ -112,7 +112,7 @@
 							<circle class="tw-opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
 							<path class="tw-opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
 						</svg>
-						<span>{{ __('Đang tải voucher...') }}</span>
+						<span>{{ __('plugins/voucher::voucher.public.loading') }}</span>
 					</div>
 				</div>
 
@@ -123,7 +123,7 @@
 
 			<div class="tw-text-center tw-mt-4">
 				<button type="button" class="tw-inline-flex tw-items-center tw-justify-center tw-gap-2 tw-border tw-border-[#f97e2b] tw-text-[#f97e2b] tw-font-medium tw-px-5 tw-py-2 tw-rounded-lg hover:tw-bg-[#f97e2b] hover:tw-text-white tw-transition" id="voucher-load-more">
-					{{ __('Xem thêm') }}
+					{{ __('plugins/voucher::voucher.public.load_more') }}
 				</button>
 			</div>
 		</div>
@@ -136,7 +136,7 @@
 
 @if ($interestPosts->isNotEmpty())
 	<section class="tw-mt-8 tw-mb-4">
-		<h4 class="tw-text-xl tw-font-semibold tw-mb-4">{{ __('Tin khuyến mãi') }}</h4>
+		<h4 class="tw-text-xl tw-font-semibold tw-mb-4">{{ __('plugins/voucher::voucher.public.promo_news') }}</h4>
 		<div class="{{ $gridClass }}">
 			@foreach ($interestPosts as $relatedItem)
 				<article class="post post__horizontal tw-rounded-xl tw-overflow-hidden tw-shadow-md hover:tw-shadow-xl tw-border-gray-100 tw-border tw-flex tw-flex-col tw-transition-all clearfix">
@@ -163,7 +163,7 @@
 	@if(! empty($providerAccordionsFooter))
 	<div class="tw-bg-[#fbfbfb] tw-border tw-border-gray-100 tw-rounded-xl tw-shadow-lg tw-p-5 tw-my-5">
 		<div>
-			<h4 class="tw-text-xl tw-pb-[8px] tw-font-semibold tw-text-[#F9993C]">{{ __('Câu hỏi thường gặp') }}</h4>
+			<h4 class="tw-text-xl tw-pb-[8px] tw-font-semibold tw-text-[#F9993C]">{{ __('plugins/voucher::voucher.public.faq') }}</h4>
 		</div>
 		<div class="tw-mx-auto tw-w-full">
 			<div>

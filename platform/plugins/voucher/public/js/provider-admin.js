@@ -18,34 +18,57 @@
     }));
   }
 
-  function renderItem(container, item) {
+  var defaultI18n = {
+    accordion_item: 'Accordion Item',
+    move_up: 'Move up',
+    move_down: 'Move down',
+    delete: 'Delete',
+    title_label: 'Title',
+    title_placeholder: 'Enter accordion title...',
+    content_label: 'Content',
+    content_placeholder: 'Enter detailed content...',
+    tag_placeholder: 'Enter tag and press Enter',
+    remove_tag: 'Remove',
+  };
+
+  function renderItem(container, item, i18n) {
+    var t = i18n || defaultI18n;
     var wrapper = document.createElement('div');
     wrapper.className = 'card mb-2';
     var uniqueId = 'accordion_content_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
     var itemId = 'item_' + uniqueId;
 
+    var titleLabel = (t.title_label || defaultI18n.title_label);
+    var titlePlaceholder = (t.title_placeholder || defaultI18n.title_placeholder).replace(/"/g, '&quot;');
+    var contentLabel = (t.content_label || defaultI18n.content_label);
+    var contentPlaceholder = (t.content_placeholder || defaultI18n.content_placeholder).replace(/"/g, '&quot;');
+    var accordionItemLabel = (t.accordion_item || defaultI18n.accordion_item);
+    var moveUpLabel = (t.move_up || defaultI18n.move_up);
+    var moveDownLabel = (t.move_down || defaultI18n.move_down);
+    var deleteLabel = (t.delete || defaultI18n.delete);
+
     wrapper.innerHTML = [
       '<div class="card-body">',
-      '  <div class="d-flex justify-content-between align-items-center mb-3">',
+      '  <div class="d-flex justify-content-between align-items-center">',
       '    <div class="fw-bold text-primary voucher-accordion-title-toggle" style="cursor: pointer; user-select: none; flex: 1;" data-bs-toggle="collapse" data-bs-target="#' + itemId + '">',
-      '      <i class="fa fa-chevron-right voucher-accordion-toggle" style="width: 16px; display: inline-block;"></i> Accordion Item',
+      '      <i class="fa fa-chevron-right voucher-accordion-toggle" style="width: 16px; display: inline-block;"></i> ' + accordionItemLabel,
       '    </div>',
       '    <div class="d-flex gap-2">',
       '      <div class="btn-group btn-group-sm" role="group">',
-      '        <button type="button" class="btn btn-outline-secondary voucher-accordion-move-up" title="Lên trên"><i class="fa fa-arrow-up mx-auto"></i></button>',
-      '        <button type="button" class="btn btn-outline-secondary voucher-accordion-move-down" title="Xuống dưới"><i class="fa fa-arrow-down mx-auto"></i></button>',
+      '        <button type="button" class="btn btn-outline-secondary voucher-accordion-move-up" title="' + moveUpLabel.replace(/"/g, '&quot;') + '"><i class="fa fa-arrow-up mx-auto"></i></button>',
+      '        <button type="button" class="btn btn-outline-secondary voucher-accordion-move-down" title="' + moveDownLabel.replace(/"/g, '&quot;') + '"><i class="fa fa-arrow-down mx-auto"></i></button>',
       '      </div>',
-      '      <button type="button" class="btn btn-sm btn-danger voucher-accordion-remove"><i class="fa fa-trash"></i> Xóa</button>',
+      '      <button type="button" class="btn btn-sm btn-danger voucher-accordion-remove"><i class="fa fa-trash"></i> ' + deleteLabel + '</button>',
       '    </div>',
       '  </div>',
       '  <div id="' + itemId + '" class="collapse show">',
       '    <div class="mb-3">',
-      '      <label class="form-label fw-semibold">Tiêu đề <span class="text-danger">*</span></label>',
-      '      <input type="text" class="form-control voucher-accordion-title" placeholder="Nhập tiêu đề accordion..." value="' + (item.title || '').replace(/"/g, '&quot;') + '">',
+      '      <label class="form-label fw-semibold">' + titleLabel + ' <span class="text-danger">*</span></label>',
+      '      <input type="text" class="form-control voucher-accordion-title" placeholder="' + titlePlaceholder + '" value="' + (item.title || '').replace(/"/g, '&quot;') + '">',
       '    </div>',
       '    <div>',
-      '      <label class="form-label fw-semibold">Nội dung <span class="text-danger">*</span></label>',
-      '      <textarea id="' + uniqueId + '" class="form-control voucher-accordion-content" rows="4" placeholder="Nhập nội dung chi tiết...">' + (item.content || '') + '</textarea>',
+      '      <label class="form-label fw-semibold">' + contentLabel + ' <span class="text-danger">*</span></label>',
+      '      <textarea id="' + uniqueId + '" class="form-control voucher-accordion-content" rows="4" placeholder="' + contentPlaceholder + '">' + (item.content || '') + '</textarea>',
       '    </div>',
       '  </div>',
       '</div>'
@@ -89,6 +112,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     // Accordion field handler
     document.querySelectorAll('.voucher-accordion-field').forEach(function (root) {
+      var i18n = Object.assign({}, defaultI18n, safeJsonParse(root.getAttribute('data-i18n'), {}));
       var valueRaw = root.getAttribute('data-value') || '[]';
       var items = Array.isArray(valueRaw) ? valueRaw : safeJsonParse(valueRaw, []);
       if (!Array.isArray(items)) items = [];
@@ -137,11 +161,11 @@
         list.appendChild(emptyClone);
         emptyState = emptyClone;
       }
-      items.forEach(function (it) { renderItem(list, it || {}); });
+      items.forEach(function (it) { renderItem(list, it || {}, i18n); });
       sync();
 
       addBtn.addEventListener('click', function () {
-        renderItem(list, { title: '', content: '' });
+        renderItem(list, { title: '', content: '' }, i18n);
         sync();
       });
 
@@ -203,6 +227,8 @@
       var input = document.querySelector('input[name="tags"]');
       if (!input) return;
 
+      var i18n = Object.assign({}, defaultI18n, safeJsonParse((input.closest('.voucher-accordion-field') || {}).getAttribute ? (input.closest('.voucher-accordion-field').getAttribute('data-i18n')) : '{}', {}));
+
       function parseTags(str) {
         if (Array.isArray(str)) return str;
         if (typeof str !== 'string') return [];
@@ -227,7 +253,7 @@
       var entry = document.createElement('input');
       entry.type = 'text';
       entry.className = 'form-control voucher-chip-entry';
-      entry.placeholder = 'Nhập tag và nhấn Enter';
+      entry.placeholder = i18n.tag_placeholder || defaultI18n.tag_placeholder;
 
       wrapper.appendChild(chipList);
       wrapper.appendChild(entry);
@@ -252,7 +278,7 @@
           var btn = document.createElement('button');
           btn.type = 'button';
           btn.className = 'btn-close btn-close-white btn-sm ms-1 voucher-chip-remove';
-          btn.setAttribute('aria-label', 'Remove');
+          btn.setAttribute('aria-label', i18n.remove_tag || defaultI18n.remove_tag);
 
           chip.appendChild(text);
           chip.appendChild(btn);

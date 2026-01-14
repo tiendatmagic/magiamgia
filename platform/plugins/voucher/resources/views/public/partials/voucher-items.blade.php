@@ -7,7 +7,7 @@
 
 @if($voucherCollection->isEmpty())
     <div class="tw-col-span-full tw-text-center tw-text-gray-500 tw-py-8">
-        <p class="tw-text-base">Chưa có mã giảm giá nào.</p>
+        <p class="tw-text-base">{{ __('plugins/voucher::voucher.public.no_voucher') }}</p>
     </div>
 @else
 @foreach($vouchers as $voucher)
@@ -15,7 +15,7 @@
     $discountText = $voucher->discount_type === 'percent'
         ? rtrim(rtrim(number_format((float) $voucher->discount_value, 2, '.', ''), '0'), '.') . '%'
         : number_format((float) $voucher->discount_value, 0, '.', ',') . 'đ';
-    $categoryLabel = $voucher->category ?: 'Danh mục khác';
+    $categoryLabel = $voucher->category ?: __('plugins/voucher::voucher.public.other_category');
     $logo = $voucher->coupon_image ?: $providerLogo;
 
     $now = Carbon::now()->startOfDay();
@@ -24,8 +24,8 @@
     $daysLeftSafe = $daysLeft !== null ? max(0, $daysLeft) : null;
     $expiringSoon = $daysLeftSafe !== null && $daysLeftSafe <= 5 && $daysLeftSafe >= 0;
 
-    $expiredDate = $expiredAt ? $expiredAt->format('d/m/Y') : 'Không thời hạn';
-    $minOrder = $voucher->min_order ? number_format((float) $voucher->min_order, 0, '.', ',') . 'đ' : 'Không giới hạn';
+    $expiredDate = $expiredAt ? $expiredAt->format('d/m/Y') : __('plugins/voucher::voucher.public.no_expiry');
+    $minOrder = $voucher->min_order ? number_format((float) $voucher->min_order, 0, '.', ',') . 'đ' : __('plugins/voucher::voucher.public.no_limit');
     $maxDiscount = $voucher->max_discount ? number_format((float) $voucher->max_discount, 0, '.', ',') . 'đ' : '';
     $noteShort = $voucher->note ? Str::limit(strip_tags($voucher->note), 50) : '';
     $noteFull = $voucher->note ? strip_tags($voucher->note) : '';
@@ -47,12 +47,12 @@
                     @if($expiringSoon)
                         <span class="tw-bg-red-500 tw-text-white tw-font-semibold tw-px-2 tw-py-1 tw-rounded-lg tw-text-xs tw-inline-flex tw-items-center tw-gap-1 tw-border tw-border-gray-200">
                             <i class="fa fa-clock"></i>
-                            Còn {{ ($daysLeftSafe) }} ngày
+                            {{ __('plugins/voucher::voucher.public.days_left', ['days' => $daysLeftSafe]) }}
                         </span>
                     @else
                         <span>
                             <i class="fa fa-clock"></i>
-                            HSD: {{ $expiredDate }}
+                            {{ __('plugins/voucher::voucher.public.expiry_short') }} {{ $expiredDate }}
                         </span>
                     @endif
                 </div>
@@ -64,7 +64,7 @@
             <div>
                 <div class="tw-flex tw-items-center tw-text-xs tw-leading-5">
                     <div class="tw-text-xs tw-font-semibold">
-                        Giảm
+                        {{ __('plugins/voucher::voucher.public.discount_label') }}
                     </div>
 
                     <div class="tw-text-lg tw-leading-[28px] md:tw-text-[24px] md:tw-leading-[32px] tw-ml-1 tw-text-[#f97e2b]">
@@ -73,56 +73,56 @@
                 </div>
 
                 <div class="tw-text-xs tw-leading-4 tw-mb-1">
-                    <span class="tw-text-xs">ĐH tối thiểu:</span>
+                    <span class="tw-text-xs">{{ __('plugins/voucher::voucher.public.min_order_short') }}</span>
                     <span class="tw-font-semibold">{{ $minOrder }}</span>
                 </div>
 
                 <div class="tw-text-xs tw-leading-4 tw-font-medium tw-italic tw-text-gray-500">
-                    <span class="tw-text-[#f97e2b] tw-font-medium">Lưu ý:</span> {{ $noteShort }}
-                    <span class="tw-text-black tw-font-normal tw-text-[11px] tw-leading-[16px]">Xem chi tiết</span>
+                    <span class="tw-text-[#f97e2b] tw-font-medium">{{ __('plugins/voucher::voucher.public.note_label') }}</span> {{ $noteShort }}
+                    <span class="tw-text-black tw-font-normal tw-text-[11px] tw-leading-[16px]">{{ __('plugins/voucher::voucher.public.view_detail') }}</span>
                 </div>
             </div>
 
             <div>
                 <div class="tw-flex tw-w-full tw-items-center tw-justify-between">
-                    <a href="{{ $voucher->apply_url ?: '###' }}" class="tw-text-xs tw-italic tw-underline hover:tw-underline tw-text-[#08bce0]" target="_blank" rel="nofollow">List áp dụng</a>
+                    <a href="{{ $voucher->apply_url ?: '###' }}" class="tw-text-xs tw-italic tw-underline hover:tw-underline tw-text-[#08bce0]" target="_blank" rel="nofollow">{{ __('plugins/voucher::voucher.public.apply_list') }}</a>
 
-                    <a href="{{ $voucher->banner_url ?: '###' }}" class="tw-text-xs tw-font-medium tw-px-5 tw-py-1.5 tw-text-white tw-bg-[#d96a09] tw-rounded-lg w-ml-1" target="_blank" rel="nofollow">Đến Banner</a>
+                    <a href="{{ $voucher->banner_url ?: '###' }}" class="tw-text-xs tw-font-medium tw-px-5 tw-py-1.5 tw-text-white tw-bg-[#d96a09] tw-rounded-lg w-ml-1" target="_blank" rel="nofollow">{{ __('plugins/voucher::voucher.public.to_banner') }}</a>
                 </div>
             </div>
         </div>
     </div>
     <div class="coupon-detail tw-absolute tw-shadow-md tw-rounded-lg tw-top-0 tw-left-0 tw-bg-white tw-w-full tw-p-4 tw-hidden tw-z-10">
         <div class="tw-text-[#f97e2b] tw-font-medium tw-text-3xl">
-            Giảm {{ $discountText }}
+            {{ __('plugins/voucher::voucher.public.discount_prefix') }} {{ $discountText }}
         </div>
 
         @if($maxDiscount)
         <div class="tw-text-sm tw-leading-4 tw-mb-1.5">
-            <span class="tw-text-sm">Tối đa:</span>
+            <span class="tw-text-sm">{{ __('plugins/voucher::voucher.public.max_label') }}</span>
             <span class="tw-font-semibold">{{ $maxDiscount }}</span>
         </div>
         @endif
 
         <div class="tw-text-sm tw-leading-4 tw-mb-1.5">
-            <span class="tw-text-sm">ĐH tối thiểu:</span>
+            <span class="tw-text-sm">{{ __('plugins/voucher::voucher.public.min_order_short') }}</span>
             <span class="tw-font-semibold">{{ $minOrder }}</span>
         </div>
 
         <div class="tw-text-sm tw-leading-4 tw-mb-1.5">
-            <span class="tw-text-sm">Ngành hàng:</span>
+            <span class="tw-text-sm">{{ __('plugins/voucher::voucher.public.category_label') }}</span>
             <span class="tw-font-semibold">{{ $categoryLabel }}</span>
         </div>
 
         <div class="tw-text-sm tw-leading-4 tw-font-medium tw-text-gray-500">
-            <p class="tw-text-sm tw-text-[#f97e2b] tw-font-medium">Lưu ý:</p>
+            <p class="tw-text-sm tw-text-[#f97e2b] tw-font-medium">{{ __('plugins/voucher::voucher.public.note_label') }}</p>
             <p class="tw-text-sm tw-text-black tw-font-medium">{{ $noteFull }}</p>
         </div>
 
         <div class="tw-flex tw-w-full tw-items-center tw-justify-between tw-mt-3">
-            <a href="{{ $voucher->apply_url ?: '###' }}" class="tw-text-sm tw-italic tw-underline tw-text-[#08bce0]" target="_blank" rel="nofollow">List áp dụng</a>
+            <a href="{{ $voucher->apply_url ?: '###' }}" class="tw-text-sm tw-italic tw-underline tw-text-[#08bce0]" target="_blank" rel="nofollow">{{ __('plugins/voucher::voucher.public.apply_list') }}</a>
 
-            <a href="{{ $voucher->banner_url ?: '###' }}" class="tw-text-sm tw-font-medium tw-px-5 tw-py-1.5 tw-text-white tw-bg-[#d96a09] tw-rounded w-ml-1" target="_blank" rel="nofollow">Đến Banner</a>
+            <a href="{{ $voucher->banner_url ?: '###' }}" class="tw-text-sm tw-font-medium tw-px-5 tw-py-1.5 tw-text-white tw-bg-[#d96a09] tw-rounded w-ml-1" target="_blank" rel="nofollow">{{ __('plugins/voucher::voucher.public.to_banner') }}</a>
         </div>
     </div>
 </div>
