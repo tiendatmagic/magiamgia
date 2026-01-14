@@ -9,6 +9,24 @@ use Illuminate\Http\Request;
 class PublicController extends BaseController
 {
   /**
+   * Show provider detail page by slug
+   */
+  public function show($slug, Request $request)
+  {
+    $slugModel = \Botble\Slug\Models\Slug::query()
+      ->where('key', $slug)
+      ->where('reference_type', Provider::class)
+      ->firstOrFail();
+
+    $provider = Provider::query()
+      ->where('id', $slugModel->reference_id)
+      ->where('status', \Botble\Base\Enums\BaseStatusEnum::PUBLISHED)
+      ->firstOrFail();
+
+    return $this->showProvider($provider, $request);
+  }
+
+  /**
    * Show provider detail page
    */
   public function showProvider(Provider $provider, Request $request)

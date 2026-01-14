@@ -6,6 +6,7 @@ use Botble\Base\Enums\BaseStatusEnum;
 use Botble\Table\Abstracts\TableAbstract;
 use Botble\Table\Actions\DeleteAction;
 use Botble\Table\Actions\EditAction;
+use Botble\Table\BulkActions\DeleteBulkAction;
 use Botble\Table\Columns\Column;
 use Botble\Table\Columns\LinkableColumn;
 use Botble\Table\Columns\CreatedAtColumn;
@@ -33,6 +34,9 @@ class ProviderTable extends TableAbstract
       ->addActions([
         EditAction::make()->route('voucher-provider.edit'),
         DeleteAction::make()->route('voucher-provider.destroy'),
+      ])
+      ->addBulkActions([
+        DeleteBulkAction::make()->permission('voucher-provider.destroy'),
       ])
       ->queryUsing(function (Builder $query) {
         return $query->select(['id', 'name', 'status', 'created_at']);

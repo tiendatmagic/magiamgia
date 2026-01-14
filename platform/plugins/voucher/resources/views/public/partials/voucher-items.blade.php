@@ -34,7 +34,7 @@
 
     // Determine expiry status
     $isExpired = $minutesLeft !== null && $minutesLeft <= 0;
-    $expiringSoon = !$isExpired && $daysLeftSafe !== null && $daysLeftSafe == 0 && $minutesLeftSafe > 0;
+    $showCountdown = !$isExpired && $daysLeftSafe !== null && $daysLeftSafe <= 5;
 
     $expiredDate = $expiredAt ? $expiredAt->format('d/m/Y') : __('plugins/voucher::voucher.public.no_expiry');
     $minOrder = $voucher->min_order ? number_format((float) $voucher->min_order, 0, '.', ',') . 'đ' : __('plugins/voucher::voucher.public.no_limit');
@@ -61,16 +61,21 @@
                             <i class="fa fa-exclamation-circle"></i>
                             {{ __('plugins/voucher::voucher.public.no_expiry') }}
                         </span>
-                    @elseif($expiringSoon)
+                    @elseif($showCountdown)
                         @if($minutesLeft < 60)
                             <span class="tw-bg-red-500 tw-text-white tw-font-semibold tw-px-2 tw-py-1 tw-rounded-lg tw-text-xs tw-inline-flex tw-items-center tw-gap-1 tw-border tw-border-gray-200">
                                 <i class="fa fa-clock"></i>
                                 {{ __('plugins/voucher::voucher.public.minutes_left', ['minutes' => $minutesLeftSafe]) }}
                             </span>
-                        @else
+                        @elseif($hoursLeft < 24)
                             <span class="tw-bg-red-500 tw-text-white tw-font-semibold tw-px-2 tw-py-1 tw-rounded-lg tw-text-xs tw-inline-flex tw-items-center tw-gap-1 tw-border tw-border-gray-200">
                                 <i class="fa fa-clock"></i>
                                 {{ __('plugins/voucher::voucher.public.hours_left', ['hours' => $hoursLeftSafe]) }}
+                            </span>
+                        @else
+                            <span class="tw-bg-red-500 tw-text-white tw-font-semibold tw-px-2 tw-py-1 tw-rounded-lg tw-text-xs tw-inline-flex tw-items-center tw-gap-1 tw-border tw-border-gray-200">
+                                <i class="fa fa-clock"></i>
+                                {{ __('plugins/voucher::voucher.public.days_left', ['days' => $daysLeftSafe]) }}
                             </span>
                         @endif
                     @else

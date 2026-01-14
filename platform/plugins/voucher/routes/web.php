@@ -30,6 +30,9 @@ AdminHelper::registerRoutes(function () {
 // Public ajax routes
 if (defined('THEME_MODULE_SCREEN_NAME')) {
   \Botble\Theme\Facades\Theme::registerRoutes(function () {
+    Route::get('{slug}', [PublicController::class, 'show'])
+      ->name('public.providers.show');
+
     Route::middleware(RequiresJsonRequestMiddleware::class)
       ->get('ajax/voucher/load-more', [VoucherController::class, 'loadMore'])
       ->name('public.ajax.voucher.load-more');

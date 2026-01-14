@@ -86,6 +86,26 @@ class Provider extends BaseModel
     return $this->slugable ? $this->slugable->key : '';
   }
 
+  public function getRoute(): string
+  {
+    if ($this->slug) {
+      return url('/' . $this->slug);
+    }
+    return url('/' . $this->id);
+  }
+
+  public function getUrl(): string
+  {
+    return $this->getRoute();
+  }
+
+  protected function url(): Attribute
+  {
+    return Attribute::get(function () {
+      return $this->getRoute();
+    });
+  }
+
   protected function tags(): Attribute
   {
     return Attribute::make(

@@ -5,6 +5,7 @@ namespace Botble\Voucher\Tables;
 use Botble\Table\Abstracts\TableAbstract;
 use Botble\Table\Actions\DeleteAction;
 use Botble\Table\Actions\EditAction;
+use Botble\Table\BulkActions\DeleteBulkAction;
 use Botble\Table\Columns\Column;
 use Botble\Table\Columns\LinkableColumn;
 use Botble\Table\Columns\CreatedAtColumn;
@@ -38,6 +39,9 @@ class VoucherTable extends TableAbstract
       ->addActions([
         EditAction::make()->route('voucher-coupon.edit'),
         DeleteAction::make()->route('voucher-coupon.destroy'),
+      ])
+      ->addBulkActions([
+        DeleteBulkAction::make()->permission('voucher-coupon.destroy'),
       ])
       ->queryUsing(function (Builder $query) {
         return $query->select(['id', 'code', 'discount_type', 'discount_value', 'status', 'created_at']);
