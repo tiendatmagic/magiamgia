@@ -15,8 +15,9 @@ class HomeSettingController extends BaseController
 
     $homeTitle = ThemeOption::getOption('home_title', 'Nhà cung cấp nổi bật');
     $homeDescription = ThemeOption::getOption('home_description', '');
+    $homeSliders = json_decode(ThemeOption::getOption('home_sliders', '[]'), true) ?: [];
 
-    return view(Theme::getThemeNamespace('views.admin.home-settings'), compact('homeTitle', 'homeDescription'));
+    return view(Theme::getThemeNamespace('views.admin.home-settings'), compact('homeTitle', 'homeDescription', 'homeSliders'));
   }
 
   public function update(Request $request)
@@ -32,6 +33,21 @@ class HomeSettingController extends BaseController
       ThemeOption::setOption($key, $request->input($key));
     }
 
+    // Xử lý slider data
+    $sliders = $request->input('home_sliders', []);
+    $slidersData = [];
+    if (is_array($sliders)) {
+      foreach ($sliders as $slider) {
+        if (!empty($slider['image']) || !empty($slider['url'])) {
+          $slidersData[] = [
+            'image' => $slider['image'] ?? '',
+            'url' => $slider['url'] ?? '',
+          ];
+        }
+      }
+    }
+
+    ThemeOption::setOption('home_sliders', json_encode($slidersData));
     ThemeOption::saveOptions();
 
     if ($request->expectsJson()) {

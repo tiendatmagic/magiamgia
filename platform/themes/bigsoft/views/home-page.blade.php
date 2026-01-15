@@ -18,11 +18,11 @@
       @endif
 
 
-       <div class="tw-grid tw-grid-cols-2 sm:tw-grid-cols-3 md:tw-grid-cols-4 lg:tw-grid-cols-5 tw-gap-3 tw-mb-5">
+       <div class="tw-grid tw-grid-cols-2 sm:tw-grid-cols-3 md:tw-grid-cols-4 lg:tw-grid-cols-5 tw-gap-5 tw-mb-5">
          @if(isset($providers) && $providers->count() > 0)
            @foreach($providers as $provider)
            <div
-             class="provider-item tw-block tw-bg-white tw-rounded-xl tw-shadow-md tw-border tw-border-gray-100 tw-w-full tw-relative tw-cursor-pointer hover:tw-shadow-lg tw-transition-shadow tw-h-[125px] tw-group tw-overflow-hidden">
+             class="provider-item tw-block tw-bg-white tw-rounded-xl tw-shadow-md tw-border tw-border-gray-100 tw-w-full tw-relative tw-cursor-pointer hover:tw-shadow-xl tw-transition-shadow tw-h-[125px] tw-group tw-overflow-hidden">
              <a href="{{ $provider->getUrl() }}" class="tw-w-full tw-h-full tw-block tw-p-2">
                <div class="tw-w-full tw-h-full tw-overflow-hidden">
                  <img src="{{ RvMedia::getImageUrl($provider->logo, null, false, RvMedia::getDefaultImage()) }}"
@@ -43,46 +43,20 @@
          @endif
        </div>
 
-       <div class="tw-mt-6">
+       {{-- Slider --}}
+       @php($homeSliders = json_decode(theme_option('home_sliders', '[]'), true) ?: [])
+       @if(count($homeSliders) > 0)
+       <div class="tw-my-5">
          <div id="home-slide" class="swiper tw-relative tw-overflow-hidden">
            <div class="swiper-wrapper">
+             @foreach($homeSliders as $slider)
              <div class="swiper-slide tw-w-[170px] sm:tw-w-[186px] md:tw-w-[174px] lg:tw-w-[238px] xl:tw-w-[292px]">
-               <a target="_blank" href="https://sandeal.co/782d20" rel="nofollow" class="tw-block">
-                 <img src="https://images.bloggiamgia.vn/full/08-02-2025/trapound-giA-1738988254876.png" alt="banner"
+               <a target="_blank" href="{{ $slider['url'] ?? '#' }}" rel="nofollow" class="tw-block">
+                 <img src="{{ !empty($slider['image']) ? RvMedia::getImageUrl($slider['image'], null, false, RvMedia::getDefaultImage()) : RvMedia::getDefaultImage() }}" alt="banner"
                    class="tw-rounded-lg tw-w-full tw-h-full tw-object-cover" />
                </a>
              </div>
-             <div class="swiper-slide tw-w-[170px] sm:tw-w-[186px] md:tw-w-[174px] lg:tw-w-[238px] xl:tw-w-[292px]">
-               <a target="_blank" href="https://sandeal.co/f7b1f5" rel="nofollow" class="tw-block">
-                 <img src="https://images.bloggiamgia.vn/full/08-02-2025/mark-1738988101485.png" alt="banner"
-                   class="tw-rounded-lg tw-w-full tw-h-full tw-object-cover" />
-               </a>
-             </div>
-             <div class="swiper-slide tw-w-[170px] sm:tw-w-[186px] md:tw-w-[174px] lg:tw-w-[238px] xl:tw-w-[292px]">
-               <a target="_blank" href="https://pages.lazada.vn/wow/gcp/lazada/channel/vn/khuyen-mai/vouchermax"
-                 rel="nofollow" class="tw-block">
-                 <img src="https://images.bloggiamgia.vn/full/18-05-2024/Freeship-1715992975745.jpg" alt="banner"
-                   class="tw-rounded-lg tw-w-full tw-h-full tw-object-cover" />
-               </a>
-             </div>
-             <div class="swiper-slide tw-w-[170px] sm:tw-w-[186px] md:tw-w-[174px] lg:tw-w-[238px] xl:tw-w-[292px]">
-               <a target="_blank" href="https://sandeal.co/5d5786" rel="nofollow" class="tw-block">
-                 <img src="https://images.bloggiamgia.vn/full/07-02-2025/hinh-1738919790223.png" alt="banner"
-                   class="tw-rounded-lg tw-w-full tw-h-full tw-object-cover" />
-               </a>
-             </div>
-             <div class="swiper-slide tw-w-[170px] sm:tw-w-[186px] md:tw-w-[174px] lg:tw-w-[238px] xl:tw-w-[292px]">
-               <a target="_blank" href="https://xomsansale.com/007709" rel="nofollow" class="tw-block">
-                 <img src="https://images.bloggiamgia.vn/full/18-05-2024/Tramj-1715993049733.jpg" alt="banner"
-                   class="tw-rounded-lg tw-w-full tw-h-full tw-object-cover" />
-               </a>
-             </div>
-             <div class="swiper-slide tw-w-[170px] sm:tw-w-[186px] md:tw-w-[174px] lg:tw-w-[238px] xl:tw-w-[292px]">
-               <a target="_blank" href="https://sandeal.co/Za15EP" rel="nofollow" class="tw-block">
-                 <img src="https://images.bloggiamgia.vn/full/08-12-2025/570x888-1765193827097.png" alt="banner"
-                   class="tw-rounded-lg tw-w-full tw-h-full tw-object-cover" />
-               </a>
-             </div>
+             @endforeach
            </div>
          </div>
 
@@ -105,6 +79,8 @@
            });
          </script>
        </div>
+       @endif
+        {{-- Slider --}}
 
        <div>
          <!-- mã giảm giá hot -->
