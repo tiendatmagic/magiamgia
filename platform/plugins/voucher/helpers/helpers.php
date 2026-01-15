@@ -32,3 +32,13 @@ if (! function_exists('voucher_permalink_setting_key')) {
     return 'permalink-' . Str::slug(str_replace('\\', '_', $modelClass));
   }
 }
+
+if (! function_exists('voucher_discount_types')) {
+  function voucher_discount_types(): array
+  {
+    return [
+      'percent' => trans('plugins/voucher::voucher.discount.percent'),
+      'amount' => trans('plugins/voucher::voucher.discount.amount'),
+    ];
+  }
+}

@@ -40,9 +40,13 @@ class Voucher extends BaseModel
 
   protected $appends = ['discount_type_label'];
 
-  public function getDiscountTypeLabelAttribute()
+  public function getDiscountTypeLabelAttribute(): string
   {
-    return trans('plugins/voucher::voucher.discount.' . $this->attributes['discount_type'] ?? 'percent');
+    $types = voucher_discount_types();
+
+    $type = $this->attributes['discount_type'] ?? 'percent';
+
+    return $types[$type] ?? $types['percent'];
   }
 
   public function setIsHotAttribute($value)

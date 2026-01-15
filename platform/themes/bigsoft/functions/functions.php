@@ -140,22 +140,41 @@ app('events')->listen(RouteMatched::class, function () {
         ]);
     });
 
-    // Fallback: inject providers into home-page view if a controller didn't provide them
+    // Fallback: inject providers & hot vouchers into home-page view if a controller didn't provide them
     view()->composer('theme.bigsoft::views.home-page', function ($view) {
-        if ($view->offsetExists('providers')) {
-            return;
-        }
-
         if (! class_exists(\Botble\Voucher\Models\Provider::class)) {
             return;
         }
 
-        $providers = \Botble\Voucher\Models\Provider::query()
-            ->where('status', \Botble\Base\Enums\BaseStatusEnum::PUBLISHED)
-            ->orderByDesc('created_at')
-            ->get();
+        if (! $view->offsetExists('providers')) {
+            $providers = \Botble\Voucher\Models\Provider::query()
+                ->where('status', \Botble\Base\Enums\BaseStatusEnum::PUBLISHED)
+                ->orderByDesc('created_at')
+                ->get();
 
-        $view->with('providers', $providers);
+            $view->with('providers', $providers);
+        }
+
+        if (! $view->offsetExists('hotVouchers') && class_exists(\Botble\Voucher\Models\Voucher::class)) {
+            $today = \Carbon\Carbon::now()->startOfDay();
+
+            $hotVouchers = \Botble\Voucher\Models\Voucher::query()
+                ->where('status', \Botble\Base\Enums\BaseStatusEnum::PUBLISHED)
+                ->where('show_homepage_hot', true)
+                ->where(function ($query) use ($today) {
+                    $query
+                        ->whereNull('expired_at')
+                        ->orWhereDate('expired_at', '>=', $today);
+                })
+                ->with('provider')
+                ->orderByRaw('CASE WHEN expired_at IS NULL THEN 1 ELSE 0 END')
+                ->orderBy('expired_at')
+                ->orderByDesc('created_at')
+                ->take(12)
+                ->get();
+
+            $view->with('hotVouchers', $hotVouchers);
+        }
     });
 
     FormAbstract::extend(function (FormAbstract $form): void {

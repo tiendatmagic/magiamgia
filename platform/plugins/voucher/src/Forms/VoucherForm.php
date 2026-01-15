@@ -76,10 +76,7 @@ class VoucherForm extends FormAbstract
         ->toArray())
       ->add('discount_type', SelectField::class, SelectFieldOption::make()
         ->label(trans('plugins/voucher::voucher.fields.discount_type'))
-        ->choices([
-          'percent' => trans('plugins/voucher::voucher.discount.percent'),
-          'amount' => trans('plugins/voucher::voucher.discount.amount'),
-        ])
+        ->choices(voucher_discount_types())
         ->required()
         ->wrapperAttributes([
           'class' => $this->formHelper->getConfig('defaults.wrapper_class') . ' col-md-6 col-xl-4',

@@ -15,8 +15,12 @@ use Theme\BigSoft\Http\Controllers\HeaderSettingController;
 use Theme\BigSoft\Http\Controllers\NotFoundPageSettingController;
 use Theme\BigSoft\Http\Controllers\ServiceLayoutSettingController;
 
+// Register default theme routes first (for sitemap, etc.)
+Theme::routes();
+
 Theme::registerRoutes(function () {
 
+    // Override the default homepage route with our custom controller
     Route::get('/', [HomeController::class, 'index'])->name('public.index');
 
     // Ajax search
@@ -38,8 +42,6 @@ Theme::registerRoutes(function () {
     Route::post('/contact', [Controller::class, 'sendContact']);
     Route::post('/booking', [Controller::class, 'sendBooking']);
 });
-
-Theme::routes();
 
 AdminHelper::registerRoutes(function () {
     Route::group(['prefix' => 'theme/home'], function () {

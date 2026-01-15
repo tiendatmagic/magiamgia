@@ -17,6 +17,76 @@
     var $shortcodeListModal = $('#shortcode-list-modal')
     var $shortcodeModal = $('#shortcode-modal')
     var currentEditorInstance = null
+    var lastFocusedEditor = null
+    var lastShortcodeTrigger = null
+
+    function isEditorInShortcodeModal(editorId) {
+      if (!editorId) return false
+      var $el = $('#' + editorId)
+      if ($el.length === 0) return false
+      return $el.closest('#shortcode-modal').length > 0
+    }
+
+    // Track which *main* editor was last focused (ignore editors inside the shortcode modal)
+    $(document).on('focus click', '.editor-ckeditor, .ck-editor__editable', function () {
+      var $editor = $(this).hasClass('editor-ckeditor') ? $(this) : $(this).closest('.ck-editor').prev('.editor-ckeditor')
+      if ($editor.length === 0) return
+
+      var editorId = $editor.attr('id')
+      if (!editorId) return
+
+      if (isEditorInShortcodeModal(editorId)) {
+        // Do not let modal editors hijack the insertion target
+        return
+      }
+
+      lastFocusedEditor = editorId
+      console.log('[shortcode] lastFocusedEditor updated to', lastFocusedEditor)
+    })
+
+    // Function to find the currently active editor instance
+    function getActiveEditorInstance() {
+      // Priority 1: Use the editor that opened the shortcode modal
+      if (currentEditorInstance) {
+        if (window.EDITOR && window.EDITOR.CKEDITOR && window.EDITOR.CKEDITOR[currentEditorInstance]) {
+          if (!isEditorInShortcodeModal(currentEditorInstance)) {
+            console.log('[shortcode] using currentEditorInstance:', currentEditorInstance)
+            return currentEditorInstance
+          }
+        }
+      }
+
+      // Priority 2: Use the last focused editor
+      if (lastFocusedEditor) {
+        if (window.EDITOR && window.EDITOR.CKEDITOR && window.EDITOR.CKEDITOR[lastFocusedEditor]) {
+          if (!isEditorInShortcodeModal(lastFocusedEditor)) {
+            console.log('[shortcode] using lastFocusedEditor:', lastFocusedEditor)
+            return lastFocusedEditor
+          }
+        }
+      }
+
+      // Priority 3: Find any visible and initialized editor
+      if (window.EDITOR && window.EDITOR.CKEDITOR) {
+        var editors = Object.keys(window.EDITOR.CKEDITOR)
+        for (var i = 0; i < editors.length; i++) {
+          var editorId = editors[i]
+          var $editor = $('#' + editorId)
+          if ($editor.length > 0 && $editor.is(':visible') && window.EDITOR.CKEDITOR[editorId]) {
+            if (isEditorInShortcodeModal(editorId)) {
+              continue
+            }
+            console.log('[shortcode] using first visible editor:', editorId)
+            return editorId
+          }
+        }
+      }
+
+      // Fallback
+      var fallback = $('.add_shortcode_btn_trigger').data('result')
+      console.log('[shortcode] using fallback:', fallback)
+      return fallback
+    }
 
     function openConfig($el) {
       showModal({ href: $el.attr('href'), key: $el.data('key'), name: $el.data('name'), description: $el.data('description') })
@@ -53,7 +123,26 @@
     $('[data-bb-toggle="shortcode-add-single"]').on('click', function (e) {
       e.preventDefault()
       var $form = $('.shortcode-modal').find('.shortcode-data-form')
+
+      // CRITICAL: Sync all CKEditor instances in the modal to their textareas BEFORE collecting data
+      console.log('[shortcode] Syncing modal editors before collecting form data')
+      if (window.EDITOR && window.EDITOR.CKEDITOR) {
+        $form.find('.editor-ckeditor').each(function () {
+          var editorId = $(this).attr('id')
+          if (editorId && window.EDITOR.CKEDITOR[editorId]) {
+            var editorData = window.EDITOR.CKEDITOR[editorId].getData()
+            $(this).val(editorData)
+            console.log('[shortcode] ✓ Synced', editorId, 'length:', editorData.length)
+          }
+        })
+      }
+
       var data = $form.serializeObject()
+      console.log('[shortcode] Serialized form data:', data)
+
+      if (data && typeof data.item_1_content === 'string') {
+        console.log('[shortcode] item_1_content length:', data.item_1_content.length)
+      }
       var attrs = ''
       $.each(data, function (name, val) {
         var $el = $form.find('*[name="' + name + '"]')
@@ -70,10 +159,11 @@
       var $content = $form.find('*[data-shortcode-attribute=content]')
       if ($content && $content.val() != null && $content.val() !== '') content = $content.val()
       var key = $(this).closest('.shortcode-modal').find('.shortcode-input-key').val()
-      var editorId = currentEditorInstance || $('.add_shortcode_btn_trigger').data('result')
-      console.debug('[shortcode] inserting to editorId=', editorId, 'currentEditorInstance=', currentEditorInstance)
-      console.debug('[shortcode] window.EDITOR.CKEDITOR keys=', window.EDITOR && window.EDITOR.CKEDITOR ? Object.keys(window.EDITOR.CKEDITOR) : null)
+      var editorId = getActiveEditorInstance()
+      console.log('[shortcode] inserting to editorId=', editorId, 'currentEditorInstance=', currentEditorInstance)
+      console.log('[shortcode] window.EDITOR.CKEDITOR keys=', window.EDITOR && window.EDITOR.CKEDITOR ? Object.keys(window.EDITOR.CKEDITOR) : null)
       var shortcode = '[' + key + attrs + ']' + content + '[/' + key + ']'
+      console.log('[shortcode] built shortcode length:', shortcode.length, 'has item_1_content:', shortcode.indexOf('item_1_content=') !== -1)
       if (window.EDITOR && window.EDITOR.CKEDITOR && $('.editor-ckeditor').length > 0) {
         if (editorId && window.EDITOR.CKEDITOR[editorId]) {
           window.EDITOR.CKEDITOR[editorId].commands.execute('shortcode', shortcode)
@@ -86,13 +176,36 @@
       } else {
         document.dispatchEvent(new CustomEvent('core-insert-shortcode', { detail: { shortcode: shortcode } }))
       }
+      // Avoid aria-hidden warning: remove focus from modal controls before hiding
+      try {
+        if (document.activeElement && typeof document.activeElement.blur === 'function') {
+          document.activeElement.blur()
+        }
+      } catch (e) { }
+
       $(this).closest('.modal').modal('hide')
+
+      // Restore focus to the trigger button after closing
+      if (lastShortcodeTrigger) {
+        setTimeout(function () {
+          try { $(lastShortcodeTrigger).trigger('focus') } catch (e) { }
+        }, 250)
+      }
       currentEditorInstance = null
     })
 
     $(document).on('click', '[data-bb-toggle="shortcode-list-modal"]', function (event) {
-      try { currentEditorInstance = $(event.currentTarget).data('result') || null } catch (e) { currentEditorInstance = null }
-      console.debug('[shortcode] modal opened by', currentEditorInstance, event.currentTarget)
+      try {
+        currentEditorInstance = $(event.currentTarget).data('result') || null
+        lastShortcodeTrigger = event.currentTarget || null
+        // Also update lastFocusedEditor when opening via button
+        if (currentEditorInstance) {
+          lastFocusedEditor = currentEditorInstance
+        }
+      } catch (e) {
+        currentEditorInstance = null
+      }
+      console.log('[shortcode] modal opened by', currentEditorInstance, 'lastFocused:', lastFocusedEditor, event.currentTarget)
       $shortcodeListModal.modal('show')
     })
 

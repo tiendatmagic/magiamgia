@@ -3,6 +3,7 @@
 use Botble\Base\Facades\AdminHelper;
 use Botble\Base\Http\Middleware\RequiresJsonRequestMiddleware;
 use Botble\Voucher\Http\Controllers\ProviderController;
+use Botble\Voucher\Http\Controllers\PublicController;
 use Botble\Voucher\Http\Controllers\VoucherController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,5 +37,9 @@ if (defined('THEME_MODULE_SCREEN_NAME')) {
     Route::middleware(RequiresJsonRequestMiddleware::class)
       ->get('ajax/voucher/load-more', [VoucherController::class, 'loadMore'])
       ->name('public.ajax.voucher.load-more');
+
+    Route::middleware(RequiresJsonRequestMiddleware::class)
+      ->get('ajax/voucher/load-more-hot', [VoucherController::class, 'loadMoreHot'])
+      ->name('public.ajax.voucher.load-more-hot');
   });
 }

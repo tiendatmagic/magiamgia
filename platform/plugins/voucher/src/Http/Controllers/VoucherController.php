@@ -124,4 +124,42 @@ class VoucherController extends BaseController
       'nextOffset' => $offset + $items->count(),
     ]);
   }
+
+  public function loadMoreHot(Request $request)
+  {
+    $offset = max(0, (int) $request->query('offset', 0));
+    $limit = max(1, (int) $request->query('limit', 9));
+
+    $today = Carbon::now()->startOfDay();
+
+    $items = Voucher::query()
+      ->where('status', BaseStatusEnum::PUBLISHED)
+      ->where('show_homepage_hot', true)
+      ->where(function ($query) use ($today) {
+        $query
+          ->whereNull('expired_at')
+          ->orWhereDate('expired_at', '>=', $today);
+      })
+      ->with('provider')
+      ->orderByRaw('CASE WHEN expired_at IS NULL THEN 1 ELSE 0 END')
+      ->orderBy('expired_at')
+      ->orderByDesc('created_at')
+      ->skip($offset)
+      ->take($limit)
+      ->get();
+
+    $html = '';
+    foreach ($items as $voucher) {
+      $html .= view('plugins/voucher::public.partials.voucher-items', [
+        'vouchers' => collect([$voucher]),
+        'provider' => $voucher->provider,
+      ])->render();
+    }
+
+    return $this->httpResponse()->setData([
+      'html' => $html,
+      'count' => $items->count(),
+      'nextOffset' => $offset + $items->count(),
+    ]);
+  }
 }

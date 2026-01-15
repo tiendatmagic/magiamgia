@@ -16,8 +16,23 @@ class HomeSettingController extends BaseController
     $homeTitle = ThemeOption::getOption('home_title', 'Nhà cung cấp nổi bật');
     $homeDescription = ThemeOption::getOption('home_description', '');
     $homeSliders = json_decode(ThemeOption::getOption('home_sliders', '[]'), true) ?: [];
+    $homeFaqs = json_decode(ThemeOption::getOption('home_faqs', '[]'), true) ?: [];
+    $homeFaqsTitle = ThemeOption::getOption('home_faqs_title', '');
+    $homeFaqsDescription = ThemeOption::getOption('home_faqs_description', '');
 
-    return view(Theme::getThemeNamespace('views.admin.home-settings'), compact('homeTitle', 'homeDescription', 'homeSliders'));
+    $hotVouchersTitle = ThemeOption::getOption('hot_vouchers_title', 'Mã giảm giá hot');
+    $hotVouchersDescription = ThemeOption::getOption('hot_vouchers_description', '');
+
+    return view(Theme::getThemeNamespace('views.admin.home-settings'), compact(
+      'homeTitle',
+      'homeDescription',
+      'homeSliders',
+      'homeFaqs',
+      'homeFaqsTitle',
+      'homeFaqsDescription',
+      'hotVouchersTitle',
+      'hotVouchersDescription'
+    ));
   }
 
   public function update(Request $request)
@@ -27,10 +42,20 @@ class HomeSettingController extends BaseController
     $keys = [
       'home_title',
       'home_description',
+      'home_faqs_title',
+      'home_faqs_description',
+      'hot_vouchers_title',
+      'hot_vouchers_description',
     ];
 
     foreach ($keys as $key) {
-      ThemeOption::setOption($key, $request->input($key));
+      $value = $request->has($key) ? $request->input($key) : '';
+
+      if (is_string($value) && $value === $key) {
+        $value = '';
+      }
+
+      ThemeOption::setOption($key, $value);
     }
 
     // Xử lý slider data
@@ -48,6 +73,24 @@ class HomeSettingController extends BaseController
     }
 
     ThemeOption::setOption('home_sliders', json_encode($slidersData));
+
+    // Xử lý FAQ data
+    $faqs = $request->input('home_faqs', []);
+    $faqsData = [];
+    if (is_array($faqs)) {
+      foreach ($faqs as $faq) {
+        $question = trim($faq['question'] ?? '');
+        $answer = trim($faq['answer'] ?? '');
+        if ($question !== '' || $answer !== '') {
+          $faqsData[] = [
+            'question' => $question,
+            'answer' => $answer,
+          ];
+        }
+      }
+    }
+
+    ThemeOption::setOption('home_faqs', json_encode($faqsData));
     ThemeOption::saveOptions();
 
     if ($request->expectsJson()) {

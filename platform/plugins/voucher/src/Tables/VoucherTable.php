@@ -7,6 +7,7 @@ use Botble\Table\Actions\DeleteAction;
 use Botble\Table\Actions\EditAction;
 use Botble\Table\BulkActions\DeleteBulkAction;
 use Botble\Table\Columns\Column;
+use Botble\Table\Columns\FormattedColumn;
 use Botble\Table\Columns\LinkableColumn;
 use Botble\Table\Columns\CreatedAtColumn;
 use Botble\Table\Columns\StatusColumn;
@@ -26,11 +27,14 @@ class VoucherTable extends TableAbstract
         LinkableColumn::make('code')
           ->title(trans('plugins/voucher::voucher.fields.code'))
           ->route('voucher-coupon.edit'),
-        Column::make('discount_type')
+        FormattedColumn::make('discount_type')
           ->title(trans('plugins/voucher::voucher.fields.discount_type'))
-          ->width(120)
-          ->formatStateUsing(function ($state) {
-            return trans('plugins/voucher::voucher.discount.' . $state);
+          ->width(140)
+          ->getValueUsing(function (FormattedColumn $column) {
+            $item = $column->getItem();
+            $types = voucher_discount_types();
+
+            return $types[$item->discount_type] ?? $item->discount_type;
           }),
         Column::make('discount_value')->title(trans('plugins/voucher::voucher.fields.discount_value'))->width(120),
         StatusColumn::make(),

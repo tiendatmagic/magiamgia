@@ -15,5 +15,11 @@
   "Add Slider": "Thêm Slider",
   "Remove": "Xóa",
   "No sliders yet": "Chưa có slider nào",
-  "Save changes": "Lưu Thay Đổi"
+  "Save changes": "Lưu Thay Đổi",
+  "Hot Vouchers Section": "Mục Mã Giảm Giá Hot",
+  "Hot Vouchers Section Title": "Tiêu Đề Mục Mã Giảm Giá Hot",
+  "Hot Vouchers Description": "Mô Tả Mã Giảm Giá Hot",
+  "Enter hot vouchers section title": "Nhập tiêu đề mục mã giảm giá hot",
+  "Title displayed above hot vouchers list": "Tiêu đề hiển thị ở trên danh sách mã giảm giá hot",
+  "Description shown above hot vouchers on homepage": "Mô tả hiển thị ở trên mã giảm giá hot trên trang chủ"
 }
