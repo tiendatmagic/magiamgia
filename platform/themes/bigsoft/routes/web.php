@@ -6,6 +6,8 @@ use Botble\Base\Http\Middleware\RequiresJsonRequestMiddleware;
 use Botble\Theme\Facades\Theme;
 use Botble\Theme\Http\Controllers\PublicController;
 use Illuminate\Support\Facades\Route;
+use Theme\BigSoft\Http\Controllers\HomeController;
+use Theme\BigSoft\Http\Controllers\HomeSettingController;
 use Theme\BigSoft\Http\Controllers\BigsoftController;
 use Theme\BigSoft\Http\Controllers\BlogLayoutSettingController;
 use Theme\BigSoft\Http\Controllers\FooterSettingController;
@@ -14,6 +16,8 @@ use Theme\BigSoft\Http\Controllers\NotFoundPageSettingController;
 use Theme\BigSoft\Http\Controllers\ServiceLayoutSettingController;
 
 Theme::registerRoutes(function () {
+
+    Route::get('/', [HomeController::class, 'index'])->name('public.index');
 
     // Ajax search
     Route::group(['controller' => BigsoftController::class], function () {
@@ -38,6 +42,16 @@ Theme::registerRoutes(function () {
 Theme::routes();
 
 AdminHelper::registerRoutes(function () {
+    Route::group(['prefix' => 'theme/home'], function () {
+        Route::get('', [HomeSettingController::class, 'index'])
+            ->name('theme.home')
+            ->defaults('permission', 'theme.options');
+
+        Route::post('', [HomeSettingController::class, 'update'])
+            ->name('theme.home.update')
+            ->defaults('permission', 'theme.options');
+    });
+
     Route::group(['prefix' => 'theme/header'], function () {
         Route::get('', [HeaderSettingController::class, 'index'])
             ->name('theme.header')

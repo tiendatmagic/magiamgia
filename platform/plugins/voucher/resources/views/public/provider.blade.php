@@ -6,6 +6,8 @@
 	$initialCount = $initialCount ?? 0;
 	$providerAccordionsHeader = $providerAccordionsHeader ?? [];
 	$providerAccordionsFooter = $providerAccordionsFooter ?? [];
+
+	Theme::layout('default-no-sidebar');
 @endphp
 
 <div class="tw-my-6 container">

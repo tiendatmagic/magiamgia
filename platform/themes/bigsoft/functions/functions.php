@@ -50,6 +50,16 @@ app()->booted(function () {
 
 DashboardMenu::default()->beforeRetrieving(function () {
     DashboardMenu::make()->registerItem([
+        'id' => 'cms-core-home',
+        'priority' => 2.5,
+        'parent_id' => null,
+        'name' => __('Home Page'),
+        'url' => fn() => route('theme.home'),
+        'permissions' => ['theme.options'],
+        'icon' => 'fa fa-house',
+    ]);
+
+    DashboardMenu::make()->registerItem([
         'id' => 'cms-core-appearance-header',
         'priority' => 2.4,
         'parent_id' => 'cms-core-appearance',
@@ -130,6 +140,24 @@ app('events')->listen(RouteMatched::class, function () {
         ]);
     });
 
+    // Fallback: inject providers into home-page view if a controller didn't provide them
+    view()->composer('theme.bigsoft::views.home-page', function ($view) {
+        if ($view->offsetExists('providers')) {
+            return;
+        }
+
+        if (! class_exists(\Botble\Voucher\Models\Provider::class)) {
+            return;
+        }
+
+        $providers = \Botble\Voucher\Models\Provider::query()
+            ->where('status', \Botble\Base\Enums\BaseStatusEnum::PUBLISHED)
+            ->orderByDesc('created_at')
+            ->get();
+
+        $view->with('providers', $providers);
+    });
+
     FormAbstract::extend(function (FormAbstract $form): void {
         $model = $form->getModel();
 
@@ -195,3 +223,5 @@ app('events')->listen(RouteMatched::class, function () {
         }
     }
 });
+
+app('events')->listen(RouteMatched::class, function () {});
