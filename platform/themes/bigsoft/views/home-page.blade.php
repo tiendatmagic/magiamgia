@@ -296,7 +296,31 @@
 
        <div>
         {{-- tin khuyến mãi --}}
-
+        @if (isset($promoPosts) && $promoPosts->isNotEmpty())
+        <section class="tw-mt-8 tw-mb-4">
+          <h4 class="tw-text-xl tw-font-semibold tw-mb-4">{{ __('plugins/voucher::voucher.public.promo_news') }}</h4>
+          <div class="tw-grid tw-grid-cols-2 md:tw-grid-cols-3 lg:tw-grid-cols-3 xl:tw-grid-cols-4 tw-gap-6 grid-interest-posts">
+            @foreach ($promoPosts as $relatedItem)
+            <article class="post post__horizontal tw-rounded-xl tw-overflow-hidden tw-shadow-md hover:tw-shadow-xl tw-border-gray-100 tw-border tw-flex tw-flex-col tw-transition-all clearfix">
+              <div class="post__thumbnail tw-relative" style="width: 100%">
+                {{ RvMedia::image($relatedItem->image, $relatedItem->name, 'medium') }}
+                <a class="post__overlay" href="{{ preg_match('/\.html$/i', $relatedItem->url) ? preg_replace('/(\.html)+$/i', '.html', $relatedItem->url) : $relatedItem->url . '.html' }}" title="{{ $relatedItem->name }}"></a>
+              </div>
+              <div class="post__content-wrap" style="width: 100%">
+                <header class="post__header">
+                  <h3 class="post__title" style="width: 100%;">
+                    <a href="{{ preg_match('/\.html$/i', $relatedItem->url) ? preg_replace('/(\.html)+$/i', '.html', $relatedItem->url) : $relatedItem->url . '.html' }}" class="tw-line-clamp-3" title="{{ $relatedItem->name }}">{{ $relatedItem->name }}</a>
+                  </h3>
+                </header>
+                <div class="post__content tw-p-0 tw-mt-3">
+                  <p class="tw-line-clamp-3">{{ $relatedItem->description }}</p>
+                </div>
+              </div>
+            </article>
+            @endforeach
+          </div>
+        </section>
+        @endif
         {{-- tin khuyến mãi --}}
        </div>
 

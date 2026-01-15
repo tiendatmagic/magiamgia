@@ -175,6 +175,17 @@ app('events')->listen(RouteMatched::class, function () {
 
             $view->with('hotVouchers', $hotVouchers);
         }
+
+        if (! $view->offsetExists('promoPosts') && class_exists(\Botble\Blog\Models\Post::class)) {
+            $promoPosts = \Botble\Blog\Models\Post::query()
+                ->wherePublished()
+                ->with(['slugable', 'categories', 'author'])
+                ->orderByDesc('created_at')
+                ->limit(8)
+                ->get();
+
+            $view->with('promoPosts', $promoPosts);
+        }
     });
 
     FormAbstract::extend(function (FormAbstract $form): void {

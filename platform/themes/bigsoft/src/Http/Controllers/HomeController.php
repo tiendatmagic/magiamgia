@@ -16,8 +16,9 @@ class HomeController extends Controller
   {
     $providers = $this->getProviders();
     $hotVouchers = $this->getHotVouchers();
+    $promoPosts = $this->getPromoPosts();
 
-    return Theme::scope('home-page', compact('providers', 'hotVouchers'))->render();
+    return Theme::scope('home-page', compact('providers', 'hotVouchers', 'promoPosts'))->render();
   }
 
   protected function getProviders(): Collection
@@ -53,6 +54,20 @@ class HomeController extends Controller
       ->orderBy('expired_at')
       ->orderByDesc('created_at')
       ->take(18)
+      ->get();
+  }
+
+  protected function getPromoPosts(int $limit = 8): Collection
+  {
+    if (! class_exists(\Botble\Blog\Models\Post::class)) {
+      return collect();
+    }
+
+    return \Botble\Blog\Models\Post::query()
+      ->wherePublished()
+      ->with(['slugable', 'categories', 'author'])
+      ->orderByDesc('created_at')
+      ->limit($limit)
       ->get();
   }
 }
