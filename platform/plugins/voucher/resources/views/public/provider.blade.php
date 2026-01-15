@@ -111,8 +111,8 @@
 				<div id="voucher-loading" class="tw-absolute tw-inset-0 tw-bg-white/70 tw-backdrop-blur-[1px] tw-z-10 tw-rounded-lg tw-items-center tw-justify-center" style="display:none;">
 					<div class="tw-flex tw-items-center tw-gap-3 tw-text-gray-700 tw-font-medium">
 						<svg class="tw-animate-spin tw-h-5 tw-w-5 tw-text-[#f97e2b]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-							<circle class="tw-opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-							<path class="tw-opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+							<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+							<path fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
 						</svg>
 						<span>{{ __('plugins/voucher::voucher.public.loading') }}</span>
 					</div>
@@ -131,7 +131,13 @@
 						<path d="M0 40 L30 72 L60 40" class="a3" stroke="currentColor" stroke-width="2" fill="none"></path>
 					</svg>
 					<p class="tw-text-[14px] tw-leading-[21px] js-loadmore-label">{{ __('plugins/voucher::voucher.public.load_more_voucher') }}</p>
-					<p class="tw-text-[14px] tw-leading-[21px] js-loadmore-loading" style="display:none;">{{ __('plugins/voucher::voucher.public.loading') }}</p>
+					<div class="tw-flex tw-items-center tw-gap-2 js-loadmore-loading" style="display:none;">
+						<svg class="tw-animate-spin tw-h-5 tw-w-5 tw-text-[#f97e2b]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+							<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+							<path fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+						</svg>
+						<span class="tw-text-[14px] tw-leading-[21px]">{{ __('plugins/voucher::voucher.public.loading') }}</span>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -229,14 +235,12 @@
 			}
 			categoryButtons.forEach(function (button) {
 				button.disabled = isLoading;
-				button.classList.toggle('tw-opacity-70', isLoading);
 				button.classList.toggle('tw-cursor-not-allowed', isLoading);
 			});
 			if (loadMoreEl) {
-				loadMoreEl.classList.toggle('tw-opacity-70', isLoading);
 				loadMoreEl.classList.toggle('tw-cursor-not-allowed', isLoading);
 				loadMoreEl.classList.toggle('tw-pointer-events-none', isLoading);
-				if (loadMoreLoading) loadMoreLoading.style.display = isLoading ? 'block' : 'none';
+				if (loadMoreLoading) loadMoreLoading.style.display = isLoading ? 'flex' : 'none';
 				if (loadMoreLabel) loadMoreLabel.style.display = isLoading ? 'none' : 'block';
 			}
 		};

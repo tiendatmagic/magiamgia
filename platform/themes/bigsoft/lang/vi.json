@@ -21,5 +21,21 @@
   "Hot Vouchers Description": "Mô Tả Mã Giảm Giá Hot",
   "Enter hot vouchers section title": "Nhập tiêu đề mục mã giảm giá hot",
   "Title displayed above hot vouchers list": "Tiêu đề hiển thị ở trên danh sách mã giảm giá hot",
-  "Description shown above hot vouchers on homepage": "Mô tả hiển thị ở trên mã giảm giá hot trên trang chủ"
+  "Description shown above hot vouchers on homepage": "Mô tả hiển thị ở trên mã giảm giá hot trên trang chủ",
+  "FAQ Section": "Mục Câu Hỏi Thường Gặp",
+  "FAQ Section Title": "Tiêu Đề Mục FAQ",
+  "FAQ Description": "Mô Tả FAQ",
+  "Enter FAQ section title": "Nhập tiêu đề mục FAQ",
+  "Title displayed above FAQ list": "Tiêu đề hiển thị ở trên danh sách FAQ",
+  "Description shown above FAQ on homepage": "Mô tả hiển thị ở trên FAQ trên trang chủ",
+  "FAQ Items": "Danh Sách Câu Hỏi",
+  "Click the button on the right to add a new FAQ item": "Nhấp vào nút bên phải để thêm câu hỏi FAQ mới",
+  "Add Item": "Thêm Câu Hỏi",
+  "No FAQ items yet. Click \"Add Item\" to start.": "Chưa có câu hỏi FAQ nào. Nhấp \"Thêm Câu Hỏi\" để bắt đầu.",
+  "Move up": "Di chuyển lên",
+  "Move down": "Di chuyển xuống",
+  "Question": "Câu Hỏi",
+  "Answer": "Câu Trả Lời",
+  "Enter FAQ question...": "Nhập câu hỏi FAQ...",
+  "Enter FAQ answer...": "Nhập câu trả lời..."
 }

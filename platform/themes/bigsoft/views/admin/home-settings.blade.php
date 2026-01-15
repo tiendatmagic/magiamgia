@@ -86,7 +86,7 @@
                                                 </div>
                                             </div>
 
-                                            <a data-bb-toggle="image-picker-choose" data-target="popup" data-result="sliders-{{ $index }}-image" data-action="select-image" data-allow-thumb="1" href="#" class="btn btn-sm btn-primary">
+                                            <a data-bb-toggle="image-picker-choose" data-target="popup" data-result="sliders-{{ $index }}-image" data-action="select-image" data-allow-thumb="1" href="#">
                                                 {{ __('Choose Image') }}
                                             </a>
                                         </div>
@@ -185,7 +185,7 @@
                                                 </div>
                                             </div>
 
-                                            <a data-bb-toggle="image-picker-choose" data-target="popup" data-result="sliders-${newIndex}-image" data-action="select-image" data-allow-thumb="1" href="#" class="btn btn-sm btn-primary">
+                                            <a data-bb-toggle="image-picker-choose" data-target="popup" data-result="sliders-${newIndex}-image" data-action="select-image" data-allow-thumb="1" href="#">
                                                 {{ __('Choose Image') }}
                                             </a>
                                         </div>
@@ -307,7 +307,7 @@
                             </div>
 
                             <hr class="my-3">
-                            <h6 class="mb-3">{{ __('FAQ Items') }}</h6>
+                            <label class="fw-bold mb-3">{{ __('FAQ Items') }}</label>
 
                             <div class="d-flex align-items-center justify-content-between mb-3">
                                 <div class="text-muted">
