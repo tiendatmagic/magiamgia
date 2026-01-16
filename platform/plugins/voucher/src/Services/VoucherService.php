@@ -83,15 +83,15 @@ class VoucherService
         ->all();
     }
 
+    // Set page title from provider name
+    SeoHelper::setTitle($provider->name);
+
     // Load metadata for SEO
     $provider->loadMissing('metadata');
     $seoMeta = $provider->getMetaData('seo_meta', true) ?? [];
 
-    // Set SEO title and description with fallback logic
-    $seoTitle = Arr::get($seoMeta, 'seo_title') ?: $provider->name;
+    // Set SEO description with fallback logic
     $seoDescription = Arr::get($seoMeta, 'seo_description') ?: $provider->description;
-
-    SeoHelper::setTitle($seoTitle);
     if ($seoDescription) {
       SeoHelper::setDescription(strip_tags($seoDescription));
     }
