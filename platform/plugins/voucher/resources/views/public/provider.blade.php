@@ -10,7 +10,7 @@
 	Theme::layout('default-no-sidebar');
 @endphp
 
-<div class="tw-my-6 container">
+<div class="container">
 	<div class="tw-bg-white tw-border tw-border-gray-100 tw-rounded-xl tw-shadow-lg tw-p-5">
 		<div class="tw-flex tw-flex-col sm:tw-flex-row tw-items-center">
 			<div class="sm:tw-w-1/4 lg:tw-w-1/5 tw-w-full tw-flex tw-justify-center tw-mb-4 sm:tw-mb-0">
@@ -33,7 +33,7 @@
 		</div>
 	</div>
 
-	<div class="tw-flex tw-justify-evenly tw-flex-wrap tw-gap-3 tw-my-5">
+	<div class="tw-flex tw-justify-evenly tw-flex-wrap tw-gap-3 tw-my-10">
 			@if($provider->button_1_text && $provider->button_1_url)
 			<a href="{{ $provider->button_1_url }}" target="_blank"
 				class="tw-bg-[#cc2c62] tw-text-white tw-px-6 tw-py-3 tw-rounded-md tw-text-base tw-font-medium tw-shadow-md">
@@ -50,12 +50,6 @@
 			</a>
 			@endif
 	</div>
-
-	@if($provider->cover_image)
-		<div class="tw-my-6">
-			<img src="{{ RvMedia::getImageUrl($provider->cover_image) }}" alt="{{ $provider->name }}" class="tw-w-full tw-h-auto tw-rounded-xl tw-object-cover tw-shadow-lg" />
-		</div>
-	@endif
 
 	@if(! empty($providerAccordionsHeader))
 		<div class="tw-mt-6">
@@ -88,7 +82,7 @@
 	</div>
 
 	@if($hotVouchers->isNotEmpty())
-		<div class="tw-bg-[#fbfbfb] tw-border tw-border-gray-100 tw-rounded-xl tw-shadow-lg tw-p-5 tw-my-5">
+		<div class="tw-bg-[#fbfbfb] tw-border tw-border-gray-100 tw-rounded-xl tw-shadow-lg tw-p-5 tw-my-10">
 			<div>
 				<h4 class="tw-text-xl tw-pb-[8px] tw-font-semibold tw-text-[#464646]">{{ __('plugins/voucher::voucher.public.hot_voucher') }}</h4>
 			</div>
@@ -119,7 +113,7 @@
 		</div>
 	@endif
 
-	<div class="tw-bg-[#fbfbfb] tw-border tw-border-gray-100 tw-rounded-xl tw-shadow-lg tw-p-5 tw-my-5">
+	<div class="tw-bg-[#fbfbfb] tw-border tw-border-gray-100 tw-rounded-xl tw-shadow-lg tw-p-5 tw-my-10">
 		<div>
 			<h4 class="tw-text-xl tw-pb-[8px] tw-font-semibold tw-text-[#464646]">{{ __('plugins/voucher::voucher.public.categories') }}</h4>
 		</div>
@@ -177,8 +171,8 @@
 @endphp
 
 @if ($interestPosts->isNotEmpty())
-	<section class="tw-mt-8 tw-mb-4">
-		<h4 class="tw-text-xl tw-font-semibold tw-mb-4">{{ __('plugins/voucher::voucher.public.promo_news') }}</h4>
+	<section class="tw-mt-10">
+		<h4 class="tw-text-xl tw-font-semibold tw-mb-3">{{ __('plugins/voucher::voucher.public.promo_news') }}</h4>
 		<div class="{{ $gridClass }}">
 			@foreach ($interestPosts as $relatedItem)
 				<article class="post post__horizontal tw-rounded-xl tw-overflow-hidden tw-shadow-md hover:tw-shadow-xl tw-border-gray-100 tw-border tw-flex tw-flex-col tw-transition-all clearfix">
@@ -203,7 +197,7 @@
 @endif
 
 	@if(! empty($providerAccordionsFooter))
-	<div class="tw-bg-[#fbfbfb] tw-border tw-border-gray-100 tw-rounded-xl tw-shadow-lg tw-p-5 tw-my-5">
+	<div class="tw-bg-[#fbfbfb] tw-border tw-border-gray-100 tw-rounded-xl tw-shadow-lg tw-p-5 tw-my-10">
 		<div>
 			<h4 class="tw-text-xl tw-pb-[8px] tw-font-semibold tw-text-[#F9993C]">{{ __('plugins/voucher::voucher.public.faq') }}</h4>
 		</div>

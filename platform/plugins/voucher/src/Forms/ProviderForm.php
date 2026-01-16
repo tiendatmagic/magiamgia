@@ -47,9 +47,6 @@ class ProviderForm extends FormAbstract
       ->add('logo', MediaImageField::class, [
         'label' => trans('plugins/voucher::voucher.fields.logo'),
       ])
-      ->add('cover_image', MediaImageField::class, [
-        'label' => 'Ảnh bìa (SEO Image)',
-      ])
       ->add('description', EditorField::class, [
         'label' => trans('plugins/voucher::voucher.fields.description'),
       ])
@@ -124,7 +121,17 @@ class ProviderForm extends FormAbstract
         ])->render(),
         'wrapper' => false,
       ])
-      ->add('status', SelectField::class, StatusFieldOption::make()->toArray())
+      ->add('status', SelectField::class, array_merge(StatusFieldOption::make()->toArray(), [
+        'wrapperAttributes' => [
+          'class' => $this->formHelper->getConfig('defaults.wrapper_class') . ' col-md-6',
+        ],
+      ]))
+      ->add('cover_image', MediaImageField::class, [
+        'label' => 'Ảnh bìa (SEO Image)',
+        'wrapperAttributes' => [
+          'class' => $this->formHelper->getConfig('defaults.wrapper_class') . ' col-md-6',
+        ],
+      ])
       ->setBreakFieldPoint('status');
   }
 

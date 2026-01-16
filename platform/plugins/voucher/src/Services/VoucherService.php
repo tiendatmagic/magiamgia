@@ -83,27 +83,23 @@ class VoucherService
         ->all();
     }
 
-    // Set page title from provider name
     SeoHelper::setTitle($provider->name);
 
-    // Load metadata for SEO
     $provider->loadMissing('metadata');
     $seoMeta = $provider->getMetaData('seo_meta', true) ?? [];
 
-    // Set SEO description with fallback logic
+    $ogTitle = Arr::get($seoMeta, 'seo_title') ?: $provider->name;
+    SeoHelper::openGraph()->setTitle($ogTitle);
+
     $seoDescription = Arr::get($seoMeta, 'seo_description') ?: $provider->description;
     if ($seoDescription) {
       SeoHelper::setDescription(strip_tags($seoDescription));
     }
 
-    // Set noindex if specified
-    if (Arr::get($seoMeta, 'index') === 'noindex') {
-      SeoHelper::meta()->addMeta('robots', 'noindex, nofollow');
-    }
-
-    // Set OG image if cover image exists
-    if ($provider->cover_image) {
-      SeoHelper::openGraph()->setImage(RvMedia::getImageUrl($provider->cover_image));
+    // Set OG image from cover_image, fallback to logo
+    $ogImage = $provider->cover_image ?: $provider->logo;
+    if ($ogImage) {
+      SeoHelper::openGraph()->setImage(RvMedia::getImageUrl($ogImage));
     }
 
     // Pass data to controller for processing
