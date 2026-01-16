@@ -12,9 +12,9 @@
     }
 @endphp
 
-<div class="breadcrumb-all content-section tw-my-1 container"
+<div class="breadcrumb-all content-section tw-my-1 tw-hidden sm:tw-block container"
     style="--primary-color: {{ theme_option('primary_color', '#AF0F26') }}; --breadcrumb-base: {{ theme_option('primary_color', '#AF0F26') }};">
-    <div class="breadcrumb-item tw-flex tw-gap-2 tw-text-sm tw-text-gray-600 tw-mb-6">
+    <div class="breadcrumb-item tw-flex tw-gap-2 tw-text-sm tw-text-gray-600 tw-mb-3">
         <a href="{{ BaseHelper::getHomepageUrl() }}" class="">Trang chủ</a>
         @if ($blogPage)
             <a href="{{ $blogPage->url }}" class="">{{ $blogPage->name }}</a>
