@@ -42,6 +42,8 @@ class ProviderRequest extends Request
       'name' => 'required|string|max:250',
       'slug' => ['nullable', 'string', 'max:250', 'regex:/^[A-Za-z0-9-]+$/'],
       'logo' => 'nullable|string|max:250',
+      'cover_image' => 'nullable|string|max:250',
+      'description' => 'nullable|string',
       'button_1_text' => 'nullable|string|max:250',
       'button_1_url' => 'nullable|string|max:2048',
       'button_2_text' => 'nullable|string|max:250',

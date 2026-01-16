@@ -17,6 +17,7 @@ class Provider extends BaseModel
   protected $fillable = [
     'name',
     'logo',
+    'cover_image',
     'description',
     'button_1_text',
     'button_1_url',

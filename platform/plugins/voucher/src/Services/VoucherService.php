@@ -3,6 +3,7 @@
 namespace Botble\Voucher\Services;
 
 use Botble\Base\Enums\BaseStatusEnum;
+use Botble\Base\Facades\MetaBox;
 use Botble\SeoHelper\Facades\SeoHelper;
 use Botble\Slug\Models\Slug;
 use Botble\Voucher\Http\Controllers\PublicController;
@@ -11,6 +12,7 @@ use Botble\Voucher\Models\Voucher;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use RvMedia;
 
 class VoucherService
 {
@@ -81,7 +83,28 @@ class VoucherService
         ->all();
     }
 
-    SeoHelper::setTitle($provider->name);
+    // Load metadata for SEO
+    $provider->loadMissing('metadata');
+    $seoMeta = $provider->getMetaData('seo_meta', true) ?? [];
+
+    // Set SEO title and description with fallback logic
+    $seoTitle = Arr::get($seoMeta, 'seo_title') ?: $provider->name;
+    $seoDescription = Arr::get($seoMeta, 'seo_description') ?: $provider->description;
+
+    SeoHelper::setTitle($seoTitle);
+    if ($seoDescription) {
+      SeoHelper::setDescription(strip_tags($seoDescription));
+    }
+
+    // Set noindex if specified
+    if (Arr::get($seoMeta, 'index') === 'noindex') {
+      SeoHelper::meta()->addMeta('robots', 'noindex, nofollow');
+    }
+
+    // Set OG image if cover image exists
+    if ($provider->cover_image) {
+      SeoHelper::openGraph()->setImage(RvMedia::getImageUrl($provider->cover_image));
+    }
 
     // Pass data to controller for processing
     request()->merge(compact('vouchers', 'hotVouchers', 'categories'));

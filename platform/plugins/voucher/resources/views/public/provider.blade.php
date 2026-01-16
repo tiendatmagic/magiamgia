@@ -29,23 +29,33 @@
 					</div>
 				@endif
 
-				<div class="tw-flex tw-gap-3 tw-flex-wrap tw-mt-4">
-					@if($provider->button_1_text && $provider->button_1_url)
-						<a class="tw-bg-[#cc2c62] tw-text-white tw-px-4 tw-py-2 tw-rounded-md tw-text-sm tw-font-medium tw-shadow-md" href="{{ $provider->button_1_url }}" target="_blank" rel="nofollow">
-							{{ $provider->button_1_text }}
-							<i class="fa fa-mouse-pointer"></i>
-						</a>
-					@endif
-					@if($provider->button_2_text && $provider->button_2_url)
-						<a class="tw-bg-[#2c92cc] tw-text-white tw-px-4 tw-py-2 tw-rounded-md tw-text-sm tw-font-medium tw-shadow-md" href="{{ $provider->button_2_url }}" target="_blank" rel="nofollow">
-							{{ $provider->button_2_text }}
-							<i class="fa fa-mouse-pointer"></i>
-						</a>
-					@endif
-				</div>
 			</div>
 		</div>
 	</div>
+
+	<div class="tw-flex tw-justify-evenly tw-flex-wrap tw-gap-3 tw-my-5">
+			@if($provider->button_1_text && $provider->button_1_url)
+			<a href="{{ $provider->button_1_url }}" target="_blank"
+				class="tw-bg-[#cc2c62] tw-text-white tw-px-6 tw-py-3 tw-rounded-md tw-text-base tw-font-medium tw-shadow-md">
+				{{ $provider->button_1_text }}
+				<i class="fa fa-mouse-pointer"></i>
+			</a>
+			@endif
+
+			@if($provider->button_2_text && $provider->button_2_url)
+			<a href="{{ $provider->button_2_url }}" target="_blank"
+				class="tw-bg-[#2c92cc] tw-text-white tw-px-6 tw-py-3 tw-rounded-md tw-text-base tw-font-medium tw-shadow-md">
+						{{ $provider->button_2_text }}
+				<i class="fa fa-mouse-pointer"></i>
+			</a>
+			@endif
+	</div>
+
+	@if($provider->cover_image)
+		<div class="tw-my-6">
+			<img src="{{ RvMedia::getImageUrl($provider->cover_image) }}" alt="{{ $provider->name }}" class="tw-w-full tw-h-auto tw-rounded-xl tw-object-cover tw-shadow-lg" />
+		</div>
+	@endif
 
 	@if(! empty($providerAccordionsHeader))
 		<div class="tw-mt-6">

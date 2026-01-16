@@ -47,6 +47,9 @@ class ProviderForm extends FormAbstract
       ->add('logo', MediaImageField::class, [
         'label' => trans('plugins/voucher::voucher.fields.logo'),
       ])
+      ->add('cover_image', MediaImageField::class, [
+        'label' => 'Ảnh bìa (SEO Image)',
+      ])
       ->add('description', EditorField::class, [
         'label' => trans('plugins/voucher::voucher.fields.description'),
       ])
