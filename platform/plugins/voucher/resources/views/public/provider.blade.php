@@ -100,7 +100,7 @@
 							<path d="M0 40 L30 72 L60 40" class="a3" stroke="currentColor" stroke-width="2" fill="none"></path>
 						</svg>
 						<p class="tw-text-[14px] tw-leading-[21px] js-loadmore-label">{{ __('plugins/voucher::voucher.public.load_more_voucher') }}</p>
-						<div class="tw-flex tw-items-center tw-py-10 tw-gap-2 js-loadmore-loading" style="display:none;">
+						<div class="tw-flex tw-items-center tw-gap-2 js-loadmore-loading" style="display:none;">
 							<div>
 								<svg class="tw-animate-spin tw-h-5 tw-w-5 tw-text-[#f97e2b]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
 									<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -152,7 +152,7 @@
 
 			<div class="tw-relative">
 				<div id="voucher-loading" class="tw-relative tw-inset-0 tw-bg-white/70 tw-backdrop-blur-[1px] tw-z-10 tw-rounded-lg tw-items-center tw-justify-center" style="display:none;">
-					<div class="tw-flex tw-items-center tw-py-10 tw-gap-2 tw-text-gray-700 tw-font-medium">
+					<div class="tw-flex tw-items-center tw-gap-2 tw-text-gray-700 tw-font-medium">
 						<div>
 							<svg class="tw-animate-spin tw-h-5 tw-w-5 tw-text-[#f97e2b]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
 								<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -176,7 +176,7 @@
 						<path d="M0 40 L30 72 L60 40" class="a3" stroke="currentColor" stroke-width="2" fill="none"></path>
 					</svg>
 					<p class="tw-text-[14px] tw-leading-[21px] js-loadmore-label">{{ __('plugins/voucher::voucher.public.load_more_voucher') }}</p>
-					<div class="tw-flex tw-items-center tw-py-10 tw-gap-2 js-loadmore-loading" style="display:none;">
+					<div class="tw-flex tw-items-center tw-gap-2 js-loadmore-loading" style="display:none;">
 						<div>
 							<svg class="tw-animate-spin tw-h-5 tw-w-5 tw-text-[#f97e2b]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
 								<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
