@@ -122,9 +122,9 @@ $footerAddressHcmLabel = trim((string) theme_option('footer_address_hcm_label'))
       {!! dynamic_sidebar('footer_sidebar') !!}
 
       <div class="col-md-12 col-lg-3 tw-mb-4 sm:tw-mb-0">
-        <h3 class="tw-font-bold tw-text-gray-900 tw-text-base lg:tw-mb-4 md:tw-mb-0">Kết nối với chúng tôi</h3>
+        <h3 class="tw-font-bold tw-text-gray-900 tw-text-base lg:tw-mb-4 md:tw-mb-0">{{ theme_option('footer_connect_title') ?: 'Kết nối với chúng tôi' }}</h3>
 
-        <ul class="social social--simple tw-flex lg:tw-block tw-flex-wrap tw-justify-center">
+        <ul class="social social--simple tw-flex lg:tw-block tw-flex-wrap tw-justify-left">
           @if ($socialLinks = Theme::getSocialLinks())
           @foreach($socialLinks as $socialLink)
           @continue(! $icon = $socialLink->getIconHtml())
@@ -132,7 +132,9 @@ $footerAddressHcmLabel = trim((string) theme_option('footer_address_hcm_label'))
             <a {{ $socialLink->getAttributes() }}>
               {{ $icon }}
             </a>
-            <span class="tw-hidden sm:tw-block">{{ $socialLink->getName() }}</span>
+             <div>
+              <a href="{{ $socialLink->getUrl() }}" class="tw-hidden sm:tw-block text-icon-footer">{{ $socialLink->getName() }}</a>
+             </div>
           </li>
           @endforeach
           @endif

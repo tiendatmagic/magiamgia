@@ -59,6 +59,7 @@ class FooterSettingController extends BaseController
             'address_hcm',
             'footer_address_hn_label',
             'footer_address_hcm_label',
+            'footer_connect_title',
         ];
 
         $keys = array_merge($keys, $additional);

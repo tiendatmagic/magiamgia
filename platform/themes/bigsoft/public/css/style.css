@@ -627,6 +627,12 @@ p:empty {
     background: transparent;
 }
 
+.social--simple li a.text-icon-footer {
+    color: #000;
+    width: auto;
+    height: auto;
+}
+
 .social--simple li a i {
     left: 50%;
     position: absolute;
@@ -3966,7 +3972,7 @@ thead tr th {
 }
 
 #page-wrap .accordion-button {
-    color: #0586a8;
+    color: #f97e2b;
     font-size: 20px;
     font-weight: bold;
 }
@@ -4031,7 +4037,7 @@ thead tr th {
 
 #page-wrap #accordionFooter .accordion-button > div {
     width: 100%;
-    color: #0586a8;
+    color: #f97e2b;
     font-size: 20px;
     font-weight: bold;
 }

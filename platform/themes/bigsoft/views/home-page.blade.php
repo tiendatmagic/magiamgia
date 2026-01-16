@@ -1,4 +1,4 @@
-<div class="container">
+<div class="pt-50 container">
    <div class="row">
      <div class="col-lg-12">
 
@@ -298,7 +298,7 @@
         @if (isset($promoPosts) && $promoPosts->isNotEmpty())
         <section class="tw-my-10">
           <h4 class="tw-text-xl tw-font-semibold tw-mb-3">{{ __('plugins/voucher::voucher.public.promo_news') }}</h4>
-          <div class="tw-grid tw-grid-cols-2 md:tw-grid-cols-3 lg:tw-grid-cols-3 xl:tw-grid-cols-4 tw-gap-6 tw-mt-10 grid-interest-posts">
+          <div class="tw-grid tw-grid-cols-2 md:tw-grid-cols-3 lg:tw-grid-cols-3 xl:tw-grid-cols-4 tw-gap-6 tw-mt-3 grid-interest-posts">
             @foreach ($promoPosts as $relatedItem)
             <article class="post post__horizontal tw-rounded-xl tw-overflow-hidden tw-shadow-md hover:tw-shadow-xl tw-border-gray-100 tw-border tw-flex tw-flex-col tw-transition-all clearfix">
               <div class="post__thumbnail tw-relative" style="width: 100%">

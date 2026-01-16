@@ -149,6 +149,14 @@
                             :value="theme_option('working_hours_sat')"
                         />
 
+                        <h5 class="tw-font-medium mt-4 mb-3">{{ __('Kết nối với chúng tôi') }}</h5>
+
+                        <x-core::form.text-input
+                            name="footer_connect_title"
+                            :label="__('Tiêu đề')"
+                            :value="theme_option('footer_connect_title')"
+                        />
+
                         <h5 class="mt-4 mb-3">{{ __('Chat Zalo') }}</h5>
 
                         <x-core::form.text-input

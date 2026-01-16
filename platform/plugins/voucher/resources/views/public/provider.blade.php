@@ -20,9 +20,9 @@
 			</div>
 
 			<div class="sm:tw-w-3/4 lg:tw-w-4/5 tw-w-full">
-				<div class="tw-text-[var(--primary-color)] tw-font-bold tw-text-2xl" style="--primary-color: rgb(249, 126, 43); --breadcrumb-base: rgb(249, 126, 43);">
+				<h1 class="tw-text-center sm:tw-text-left tw-text-[var(--primary-color)] tw-font-bold tw-text-2xl" style="--primary-color: rgb(249, 126, 43); --breadcrumb-base: rgb(249, 126, 43);">
 					{{ $provider->name }}
-				</div>
+				</h1>
 				@if($provider->description)
 					<div class="tw-text-base tw-mt-3">
 						{!! clean($provider->description) !!}
@@ -82,7 +82,7 @@
 	</div>
 
 	@if($hotVouchers->isNotEmpty())
-		<div class="tw-bg-[#fbfbfb] tw-border tw-border-gray-100 tw-rounded-xl tw-shadow-lg tw-p-5 tw-my-10">
+		<div class="tw-bg-white tw-border tw-border-gray-100 tw-rounded-xl tw-shadow-lg tw-p-5 tw-my-10">
 			<div>
 				<h4 class="tw-text-xl tw-pb-[8px] tw-font-semibold tw-text-[#464646]">{{ __('plugins/voucher::voucher.public.hot_voucher') }}</h4>
 			</div>
@@ -113,7 +113,7 @@
 		</div>
 	@endif
 
-	<div class="tw-bg-[#fbfbfb] tw-border tw-border-gray-100 tw-rounded-xl tw-shadow-lg tw-p-5 tw-my-10">
+	<div class="tw-bg-white tw-border tw-border-gray-100 tw-rounded-xl tw-shadow-lg tw-p-5 tw-my-10">
 		<div>
 			<h4 class="tw-text-xl tw-pb-[8px] tw-font-semibold tw-text-[#464646]">{{ __('plugins/voucher::voucher.public.categories') }}</h4>
 		</div>
@@ -197,9 +197,9 @@
 @endif
 
 	@if(! empty($providerAccordionsFooter))
-	<div class="tw-bg-[#fbfbfb] tw-border tw-border-gray-100 tw-rounded-xl tw-shadow-lg tw-p-5 tw-my-10">
+	<div class="tw-bg-white tw-border tw-border-gray-100 tw-rounded-xl tw-shadow-lg tw-p-5 tw-my-10">
 		<div>
-			<h4 class="tw-text-xl tw-pb-[8px] tw-font-semibold tw-text-[#F9993C]">{{ __('plugins/voucher::voucher.public.faq') }}</h4>
+			<h4 class="tw-text-xl tw-pb-[8px] tw-font-semibold tw-text-black">{{ __('plugins/voucher::voucher.public.faq') }}</h4>
 		</div>
 		<div class="tw-mx-auto tw-w-full">
 			<div>

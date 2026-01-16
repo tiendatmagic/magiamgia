@@ -44,7 +44,7 @@
 @endphp
 @if(!$isExpired)
 <div class="coupon-card tw-flex tw-bg-white tw-rounded-lg tw-shadow-md tw-overflow-visible tw-border tw-h-full tw-min-h-[140px] tw-border-gray-100 tw-relative tw-cursor-pointer tw-z-10">
-    <div class="coupon-left tw-w-2/5 xl:tw-w-1/3 tw-bg-[#f97e2b] tw-flex tw-flex-col tw-items-center tw-justify-center tw-text-white tw-p-2 tw-text-center tw-border-r-2 tw-border-dashed tw-border-white tw-rounded-s-lg tw-relative after:tw-absolute after:tw-w-10 after:tw-h-10 after:tw-rounded-full after:tw-bg-[#fbfbfb] after:tw-top-1/2 after:-tw-translate-y-1/2 after:-tw-left-5">
+    <div class="coupon-left tw-w-2/5 xl:tw-w-1/3 tw-bg-[#f97e2b] tw-flex tw-flex-col tw-items-center tw-justify-center tw-text-white tw-p-2 tw-text-center tw-border-r-2 tw-border-dashed tw-border-white tw-rounded-s-lg tw-relative after:tw-absolute after:tw-w-10 after:tw-h-10 after:tw-rounded-full after:tw-bg-white after:tw-top-1/2 after:-tw-translate-y-1/2 after:-tw-left-5">
         <div class="tw-flex tw-flex-col tw-justify-between tw-h-full">
             <div>
                 <div class="tw-w-10 tw-h-10 tw-rounded-full tw-flex tw-items-center tw-justify-center tw-mb-1 tw-mx-auto">
@@ -89,7 +89,7 @@
             </div>
         </div>
     </div>
-    <div class="tw-w-3/5 xl:tw-w-2/3 tw-rounded-e-lg tw-p-2 tw-flex tw-flex-col tw-justify-between tw-bg-white tw-relative after:tw-absolute after:tw-w-10 after:tw-h-10 after:tw-rounded-full after:tw-bg-[#fbfbfb] after:-tw-translate-y-1/2 after:tw-top-1/2 after:-tw-right-5">
+    <div class="tw-w-3/5 xl:tw-w-2/3 tw-rounded-e-lg tw-p-2 tw-flex tw-flex-col tw-justify-between tw-bg-white tw-relative after:tw-absolute after:tw-w-10 after:tw-h-10 after:tw-rounded-full after:tw-bg-white after:-tw-translate-y-1/2 after:tw-top-1/2 after:-tw-right-5">
         <div class="tw-flex tw-flex-col tw-justify-between tw-h-full">
             <div>
                 <div class="tw-flex tw-items-center tw-text-xs tw-leading-5">
