@@ -92,8 +92,8 @@
 					@include('plugins/voucher::public.partials.voucher-items', ['vouchers' => $hotVouchers, 'provider' => $provider])
 				</div>
 
-				<div class="tw-text-center tw-mt-4">
-					<div id="loadMoreHot" class="see-more tw-rounded-2xl tw-flex tw-flex-col tw-items-center tw-justify-center tw-cursor-pointer" style="{{ $hotVouchers->count() < 9 ? 'display:none;' : '' }}">
+				<div class="">
+					<div id="loadMoreHot" class="see-more tw-rounded-2xl tw-flex tw-flex-col tw-items-center tw-justify-center tw-cursor-pointer tw-text-center tw-mt-4" style="{{ $hotVouchers->count() < 9 ? 'display:none;' : '' }}">
 						<svg class="arrows" width="60" height="72" viewBox="0 0 60 72" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M0 0 L30 32 L60 0" class="a1" stroke="currentColor" stroke-width="2" fill="none"></path>
 							<path d="M0 20 L30 52 L60 20" class="a2" stroke="currentColor" stroke-width="2" fill="none"></path>
@@ -168,8 +168,8 @@
 				</div>
 			</div>
 
-			<div class="tw-text-center tw-mt-4">
-				<div id="loadMore" class="see-more tw-rounded-2xl tw-flex tw-flex-col tw-items-center tw-justify-center tw-cursor-pointer">
+			<div class="">
+				<div id="loadMore" class="see-more tw-rounded-2xl tw-flex tw-flex-col tw-items-center tw-justify-center tw-cursor-pointer tw-text-center tw-mt-4">
 					<svg class="arrows" width="60" height="72" viewBox="0 0 60 72" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M0 0 L30 32 L60 0" class="a1" stroke="currentColor" stroke-width="2" fill="none"></path>
 						<path d="M0 20 L30 52 L60 20" class="a2" stroke="currentColor" stroke-width="2" fill="none"></path>
