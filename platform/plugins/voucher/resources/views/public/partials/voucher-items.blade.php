@@ -42,6 +42,7 @@
     $noteShort = $voucher->note ? Str::limit(strip_tags($voucher->note), 50) : '';
     $noteFull = $voucher->note ? strip_tags($voucher->note) : '';
 @endphp
+@if(!$isExpired)
 <div class="coupon-card tw-flex tw-bg-white tw-rounded-lg tw-shadow-md tw-overflow-visible tw-border tw-h-full tw-min-h-[140px] tw-border-gray-100 tw-relative tw-cursor-pointer tw-z-10">
     <div class="coupon-left tw-w-2/5 xl:tw-w-1/3 tw-bg-[#f97e2b] tw-flex tw-flex-col tw-items-center tw-justify-center tw-text-white tw-p-2 tw-text-center tw-border-r-2 tw-border-dashed tw-border-white tw-rounded-s-lg tw-relative after:tw-absolute after:tw-w-10 after:tw-h-10 after:tw-rounded-full after:tw-bg-[#fbfbfb] after:tw-top-1/2 after:-tw-translate-y-1/2 after:-tw-left-5">
         <div class="tw-flex tw-flex-col tw-justify-between tw-h-full">
@@ -56,7 +57,7 @@
 
             <div>
                 <div class="tw-text-xs tw-opacity-90 tw-mt-1.5">
-                    @if($isExpired)
+                    @if($expiredAt === null)
                         <span class="tw-bg-gray-400 tw-text-white tw-font-semibold tw-px-2 tw-py-1 tw-rounded-lg tw-text-xs tw-inline-flex tw-items-center tw-gap-1 tw-border tw-border-gray-200">
                             <i class="fa fa-exclamation-circle"></i>
                             {{ __('plugins/voucher::voucher.public.no_expiry') }}
@@ -155,5 +156,6 @@
         </div>
     </div>
 </div>
+@endif
 @endforeach
 @endif

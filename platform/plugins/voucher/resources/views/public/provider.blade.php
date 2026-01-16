@@ -84,8 +84,26 @@
 			</div>
 
 			<div class="tw-mx-auto tw-w-full">
-				<div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-3">
+				<div id="hot-voucher-list" class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-3" data-offset="{{ $hotVouchers->count() }}">
 					@include('plugins/voucher::public.partials.voucher-items', ['vouchers' => $hotVouchers, 'provider' => $provider])
+				</div>
+
+				<div class="tw-text-center tw-mt-4">
+					<div id="loadMoreHot" class="see-more tw-rounded-2xl tw-flex tw-flex-col tw-items-center tw-justify-center tw-cursor-pointer" style="{{ $hotVouchers->count() < 9 ? 'display:none;' : '' }}">
+						<svg class="arrows" width="60" height="72" viewBox="0 0 60 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M0 0 L30 32 L60 0" class="a1" stroke="currentColor" stroke-width="2" fill="none"></path>
+							<path d="M0 20 L30 52 L60 20" class="a2" stroke="currentColor" stroke-width="2" fill="none"></path>
+							<path d="M0 40 L30 72 L60 40" class="a3" stroke="currentColor" stroke-width="2" fill="none"></path>
+						</svg>
+						<p class="tw-text-[14px] tw-leading-[21px] js-loadmore-label">{{ __('plugins/voucher::voucher.public.load_more_voucher') }}</p>
+						<div class="tw-flex tw-items-center tw-gap-2 js-loadmore-loading" style="display:none;">
+							<svg class="tw-animate-spin tw-h-5 tw-w-5 tw-text-[#f97e2b]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+								<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+								<path fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+							</svg>
+							<span class="tw-text-[14px] tw-leading-[21px]">{{ __('plugins/voucher::voucher.public.loading') }}</span>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -211,6 +229,69 @@
 
 <script>
 	(function () {
+		// HOT Vouchers Load More
+		const hotList = document.getElementById('hot-voucher-list');
+		const loadMoreHotEl = document.getElementById('loadMoreHot');
+
+		if (hotList && loadMoreHotEl) {
+			const hotRoute = '{{ route('public.ajax.voucher.load-more-hot') }}';
+			const provider = '{{ optional($provider->slugable)->key }}';
+			let hotOffset = parseInt(hotList.getAttribute('data-offset') || '9', 10);
+			let hotLoading = false;
+
+			const loadMoreHotLoading = loadMoreHotEl.querySelector('.js-loadmore-loading');
+			const loadMoreHotLabel = loadMoreHotEl.querySelector('.js-loadmore-label');
+
+			const setHotLoading = function(isLoading) {
+				hotLoading = isLoading;
+				loadMoreHotEl.classList.toggle('tw-cursor-not-allowed', isLoading);
+				loadMoreHotEl.classList.toggle('tw-pointer-events-none', isLoading);
+				if (loadMoreHotLoading) loadMoreHotLoading.style.display = isLoading ? 'flex' : 'none';
+				if (loadMoreHotLabel) loadMoreHotLabel.style.display = isLoading ? 'none' : 'block';
+			};
+
+			const fetchHotVouchers = async function() {
+				if (hotLoading) return;
+				setHotLoading(true);
+
+				try {
+					const url = new URL(hotRoute, window.location.origin);
+					url.searchParams.set('provider', provider);
+					url.searchParams.set('offset', String(hotOffset));
+					url.searchParams.set('limit', '9');
+
+					const res = await fetch(url.toString(), { headers: { 'Accept': 'application/json' } });
+					const data = await res.json();
+					const payload = data.data || data;
+
+					if (payload && typeof payload.html === 'string') {
+						const tmp = document.createElement('div');
+						tmp.innerHTML = payload.html;
+						while (tmp.firstChild) {
+							hotList.appendChild(tmp.firstChild);
+						}
+
+						const received = payload.count || 0;
+						hotOffset += received;
+						hotList.setAttribute('data-offset', String(hotOffset));
+
+						if (received < 9) {
+							loadMoreHotEl.style.display = 'none';
+						}
+					}
+				} catch (e) {
+					// ignore
+				} finally {
+					setHotLoading(false);
+				}
+			};
+
+			loadMoreHotEl.addEventListener('click', function() {
+				fetchHotVouchers();
+			});
+		}
+
+		// Category Vouchers Load More
 		const list = document.getElementById('voucher-list');
 		const loadingEl = document.getElementById('voucher-loading');
 		const loadMoreEl = document.getElementById('loadMore');

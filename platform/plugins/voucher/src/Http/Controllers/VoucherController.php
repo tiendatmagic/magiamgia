@@ -127,9 +127,54 @@ class VoucherController extends BaseController
 
   public function loadMoreHot(Request $request)
   {
+    $providerSlug = (string) $request->query('provider');
     $offset = max(0, (int) $request->query('offset', 0));
     $limit = max(1, (int) $request->query('limit', 9));
 
+    // If provider slug is provided, load HOT vouchers for that provider
+    if ($providerSlug) {
+      $provider = Provider::query()
+        ->whereHas('slugable', function ($query) use ($providerSlug) {
+          $query->where('key', $providerSlug);
+        })
+        ->where('status', BaseStatusEnum::PUBLISHED)
+        ->first();
+
+      if (! $provider) {
+        return $this->httpResponse()->setError()->setMessage(__('Provider not found'));
+      }
+
+      $today = Carbon::now()->startOfDay();
+
+      $items = Voucher::query()
+        ->where('status', BaseStatusEnum::PUBLISHED)
+        ->where('provider_id', $provider->getKey())
+        ->where('is_hot', true)
+        ->where(function ($query) use ($today) {
+          $query
+            ->whereNull('expired_at')
+            ->orWhereDate('expired_at', '>=', $today);
+        })
+        ->orderByRaw('CASE WHEN expired_at IS NULL THEN 1 ELSE 0 END')
+        ->orderBy('expired_at')
+        ->orderByDesc('created_at')
+        ->skip($offset)
+        ->take($limit)
+        ->get();
+
+      $html = view('plugins/voucher::public.partials.voucher-items', [
+        'vouchers' => $items,
+        'provider' => $provider,
+      ])->render();
+
+      return $this->httpResponse()->setData([
+        'html' => $html,
+        'count' => $items->count(),
+        'nextOffset' => $offset + $items->count(),
+      ]);
+    }
+
+    // Otherwise, load HOT vouchers for homepage (show_homepage_hot)
     $today = Carbon::now()->startOfDay();
 
     $items = Voucher::query()
