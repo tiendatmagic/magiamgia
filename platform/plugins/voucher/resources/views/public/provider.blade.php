@@ -100,12 +100,15 @@
 							<path d="M0 40 L30 72 L60 40" class="a3" stroke="currentColor" stroke-width="2" fill="none"></path>
 						</svg>
 						<p class="tw-text-[14px] tw-leading-[21px] js-loadmore-label">{{ __('plugins/voucher::voucher.public.load_more_voucher') }}</p>
-						<div class="tw-flex tw-items-center tw-gap-2 js-loadmore-loading" style="display:none;">
-							<svg class="tw-animate-spin tw-h-5 tw-w-5 tw-text-[#f97e2b]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-								<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-								<path fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-							</svg>
-							<span class="tw-text-[14px] tw-leading-[21px]">{{ __('plugins/voucher::voucher.public.loading') }}</span>
+						<div class="tw-flex tw-items-center tw-py-10 tw-gap-2 js-loadmore-loading" style="display:none;">
+							<div>
+								<svg class="tw-animate-spin tw-h-5 tw-w-5 tw-text-[#f97e2b]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+									<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+									<path fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+								</svg>
+								<span class="tw-text-[14px] tw-leading-[21px]">{{ __('plugins/voucher::voucher.public.loading') }}
+								</span>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -118,25 +121,45 @@
 			<h4 class="tw-text-xl tw-pb-[8px] tw-font-semibold tw-text-[#464646]">{{ __('plugins/voucher::voucher.public.categories') }}</h4>
 		</div>
 		<div class="tw-mx-auto tw-w-full">
-			<div class="tw-flex tw-gap-2 tw-overflow-x-auto tw-mb-4 tw-pb-2 tw-text-xs">
-				<button data-voucher-category="" class="tw-flex tw-items-center tw-gap-1 tw-border-2 tw-bg-[#f97e2b] tw-text-white tw-border-[#f97e2b] tw-px-3 tw-py-1.5 tw-rounded-full tw-whitespace-nowrap tw-text-base">
-					{{ __('plugins/voucher::voucher.public.all') }}
+			<div class="tw-relative tw-mb-4">
+				<button id="categoryPrevBtn" class="tw-absolute tw-left-0 tw-top-1/2 -tw-translate-y-1/2 tw-z-10 tw-bg-white tw-border-2 tw-border-gray-200 tw-rounded-full tw-w-8 tw-h-8 tw-flex tw-items-center tw-justify-center tw-shadow-md hover:tw-bg-gray-50 tw-transition-colors" style="margin-left: -16px;">
+					<svg class="tw-w-5 tw-h-5 tw-text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+					</svg>
 				</button>
-				@foreach($categories as $category)
-					<button data-voucher-category="{{ $category }}" class="tw-flex tw-items-center tw-gap-1 tw-border-2 tw-bg-white tw-text-gray-700 tw-border-gray-200 tw-px-3 tw-py-1.5 tw-rounded-full tw-whitespace-nowrap tw-text-base">
-						{{ $category }}
-					</button>
-				@endforeach
+				<button id="categoryNextBtn" class="tw-absolute tw-right-0 tw-top-1/2 -tw-translate-y-1/2 tw-z-10 tw-bg-white tw-border-2 tw-border-gray-200 tw-rounded-full tw-w-8 tw-h-8 tw-flex tw-items-center tw-justify-center tw-shadow-md hover:tw-bg-gray-50 tw-transition-colors" style="margin-right: -16px;">
+					<svg class="tw-w-5 tw-h-5 tw-text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+					</svg>
+				</button>
+				<div class="category-swiper-container tw-overflow-hidden" style="padding: 0 20px;">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide" style="width: auto;">
+							<button data-voucher-category="" class="tw-flex tw-items-center tw-gap-1 tw-border-2 tw-bg-[#f97e2b] tw-text-white tw-border-[#f97e2b] tw-px-3 tw-py-1.5 tw-rounded-full tw-whitespace-nowrap tw-text-base">
+								{{ __('plugins/voucher::voucher.public.all') }}
+							</button>
+						</div>
+						@foreach($categories as $category)
+							<div class="swiper-slide" style="width: auto;">
+								<button data-voucher-category="{{ $category }}" class="tw-flex tw-items-center tw-gap-1 tw-border-2 tw-bg-white tw-text-gray-700 tw-border-gray-200 tw-px-3 tw-py-1.5 tw-rounded-full tw-whitespace-nowrap tw-text-base">
+									{{ $category }}
+								</button>
+							</div>
+						@endforeach
+					</div>
+				</div>
 			</div>
 
 			<div class="tw-relative">
-				<div id="voucher-loading" class="tw-absolute tw-inset-0 tw-bg-white/70 tw-backdrop-blur-[1px] tw-z-10 tw-rounded-lg tw-items-center tw-justify-center" style="display:none;">
-					<div class="tw-flex tw-items-center tw-gap-3 tw-text-gray-700 tw-font-medium">
-						<svg class="tw-animate-spin tw-h-5 tw-w-5 tw-text-[#f97e2b]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-							<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-							<path fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-						</svg>
-						<span>{{ __('plugins/voucher::voucher.public.loading') }}</span>
+				<div id="voucher-loading" class="tw-relative tw-inset-0 tw-bg-white/70 tw-backdrop-blur-[1px] tw-z-10 tw-rounded-lg tw-items-center tw-justify-center" style="display:none;">
+					<div class="tw-flex tw-items-center tw-py-10 tw-gap-2 tw-text-gray-700 tw-font-medium">
+						<div>
+							<svg class="tw-animate-spin tw-h-5 tw-w-5 tw-text-[#f97e2b]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+								<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+								<path fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+							</svg>
+							<span>{{ __('plugins/voucher::voucher.public.loading') }}</span>
+						</div>
 					</div>
 				</div>
 
@@ -153,12 +176,14 @@
 						<path d="M0 40 L30 72 L60 40" class="a3" stroke="currentColor" stroke-width="2" fill="none"></path>
 					</svg>
 					<p class="tw-text-[14px] tw-leading-[21px] js-loadmore-label">{{ __('plugins/voucher::voucher.public.load_more_voucher') }}</p>
-					<div class="tw-flex tw-items-center tw-gap-2 js-loadmore-loading" style="display:none;">
-						<svg class="tw-animate-spin tw-h-5 tw-w-5 tw-text-[#f97e2b]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-							<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-							<path fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-						</svg>
-						<span class="tw-text-[14px] tw-leading-[21px]">{{ __('plugins/voucher::voucher.public.loading') }}</span>
+					<div class="tw-flex tw-items-center tw-py-10 tw-gap-2 js-loadmore-loading" style="display:none;">
+						<div>
+							<svg class="tw-animate-spin tw-h-5 tw-w-5 tw-text-[#f97e2b]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+								<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+								<path fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+							</svg>
+							<span class="tw-text-[14px] tw-leading-[21px]">{{ __('plugins/voucher::voucher.public.loading') }}</span>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -233,6 +258,59 @@
 
 <script>
 	(function () {
+		// Initialize Category Swiper
+		const initCategorySwiper = function() {
+			if (typeof Swiper === 'undefined') {
+				console.warn('Swiper is not loaded yet');
+				return;
+			}
+
+			const categorySwiper = new Swiper('.category-swiper-container', {
+				slidesPerView: 'auto',
+				spaceBetween: 8,
+				freeMode: true,
+				navigation: {
+					nextEl: '#categoryNextBtn',
+					prevEl: '#categoryPrevBtn',
+				},
+				on: {
+					init: function() {
+						// Ensure buttons are clickable
+						const buttons = document.querySelectorAll('.category-swiper-container [data-voucher-category]');
+						buttons.forEach(function(btn) {
+							btn.style.pointerEvents = 'auto';
+						});
+					},
+					slideChange: function() {
+						// Keep buttons clickable during slide changes
+						const buttons = document.querySelectorAll('.category-swiper-container [data-voucher-category]');
+						buttons.forEach(function(btn) {
+							btn.style.pointerEvents = 'auto';
+						});
+					}
+				}
+			});
+		};
+
+		// Wait for Swiper to be available
+		if (typeof Swiper !== 'undefined') {
+			initCategorySwiper();
+		} else {
+			// Retry mechanism to wait for Swiper
+			let retryCount = 0;
+			const maxRetries = 20;
+			const retryInterval = setInterval(function() {
+				retryCount++;
+				if (typeof Swiper !== 'undefined') {
+					clearInterval(retryInterval);
+					initCategorySwiper();
+				} else if (retryCount >= maxRetries) {
+					clearInterval(retryInterval);
+					console.error('Swiper failed to load after multiple retries');
+				}
+			}, 100);
+		}
+
 		// HOT Vouchers Load More
 		const hotList = document.getElementById('hot-voucher-list');
 		const loadMoreHotEl = document.getElementById('loadMoreHot');
