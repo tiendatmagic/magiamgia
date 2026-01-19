@@ -43,60 +43,9 @@ $footerAddressHcmLabel = trim((string) theme_option('footer_address_hcm_label'))
       <div class="col-md-4 col-lg-3 tw-mb-4">
         <h3 class="tw-font-bold tw-text-gray-900 tw-text-base tw-mb-4">{{ $footerSupportTitle }}</h3>
         <div>
-          <div class="tw-mb-4">
-            <p class="tw-font-bold tw-flex tw-items-center tw-mb-2.5">
-              <i class="fa fa-phone-square tw-rotate-90 tw-text-[#da251c]"></i>
-              <span class="tw-mr-2 tw-text-sm tw-ml-1 tw-font-bold">{{ $footerSupportRegionNorthLabel }}</span>
-            </p>
-            @if ($contact_phone_north_sales)
-            <p class="tw-mb-2.5 tw-font-medium">{{ $footerSupportLabelSales }}: <a
-                href="tel:{{ preg_replace('/\D/', '', $contact_phone_north_sales) }}"
-                class="tw-text-blue-600 tw-font-bold">{{ $contact_phone_north_sales }}</a></p>
-            @endif
-            @if ($contact_phone_north_warranty)
-            <p class="tw-mb-2.5 tw-font-medium">{{ $footerSupportLabelWarranty }}: <a
-                href="tel:{{ preg_replace('/\D/', '', $contact_phone_north_warranty) }}"
-                class="tw-text-blue-600 tw-font-bold">{{ $contact_phone_north_warranty }}</a></p>
-            @endif
-          </div>
-
-          <div class="tw-mb-4">
-            <p class="tw-font-bold tw-flex tw-items-center tw-mb-2.5">
-              <i class="fa fa-phone-square tw-rotate-90 tw-text-[#da251c]"></i>
-              <span class="tw-mr-2 tw-text-sm tw-ml-1 tw-font-medium">{{ $footerSupportRegionSouthLabel }}</span>
-            </p>
-            @if ($contact_phone_south_sales)
-            <p class="tw-mb-2.5 tw-font-medium">{{ $footerSupportLabelSales }}: <a
-                href="tel:{{ preg_replace('/\D/', '', $contact_phone_south_sales) }}"
-                class="tw-text-blue-600 tw-font-bold">{{ $contact_phone_south_sales }}</a></p>
-            @endif
-            @if ($contact_phone_south_warranty)
-            <p class="tw-mb-2.5 tw-font-medium">{{ $footerSupportLabelWarranty }}: <a
-                href="tel:{{ preg_replace('/\D/', '', $contact_phone_south_warranty) }}"
-                class="tw-text-blue-600 tw-font-bold">{{ $contact_phone_south_warranty }}</a></p>
-            @endif
-          </div>
-
-          <div class="tw-mb-4">
-            <div class="tw-font-medium tw-flex tw-items-center tw-mb-2">
-              <div class="tw-inline-block">
-                <svg class="tw-text-[#da251c] tw-fill-[#da251c] tw-w-3.5 tw-h-3.5 tw-rotate-[230deg]"
-                  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                  <path
-                    d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm61.8-104.4l-84.9-61.7c-3.1-2.3-4.9-5.9-4.9-9.7V116c0-6.6 5.4-12 12-12h32c6.6 0 12 5.4 12 12v141.7l66.8 48.6c5.4 3.9 6.5 11.4 2.6 16.8L334.6 349c-3.9 5.3-11.4 6.5-16.8 2.6z" />
-                </svg>
-              </div>
-              <span class="tw-mr-2 tw-text-sm tw-ml-1 tw-font-bold">
-                {{ $footerSupportTimeLabel }}
-              </span>
-            </div>
-            @if ($working_hours_val)
-            <p class="tw-mb-2.5">{{ $working_hours_val }}</p>
-            @endif
-            @if ($working_hours_sat_val)
-            <p class="tw-mb-2.5">{{ $working_hours_sat_val }}</p>
-            @endif
-          </div>
+          @if (theme_option('footer_info_html'))
+            {!! theme_option('footer_info_html') !!}
+          @endif
           @php
           $zaloIconUrl = $footerZaloIcon ? RvMedia::getImageUrl($footerZaloIcon) :
           'https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg';

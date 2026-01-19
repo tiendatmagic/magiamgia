@@ -1,8 +1,17 @@
 @extends(BaseHelper::getAdminMasterLayoutTemplate())
 
+@php
+    Assets::addScriptsDirectly(config('core.base.general.editor.ckeditor.js'))
+        ->addScriptsDirectly('vendor/core/core/base/js/editor.js');
+
+    if (BaseHelper::getRichEditor() === 'ckeditor' && App::getLocale() !== 'en') {
+        Assets::addScriptsDirectly(sprintf('https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/translations/%s.js', App::getLocale()));
+    }
+@endphp
+
 @section('content')
     <x-core::card>
-        <x-core::form :url="route('theme.footer.update')" method="post">
+        <x-core::form :url="route('theme.footer.update')" method="post" class="theme-option">
             <x-core::card.header>
                 <x-core::card.title>
                     {{ __('Chân trang') }}
@@ -83,71 +92,16 @@
                             :value="theme_option('footer_support_title')"
                         />
 
-                        <x-core::form.text-input
-                            name="footer_support_region_north_label"
-                            :label="__('Tiêu đề 1 (VD: Phía Bắc & Trung)')"
-                            :value="theme_option('footer_support_region_north_label')"
+                        <x-core::form.textarea
+                            name="footer_info_html"
+                            :label="__('HTML nội dung khối hỗ trợ')"
+                            :value="theme_option('footer_info_html')"
+                            rows="8"
+                            class="editor-ckeditor wysiwyg-editor"
+                            :helper-text="__('Nhập HTML cho toàn bộ thẻ .footer-info. Nếu để trống, hệ thống sẽ dùng từng ô nhập riêng lẻ.')"
                         />
 
-                        <x-core::form.text-input
-                            name="contact_phone_north_sales"
-                            :label="__('Số mua hàng (Bắc & Trung)')"
-                            :value="theme_option('contact_phone_north_sales')"
-                        />
-
-                        <x-core::form.text-input
-                            name="contact_phone_north_warranty"
-                            :label="__('Số bảo hành (Bắc & Trung)')"
-                            :value="theme_option('contact_phone_north_warranty')"
-                        />
-
-                        <x-core::form.text-input
-                            name="footer_support_region_south_label"
-                            :label="__('Tiêu đề 2 (VD: Phía Nam)')"
-                            :value="theme_option('footer_support_region_south_label')"
-                        />
-
-                        <x-core::form.text-input
-                            name="contact_phone_south_sales"
-                            :label="__('Số mua hàng (Phía Nam)')"
-                            :value="theme_option('contact_phone_south_sales')"
-                        />
-
-                        <x-core::form.text-input
-                            name="contact_phone_south_warranty"
-                            :label="__('Số bảo hành (Phía Nam)')"
-                            :value="theme_option('contact_phone_south_warranty')"
-                        />
-
-                        <x-core::form.text-input
-                            name="footer_support_label_sales"
-                            :label="__('Label dòng 1 (VD: Mua hàng)')"
-                            :value="theme_option('footer_support_label_sales')"
-                        />
-
-                        <x-core::form.text-input
-                            name="footer_support_label_warranty"
-                            :label="__('Label dòng 2 (VD: Bảo hành)')"
-                            :value="theme_option('footer_support_label_warranty')"
-                        />
-
-                        <x-core::form.text-input
-                            name="footer_support_time_label"
-                            :label="__('Tiêu đề thời gian (VD: Thời gian)')"
-                            :value="theme_option('footer_support_time_label')"
-                        />
-
-                        <x-core::form.text-input
-                            name="working_hours"
-                            :label="__('Giờ làm việc (dòng 1)')"
-                            :value="theme_option('working_hours')"
-                        />
-
-                        <x-core::form.text-input
-                            name="working_hours_sat"
-                            :label="__('Giờ làm việc (dòng 2)')"
-                            :value="theme_option('working_hours_sat')"
-                        />
+                        <!-- Support fields replaced by `footer_info_html` editor -->
 
                         <h5 class="tw-font-medium mt-4 mb-3">{{ __('Kết nối với chúng tôi') }}</h5>
 

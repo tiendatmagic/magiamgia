@@ -42,16 +42,8 @@ class FooterSettingController extends BaseController
         $additional = [
             'site_title',
             'footer_support_title',
-            'footer_support_region_north_label',
-            'contact_phone_north_sales',
-            'contact_phone_north_warranty',
-            'footer_support_region_south_label',
-            'contact_phone_south_sales',
-            'contact_phone_south_warranty',
-            'footer_support_label_sales',
-            'footer_support_label_warranty',
-            'footer_support_time_label',
-            'working_hours_sat',
+            // `footer_info_html` replaces the individual support fields (phones/labels/working hours)
+            'footer_info_html',
             'footer_zalo_label',
             'zalo_link',
             'footer_zalo_icon',
