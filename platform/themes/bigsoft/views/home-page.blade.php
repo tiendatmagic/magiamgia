@@ -2,7 +2,7 @@
    <div class="row">
      <div class="col-lg-12">
 
-       <h3 class="tw-text-2xl tw-font-bold tw-mb-3 tw-text-[#f97e2b]">
+       <h3 class="tw-text-2xl tw-font-bold tw-mb-3">
          {{ theme_option('home_title', 'Nhà cung cấp nổi bật') }}
        </h3>
 
@@ -82,7 +82,7 @@
          <div class="tw-bg-white tw-border tw-border-gray-100 tw-rounded-xl tw-shadow-lg tw-p-5 tw-my-10">
           @if(isset($hotVouchers) && $hotVouchers->count() > 0)
             <div class="tw-mb-3">
-              <h4 class="tw-text-xl tw-font-semibold tw-text-[#F9993C]">
+              <h4 class="tw-text-xl tw-font-semibold">
                   {{ theme_option('hot_vouchers_title', 'Mã giảm giá hot') }}
               </h4>
             </div>
@@ -141,8 +141,6 @@
              </div>
            </div>
          </div>
-
-
 
          <script>
            (function() {
@@ -261,7 +259,7 @@
          @if(! empty($homeFaqs))
          <div class="tw-bg-[#fbfbfb] tw-border tw-border-gray-100 tw-rounded-xl tw-shadow-lg tw-p-5 tw-mt-10">
            <div class="tw-mb-3">
-             <h4 class="tw-text-xl tw-font-semibold tw-text-[#F9993C]">
+             <h4 class="tw-text-xl tw-font-semibold">
                {{ theme_option('home_faqs_title', 'Câu hỏi thường gặp') }}
              </h4>
            </div>
