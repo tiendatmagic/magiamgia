@@ -12,7 +12,7 @@
        </div>
        @endif
 
-       <div class="tw-grid tw-grid-cols-2 sm:tw-grid-cols-3 md:tw-grid-cols-4 lg:tw-grid-cols-5 tw-gap-5 tw-mt-10">
+       <div class="tw-grid tw-grid-cols-2 sm:tw-grid-cols-3 md:tw-grid-cols-4 lg:tw-grid-cols-5 tw-gap-5 tw-mt-3">
          @if(isset($providers) && $providers->count() > 0)
          @foreach($providers as $provider)
          <div
@@ -78,42 +78,67 @@
 
        <div>
          <!-- mã giảm giá hot -->
-         @if(isset($hotVouchers) && $hotVouchers->count() > 0)
-         <h3 class="tw-text-2xl tw-font-bold tw-mb-3 tw-text-[#f97e2b] tw-mt-10">
-           {{ theme_option('hot_vouchers_title', 'Mã giảm giá hot') }}
-         </h3>
 
-         @if(theme_option('hot_vouchers_description'))
-         <div class="tw-text-gray-700">
-           {!! theme_option('hot_vouchers_description') !!}
-         </div>
-         @endif
+         <div class="tw-bg-white tw-border tw-border-gray-100 tw-rounded-xl tw-shadow-lg tw-p-5 tw-my-10">
+          @if(isset($hotVouchers) && $hotVouchers->count() > 0)
+            <div class="tw-mb-3">
+              <h4 class="tw-text-xl tw-font-semibold tw-text-[#F9993C]">
+                  {{ theme_option('hot_vouchers_title', 'Mã giảm giá hot') }}
+              </h4>
+            </div>
 
-         <div class="tw-relative tw-mt-10">
-           <div id="hot-voucher-loading"
-             class="tw-absolute tw-inset-0 tw-bg-white/70 tw-backdrop-blur-[1px] tw-z-10 tw-rounded-lg tw-items-center tw-justify-center"
-             style="display:none;">
-             <div class="tw-flex tw-items-center tw-gap-3 tw-text-gray-700 tw-font-medium">
-               <svg class="tw-animate-spin tw-h-5 tw-w-5 tw-text-[#f97e2b]" xmlns="http://www.w3.org/2000/svg"
-                 fill="none" viewBox="0 0 24 24">
-                 <circle class="tw-opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                 <path class="tw-opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-               </svg>
-               <span>{{ __('plugins/voucher::voucher.public.loading') }}</span>
+            @if(theme_option('hot_vouchers_description'))
+              <div class="tw-text-gray-700">
+                {!! theme_option('hot_vouchers_description') !!}
+              </div>
+          @endif
+          <div class="tw-mx-auto tw-w-full tw-mt-3">
+             <div class="tw-relative">
+               <div id="hot-voucher-loading"
+                 class="tw-absolute tw-inset-0 tw-bg-white/70 tw-backdrop-blur-[1px] tw-z-10 tw-rounded-lg tw-items-center tw-justify-center"
+                 style="display:none;">
+                 <div class="tw-flex tw-items-center tw-gap-3 tw-text-gray-700 tw-font-medium">
+                   <svg class="tw-animate-spin tw-h-5 tw-w-5 tw-text-[#f97e2b]" xmlns="http://www.w3.org/2000/svg"
+                     fill="none" viewBox="0 0 24 24">
+                     <circle class="tw-opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                     <path class="tw-opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                   </svg>
+                   <span>{{ __('plugins/voucher::voucher.public.loading') }}</span>
+                 </div>
+               </div>
+
+               <div id="hot-voucher-list"
+                 class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-3 tw-mb-10"
+                 data-offset="{{ $hotVouchers->count() }}">
+                 @foreach($hotVouchers as $voucher)
+                 <div class="tw-h-full">
+                   @include('plugins/voucher::public.partials.voucher-items', [
+                   'vouchers' => collect([$voucher]),
+                   'provider' => $voucher->provider,
+                   ])
+                 </div>
+                 @endforeach
+               </div>
              </div>
-           </div>
 
-           <div id="hot-voucher-list"
-             class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-3 tw-mb-10"
-             data-offset="{{ $hotVouchers->count() }}">
-             @foreach($hotVouchers as $voucher)
-             <div class="tw-h-full">
-               @include('plugins/voucher::public.partials.voucher-items', [
-               'vouchers' => collect([$voucher]),
-               'provider' => $voucher->provider,
-               ])
+             <div class="tw-text-center tw-mt-4">
+               <div id="loadMoreHot"
+                 class="see-more tw-rounded-2xl tw-flex tw-flex-col tw-items-center tw-justify-center tw-cursor-pointer"
+                 style="{{ $hotVouchers->count() < 9 ? 'display:none;' : '' }}">
+                 <svg class="arrows" width="60" height="72" viewBox="0 0 60 72" fill="none"
+                   xmlns="http://www.w3.org/2000/svg">
+                   <path d="M0 0 L30 32 L60 0" class="a1" stroke="currentColor" stroke-width="2" fill="none"></path>
+                   <path d="M0 20 L30 52 L60 20" class="a2" stroke="currentColor" stroke-width="2" fill="none"></path>
+                   <path d="M0 40 L30 72 L60 40" class="a3" stroke="currentColor" stroke-width="2" fill="none"></path>
+                 </svg>
+                 <p class="tw-text-[14px] tw-leading-[21px] js-loadmore-label">
+                   {{ __('plugins/voucher::voucher.public.load_more_voucher') }}
+                 </p>
+                 <p class="tw-text-[14px] tw-leading-[21px] js-loadmore-loading" style="display:none;">
+                   {{ __('plugins/voucher::voucher.public.loading') }}
+                 </p>
+               </div>
              </div>
-             @endforeach
            </div>
          </div>
 
@@ -263,7 +288,7 @@
            </div>
            @endif
 
-           <div class="tw-mx-auto tw-w-full tw-mt-10">
+           <div class="tw-mx-auto tw-w-full tw-mt-3">
              <div class="accordion" id="accordionHomeFaq">
               <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 tw-gap-4">
                @foreach($homeFaqs as $item)
