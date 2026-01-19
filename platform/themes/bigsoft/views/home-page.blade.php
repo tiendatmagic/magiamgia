@@ -108,7 +108,7 @@
                </div>
 
                <div id="hot-voucher-list"
-                 class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-3 tw-mb-10"
+                 class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-3 tw-mb-0"
                  data-offset="{{ $hotVouchers->count() }}">
                  @foreach($hotVouchers as $voucher)
                  <div class="tw-h-full">
@@ -124,7 +124,7 @@
              <div class="tw-text-center tw-mt-4">
                <div id="loadMoreHot"
                  class="see-more tw-rounded-2xl tw-flex tw-flex-col tw-items-center tw-justify-center tw-cursor-pointer"
-                 style="{{ $hotVouchers->count() < 9 ? 'display:none;' : '' }}">
+                 style="{{ isset($hotVouchers) && $hotVouchers->count() < 9 ? 'display:none;' : '' }}">
                  <svg class="arrows" width="60" height="72" viewBox="0 0 60 72" fill="none"
                    xmlns="http://www.w3.org/2000/svg">
                    <path d="M0 0 L30 32 L60 0" class="a1" stroke="currentColor" stroke-width="2" fill="none"></path>
@@ -142,23 +142,7 @@
            </div>
          </div>
 
-         <div class="tw-text-center tw-mt-4">
-           <div id="loadMoreHot"
-             class="see-more tw-rounded-2xl tw-flex tw-flex-col tw-items-center tw-justify-center tw-cursor-pointer">
-             <svg class="arrows" width="60" height="72" viewBox="0 0 60 72" fill="none"
-               xmlns="http://www.w3.org/2000/svg">
-               <path d="M0 0 L30 32 L60 0" class="a1" stroke="currentColor" stroke-width="2" fill="none"></path>
-               <path d="M0 20 L30 52 L60 20" class="a2" stroke="currentColor" stroke-width="2" fill="none"></path>
-               <path d="M0 40 L30 72 L60 40" class="a3" stroke="currentColor" stroke-width="2" fill="none"></path>
-             </svg>
-             <p class="tw-text-[14px] tw-leading-[21px] js-loadmore-label">
-               {{ __('plugins/voucher::voucher.public.load_more_voucher') }}
-             </p>
-             <p class="tw-text-[14px] tw-leading-[21px] js-loadmore-loading" style="display:none;">
-               {{ __('plugins/voucher::voucher.public.loading') }}
-             </p>
-           </div>
-         </div>
+
 
          <script>
            (function() {
@@ -240,10 +224,10 @@
                fetchVouchers();
              });
 
-             // Hide load more button if initial count is less than 18
-             if (initialOffset < 18) {
-               loadMoreEl.style.display = 'none';
-             }
+            // Hide load more button if initial count is less than 9
+            if (initialOffset < 9) {
+              loadMoreEl.style.display = 'none';
+            }
 
              // Toggle coupon detail overlay
              document.addEventListener('click', function(e) {

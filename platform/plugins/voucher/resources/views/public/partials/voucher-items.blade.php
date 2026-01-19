@@ -22,8 +22,14 @@
     $now = Carbon::now('Asia/Ho_Chi_Minh');
     $expiredAt = $voucher->expired_at; // Already in GMT+7 from model accessor
 
+    // If expired time is exactly 00:00:00 treat it as end of that day (inclusive)
+    $expiredAtForCalc = $expiredAt ? (method_exists($expiredAt, 'copy') ? $expiredAt->copy() : clone $expiredAt) : null;
+    if ($expiredAtForCalc && $expiredAtForCalc->format('H:i:s') === '00:00:00') {
+        $expiredAtForCalc = $expiredAtForCalc->endOfDay();
+    }
+
     // Calculate remaining time in minutes
-    $minutesLeft = $expiredAt ? (int) $now->diffInMinutes($expiredAt, false) : null;
+    $minutesLeft = $expiredAtForCalc ? (int) $now->diffInMinutes($expiredAtForCalc, false) : null;
     $hoursLeft = $minutesLeft !== null ? (int) floor($minutesLeft / 60) : null;
     $daysLeft = $hoursLeft !== null ? (int) floor($hoursLeft / 24) : null;
 
