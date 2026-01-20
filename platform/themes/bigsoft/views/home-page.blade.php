@@ -79,7 +79,7 @@
        <div>
          <!-- mã giảm giá hot -->
 
-         <div class="tw-bg-white tw-border tw-border-gray-100 tw-rounded-xl tw-shadow-lg tw-p-5 tw-my-10">
+         <div class="tw-bg-gray-50 tw-border tw-border-gray-100 tw-rounded-xl tw-shadow-lg tw-p-5 tw-my-10">
           @if(isset($hotVouchers) && $hotVouchers->count() > 0)
             <div class="tw-mb-3">
               <h4 class="tw-text-xl tw-font-semibold">
@@ -257,7 +257,7 @@
          <!-- câu hỏi thường gặp accordion -->
          @php($homeFaqs = json_decode(theme_option('home_faqs', '[]'), true) ?: [])
          @if(! empty($homeFaqs))
-         <div class="tw-bg-[#fbfbfb] tw-border tw-border-gray-100 tw-rounded-xl tw-shadow-lg tw-p-5 tw-mt-10">
+         <div class="tw-mt-10">
            <div class="tw-mb-3">
              <h4 class="tw-text-xl tw-font-semibold">
                {{ theme_option('home_faqs_title', 'Câu hỏi thường gặp') }}

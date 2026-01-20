@@ -4048,7 +4048,7 @@ thead tr th {
     padding: 10px 20px;
     border-radius: 15px;
     justify-content: center;
-    background: rgba(245, 245, 245, 0.5411764706);
+    background: rgb(240, 240, 240);
     z-index: 9;
     gap: 2px;
 }

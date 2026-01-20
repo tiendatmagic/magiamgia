@@ -7,7 +7,7 @@
 	$providerAccordionsHeader = $providerAccordionsHeader ?? [];
 	$providerAccordionsFooter = $providerAccordionsFooter ?? [];
 
-	Theme::layout('default-no-sidebar');
+	Theme::layout('no-sidebar');
 @endphp
 
 <div class="container">
@@ -80,9 +80,13 @@
 	<div class="tw-my-10">
 		<div class="tw-border-t tw-border-gray-500 tw-w-1/2 tw-mx-auto"></div>
 	</div>
+</div>
+
+<div class="tw-bg-gray-50 tw-mt-10 tw-p-5">
+	<div class="container">
 
 	@if($hotVouchers->isNotEmpty())
-		<div class="tw-bg-white tw-border tw-border-gray-100 tw-rounded-xl tw-shadow-lg tw-p-5 tw-my-10">
+		<div class="">
 			<div>
 				<h4 class="tw-text-xl tw-pb-[8px] tw-font-semibold tw-text-[#464646]">{{ __('plugins/voucher::voucher.public.hot_voucher') }}</h4>
 			</div>
@@ -116,80 +120,88 @@
 		</div>
 	@endif
 
-	<div class="tw-bg-white tw-border tw-border-gray-100 tw-rounded-xl tw-shadow-lg tw-p-5 tw-my-10">
-		<div>
-			<h4 class="tw-text-xl tw-pb-[8px] tw-font-semibold tw-text-[#464646]">{{ __('plugins/voucher::voucher.public.categories') }}</h4>
-		</div>
-		<div class="tw-mx-auto tw-w-full">
-			<div class="tw-relative tw-mb-4">
-				<button id="categoryPrevBtn" class="tw-absolute tw-left-0 tw-top-1/2 -tw-translate-y-1/2 tw-z-10 tw-bg-white tw-border-2 tw-border-gray-200 tw-rounded-full tw-w-8 tw-h-8 tw-flex tw-items-center tw-justify-center tw-shadow-md hover:tw-bg-gray-50 tw-transition-colors" style="margin-left: -16px;">
-					<svg class="tw-w-5 tw-h-5 tw-text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-					</svg>
-				</button>
-				<button id="categoryNextBtn" class="tw-absolute tw-right-0 tw-top-1/2 -tw-translate-y-1/2 tw-z-10 tw-bg-white tw-border-2 tw-border-gray-200 tw-rounded-full tw-w-8 tw-h-8 tw-flex tw-items-center tw-justify-center tw-shadow-md hover:tw-bg-gray-50 tw-transition-colors" style="margin-right: -16px;">
-					<svg class="tw-w-5 tw-h-5 tw-text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-					</svg>
-				</button>
-				<div class="category-swiper-container tw-overflow-hidden" style="padding: 0 20px;">
-					<div class="swiper-wrapper">
-						<div class="swiper-slide" style="width: auto;">
-							<button data-voucher-category="" class="tw-flex tw-items-center tw-gap-1 tw-border-2 tw-bg-[#f97e2b] tw-text-white tw-border-[#f97e2b] tw-px-3 tw-py-1.5 tw-rounded-full tw-whitespace-nowrap tw-text-base">
-								{{ __('plugins/voucher::voucher.public.all') }}
-							</button>
-						</div>
-						@foreach($categories as $category)
+	</div>
+</div>
+
+<div class="tw-bg-gray-50 tw-mb-10 tw-p-5">
+	<div class="container">
+		<div class="">
+			<div>
+				<h4 class="tw-text-xl tw-pb-[8px] tw-font-semibold tw-text-[#464646]">{{ __('plugins/voucher::voucher.public.categories') }}</h4>
+			</div>
+			<div class="tw-mx-auto tw-w-full">
+				<div class="tw-relative tw-mb-4">
+					<button id="categoryPrevBtn" class="tw-absolute tw-left-0 tw-top-1/2 -tw-translate-y-1/2 tw-z-10 tw-bg-white tw-border-2 tw-border-gray-200 tw-rounded-full tw-w-8 tw-h-8 tw-flex tw-items-center tw-justify-center tw-shadow-md hover:tw-bg-gray-50 tw-transition-colors" style="margin-left: -16px;">
+						<svg class="tw-w-5 tw-h-5 tw-text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+						</svg>
+					</button>
+					<button id="categoryNextBtn" class="tw-absolute tw-right-0 tw-top-1/2 -tw-translate-y-1/2 tw-z-10 tw-bg-white tw-border-2 tw-border-gray-200 tw-rounded-full tw-w-8 tw-h-8 tw-flex tw-items-center tw-justify-center tw-shadow-md hover:tw-bg-gray-50 tw-transition-colors" style="margin-right: -16px;">
+						<svg class="tw-w-5 tw-h-5 tw-text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+						</svg>
+					</button>
+					<div class="category-swiper-container tw-overflow-hidden" style="padding: 0 20px;">
+						<div class="swiper-wrapper">
 							<div class="swiper-slide" style="width: auto;">
-								<button data-voucher-category="{{ $category }}" class="tw-flex tw-items-center tw-gap-1 tw-border-2 tw-bg-white tw-text-gray-700 tw-border-gray-200 tw-px-3 tw-py-1.5 tw-rounded-full tw-whitespace-nowrap tw-text-base">
-									{{ $category }}
+								<button data-voucher-category="" class="tw-flex tw-items-center tw-gap-1 tw-border-2 tw-bg-[#f97e2b] tw-text-white tw-border-[#f97e2b] tw-px-3 tw-py-1.5 tw-rounded-full tw-whitespace-nowrap tw-text-base">
+									{{ __('plugins/voucher::voucher.public.all') }}
 								</button>
 							</div>
-						@endforeach
-					</div>
-				</div>
-			</div>
-
-			<div class="tw-relative">
-				<div id="voucher-loading" class="tw-relative tw-inset-0 tw-bg-white/70 tw-backdrop-blur-[1px] tw-z-10 tw-rounded-lg tw-items-center tw-justify-center" style="display:none;">
-					<div class="tw-flex tw-items-center tw-gap-2 tw-text-gray-700 tw-font-medium">
-						<div>
-							<svg class="tw-animate-spin tw-h-5 tw-w-5 tw-text-[#f97e2b]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-								<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-								<path fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-							</svg>
-							<span>{{ __('plugins/voucher::voucher.public.loading') }}</span>
+							@foreach($categories as $category)
+								<div class="swiper-slide" style="width: auto;">
+									<button data-voucher-category="{{ $category }}" class="tw-flex tw-items-center tw-gap-1 tw-border-2 tw-bg-white tw-text-gray-700 tw-border-gray-200 tw-px-3 tw-py-1.5 tw-rounded-full tw-whitespace-nowrap tw-text-base">
+										{{ $category }}
+									</button>
+								</div>
+							@endforeach
 						</div>
 					</div>
 				</div>
 
-				<div id="voucher-list" class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-3" data-provider="{{ optional($provider->slugable)->key }}" data-offset="{{ $initialCount }}">
-				@include('plugins/voucher::public.partials.voucher-items', ['vouchers' => $vouchers, 'provider' => $provider])
-				</div>
-			</div>
+				<div class="tw-relative">
+					<div id="voucher-loading" class="tw-relative tw-inset-0 tw-bg-white/70 tw-backdrop-blur-[1px] tw-z-10 tw-rounded-lg tw-items-center tw-justify-center" style="display:none;">
+						<div class="tw-flex tw-items-center tw-gap-2 tw-text-gray-700 tw-font-medium">
+							<div>
+								<svg class="tw-animate-spin tw-h-5 tw-w-5 tw-text-[#f97e2b]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+									<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+									<path fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+								</svg>
+								<span>{{ __('plugins/voucher::voucher.public.loading') }}</span>
+							</div>
+						</div>
+					</div>
 
-			<div class="">
-				<div id="loadMore" class="see-more tw-rounded-2xl tw-flex tw-flex-col tw-items-center tw-justify-center tw-cursor-pointer tw-text-center tw-mt-4">
-					<svg class="arrows" width="60" height="72" viewBox="0 0 60 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M0 0 L30 32 L60 0" class="a1" stroke="currentColor" stroke-width="2" fill="none"></path>
-						<path d="M0 20 L30 52 L60 20" class="a2" stroke="currentColor" stroke-width="2" fill="none"></path>
-						<path d="M0 40 L30 72 L60 40" class="a3" stroke="currentColor" stroke-width="2" fill="none"></path>
-					</svg>
-					<p class="tw-text-[14px] tw-leading-[21px] js-loadmore-label">{{ __('plugins/voucher::voucher.public.load_more_voucher') }}</p>
-					<div class="tw-flex tw-items-center tw-gap-2 js-loadmore-loading" style="display:none;">
-						<div>
-							<svg class="tw-animate-spin tw-h-5 tw-w-5 tw-text-[#f97e2b]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-								<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-								<path fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-							</svg>
-							<span class="tw-text-[14px] tw-leading-[21px]">{{ __('plugins/voucher::voucher.public.loading') }}</span>
+					<div id="voucher-list" class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-3" data-provider="{{ optional($provider->slugable)->key }}" data-offset="{{ $initialCount }}">
+					@include('plugins/voucher::public.partials.voucher-items', ['vouchers' => $vouchers, 'provider' => $provider])
+					</div>
+				</div>
+
+				<div class="">
+					<div id="loadMore" class="see-more tw-rounded-2xl tw-flex tw-flex-col tw-items-center tw-justify-center tw-cursor-pointer tw-text-center tw-mt-4">
+						<svg class="arrows" width="60" height="72" viewBox="0 0 60 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M0 0 L30 32 L60 0" class="a1" stroke="currentColor" stroke-width="2" fill="none"></path>
+							<path d="M0 20 L30 52 L60 20" class="a2" stroke="currentColor" stroke-width="2" fill="none"></path>
+							<path d="M0 40 L30 72 L60 40" class="a3" stroke="currentColor" stroke-width="2" fill="none"></path>
+						</svg>
+						<p class="tw-text-[14px] tw-leading-[21px] js-loadmore-label">{{ __('plugins/voucher::voucher.public.load_more_voucher') }}</p>
+						<div class="tw-flex tw-items-center tw-gap-2 js-loadmore-loading" style="display:none;">
+							<div>
+								<svg class="tw-animate-spin tw-h-5 tw-w-5 tw-text-[#f97e2b]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+									<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+									<path fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+								</svg>
+								<span class="tw-text-[14px] tw-leading-[21px]">{{ __('plugins/voucher::voucher.public.loading') }}</span>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 
+<div class="container">
 @php
 	$interestPosts = $interestPosts ?? collect();
 	$gridClass = $gridClass ?? 'tw-grid tw-grid-cols-2 md:tw-grid-cols-3 lg:tw-grid-cols-3 xl:tw-grid-cols-4 tw-gap-6 grid-interest-posts';
@@ -252,8 +264,7 @@
 			</div>
 		</div>
 	</div>
-@endif
-
+	@endif
 </div>
 
 <script>
