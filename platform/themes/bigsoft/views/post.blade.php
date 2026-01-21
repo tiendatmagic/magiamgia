@@ -30,21 +30,7 @@ Theme::set('breadcrumbBannerImage', RvMedia::getImageUrl($bannerImage));
     <header class="post__header">
         <h1 class="post__title">{{ $post->name }}</h1>
         <div class="post__meta">
-            {{-- {!! Theme::partial('blog.post-meta', compact('post')) !!}
 
-            @if ($post->tags->isNotEmpty())
-            @php
-            if (is_plugin_active('language-advanced')) {
-            $post->tags->loadMissing('translations');
-            }
-            @endphp
-            <span class="post__tags">
-                {!! BaseHelper::renderIcon('ti ti-tags') !!}
-                @foreach ($post->tags as $tag)
-                <a href="{{ $tag->url }}" class="me-0">{{ $tag->name }}</a>@if (!$loop->last), @endif
-                @endforeach
-            </span>
-            @endif --}}
         </div>
     </header>
     <div class="post__content">

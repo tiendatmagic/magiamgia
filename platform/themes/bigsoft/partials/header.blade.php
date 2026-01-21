@@ -75,7 +75,7 @@
 
                         <div class="header-logo-center-actions">
                             @if ($headerSearchStyle === 'icon' && is_plugin_active('blog'))
-                                @if (request()->is('tin-khuyen-mai*') || request()->is('category/*') || request()->is('tag/*') || request()->is('*.html') || request()->is('search*'))
+                                @if (request()->is('tin-khuyen-mai*') || request()->is('category/*') || request()->is('tag/*') || request()->is('*.html') || request()->is('search*') || Theme::get('section-name'))
                                     <div class="search-btn c-search-toggler">
                                         {!! BaseHelper::renderIcon('ti ti-search', attributes: ['class' => 'close-search']) !!}
                                     </div>
@@ -125,7 +125,7 @@
                         <div class="navigation-toggle navigation-toggle--dark"><span></span></div>
 
                         @if ($headerSearchStyle === 'icon' && is_plugin_active('blog'))
-                            @if (request()->is('tin-khuyen-mai*') || request()->is('category/*') || request()->is('tag/*') || request()->is('*.html') || request()->is('search*'))
+                            @if (request()->is('tin-khuyen-mai*') || request()->is('category/*') || request()->is('tag/*') || request()->is('*.html') || request()->is('search*') || Theme::get('section-name'))
                                 <div class="search-btn c-search-toggler">
                                     {!! BaseHelper::renderIcon('ti ti-search', attributes: ['class' => 'close-search']) !!}
                                 </div>
