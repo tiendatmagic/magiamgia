@@ -113,7 +113,7 @@
                     <span class="tw-font-semibold">{{ $minOrder }}</span>
                 </div>
 
-                <div class="tw-text-xs tw-leading-4 tw-font-medium tw-italic tw-text-gray-500">
+                <div class="tw-text-xs tw-leading-4 tw-font-medium tw-italic tw-text-gray-500 tw-pr-3">
                     <span class="tw-text-[#f97e2b] tw-font-medium">{{ __('plugins/voucher::voucher.public.note_label') }}</span> {{ $noteShort }}
                     <span class="tw-text-black tw-font-normal tw-text-[11px] tw-leading-[16px]">{{ __('plugins/voucher::voucher.public.view_detail') }}</span>
                 </div>
