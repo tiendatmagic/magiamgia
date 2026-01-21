@@ -17,6 +17,8 @@ class CategoryRequest extends Request
             'status' => [Rule::in(BaseStatusEnum::values())],
             'is_default' => [new OnOffRule()],
             'is_featured' => [new OnOffRule()],
+            'show_on_homepage' => [new OnOffRule()],
+            'show_on_provider' => [new OnOffRule()],
         ];
     }
 }

@@ -46,6 +46,13 @@ Theme::set('breadcrumbBannerImage', RvMedia::getImageUrl($bannerImage));
         $maxInterest = 8;
         $categoryIds = $post->categories->pluck('id')->all();
 
+        if (empty($categoryIds)) {
+            $defaultCategory = \Botble\Blog\Models\Category::query()->where('is_default', 1)->first();
+            if ($defaultCategory) {
+                $categoryIds = [$defaultCategory->id];
+            }
+        }
+
         $interestPosts = collect();
 
         if (! empty($categoryIds)) {
@@ -59,21 +66,6 @@ Theme::set('breadcrumbBannerImage', RvMedia::getImageUrl($bannerImage));
                 ->orderByDesc('created_at')
                 ->limit($maxInterest)
                 ->get();
-        }
-
-        if ($interestPosts->count() < $maxInterest) {
-            $remaining = $maxInterest - $interestPosts->count();
-            $excludeIds = $interestPosts->pluck('id')->push($post->id)->all();
-
-            $latest = \Botble\Blog\Models\Post::query()
-                ->wherePublished()
-                ->whereNotIn('id', $excludeIds)
-                ->with(['slugable', 'categories', 'author'])
-                ->orderByDesc('created_at')
-                ->limit($remaining)
-                ->get();
-
-            $interestPosts = $interestPosts->concat($latest);
         }
 
         $cols = max(1, min(6, (int) theme_option('blog_grid_cols', 2)));

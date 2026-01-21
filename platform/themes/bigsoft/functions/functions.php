@@ -176,12 +176,27 @@ app('events')->listen(RouteMatched::class, function () {
         }
 
         if (! $view->offsetExists('promoPosts') && class_exists(\Botble\Blog\Models\Post::class)) {
-            $promoPosts = \Botble\Blog\Models\Post::query()
-                ->wherePublished()
-                ->with(['slugable', 'categories', 'author'])
-                ->orderByDesc('created_at')
-                ->limit(8)
-                ->get();
+            $promoPosts = collect();
+
+            if (class_exists(\Botble\Blog\Models\Category::class)) {
+                $homepageCategory = \Botble\Blog\Models\Category::query()
+                    ->where('show_on_homepage', 1)
+                    ->where('status', \Botble\Base\Enums\BaseStatusEnum::PUBLISHED)
+                    ->with('slugable')
+                    ->first();
+
+                if ($homepageCategory) {
+                    $promoPosts = \Botble\Blog\Models\Post::query()
+                        ->wherePublished()
+                        ->whereHas('categories', function ($q) use ($homepageCategory) {
+                            $q->where('categories.id', $homepageCategory->id);
+                        })
+                        ->with(['slugable', 'categories', 'author'])
+                        ->orderByDesc('created_at')
+                        ->limit(8)
+                        ->get();
+                }
+            }
 
             $view->with('promoPosts', $promoPosts);
         }

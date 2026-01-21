@@ -75,13 +75,20 @@ class CategoryController extends BaseController
         if ($request->input('is_default')) {
             Category::query()->where('id', '>', 0)->update(['is_default' => 0]);
         }
+        if ($request->input('show_on_homepage')) {
+            Category::query()->where('id', '>', 0)->update(['show_on_homepage' => 0]);
+        }
+        if ($request->input('show_on_provider')) {
+            Category::query()->where('id', '>', 0)->update(['show_on_provider' => 0]);
+        }
 
         $form = CategoryForm::create();
         $form
             ->saving(function (CategoryForm $form) use ($request) {
                 $form
                     ->getModel()
-                    ->fill([...$request->validated(),
+                    ->fill([
+                        ...$request->validated(),
                         'author_id' => Auth::guard()->id(),
                         'author_type' => User::class,
                     ])
@@ -128,6 +135,12 @@ class CategoryController extends BaseController
     {
         if ($request->input('is_default')) {
             Category::query()->where('id', '!=', $category->getKey())->update(['is_default' => 0]);
+        }
+        if ($request->input('show_on_homepage')) {
+            Category::query()->where('id', '!=', $category->getKey())->update(['show_on_homepage' => 0]);
+        }
+        if ($request->input('show_on_provider')) {
+            Category::query()->where('id', '!=', $category->getKey())->update(['show_on_provider' => 0]);
         }
 
         CategoryForm::createFromModel($category)->save();

@@ -44,8 +44,8 @@ class PublicController extends BaseController
       ? $vouchers->count()
       : (is_array($vouchers) ? count($vouchers) : 0);
 
-    // Get interest posts (blog posts)
-    $interestPosts = $this->getInterestPosts();
+    // Get interest posts (blog posts) — posts from the category marked `show_on_provider`
+    $interestPosts = $this->getInterestPosts($provider);
 
     // Get grid configuration from theme options
     $gridConfig = $this->getGridConfiguration();
@@ -68,14 +68,30 @@ class PublicController extends BaseController
   /**
    * Get interest posts (blog posts related to provider)
    */
-  protected function getInterestPosts(int $limit = 8)
+  protected function getInterestPosts(Provider $provider = null, int $limit = 8)
   {
     if (! class_exists(\Botble\Blog\Models\Post::class)) {
       return collect();
     }
 
+    $categoryModel = null;
+    if (class_exists(\Botble\Blog\Models\Category::class)) {
+      $categoryModel = \Botble\Blog\Models\Category::query()
+        ->where('show_on_provider', 1)
+        ->where('status', \Botble\Base\Enums\BaseStatusEnum::PUBLISHED)
+        ->with('slugable')
+        ->first();
+    }
+
+    if (! $categoryModel) {
+      return collect();
+    }
+
     return \Botble\Blog\Models\Post::query()
       ->wherePublished()
+      ->whereHas('categories', function ($q) use ($categoryModel) {
+        $q->where('categories.id', $categoryModel->id);
+      })
       ->with(['slugable', 'categories', 'author'])
       ->orderByDesc('created_at')
       ->limit($limit)

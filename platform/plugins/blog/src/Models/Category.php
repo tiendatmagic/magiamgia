@@ -27,6 +27,8 @@ class Category extends BaseModel implements HasTreeCategoryContract
         'parent_id',
         'icon',
         'is_featured',
+        'show_on_homepage',
+        'show_on_provider',
         'order',
         'is_default',
         'status',
@@ -39,13 +41,15 @@ class Category extends BaseModel implements HasTreeCategoryContract
         'name' => SafeContent::class,
         'description' => SafeContent::class,
         'is_default' => 'bool',
+        'show_on_homepage' => 'bool',
+        'show_on_provider' => 'bool',
         'order' => 'int',
     ];
 
     protected static function booted(): void
     {
         static::deleted(function (Category $category) {
-            $category->children()->each(fn (Category $child) => $child->delete());
+            $category->children()->each(fn(Category $child) => $child->delete());
 
             $category->posts()->detach();
         });
