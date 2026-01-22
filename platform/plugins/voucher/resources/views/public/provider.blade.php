@@ -160,7 +160,7 @@
 				</div>
 
 				<div class="tw-relative">
-					<div id="voucher-loading" class="tw-relative tw-inset-0 tw-bg-white/70 tw-backdrop-blur-[1px] tw-z-10 tw-rounded-lg tw-items-center tw-justify-center" style="display:none;">
+					<div id="voucher-loading" class="tw-relative tw-inset-0 tw-backdrop-blur-[1px] tw-z-10 tw-rounded-lg tw-items-center tw-justify-center" style="display:none;">
 						<div class="tw-flex tw-items-center tw-gap-2 tw-text-gray-700 tw-font-medium">
 							<div>
 								<svg class="tw-animate-spin tw-h-5 tw-w-5 tw-text-[#f97e2b]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

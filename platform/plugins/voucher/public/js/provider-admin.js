@@ -273,12 +273,44 @@
 
           var text = document.createElement('span');
           text.textContent = t;
-          text.className = 'me-1';
+          text.className = 'me-1 voucher-chip-text';
 
           var btn = document.createElement('button');
           btn.type = 'button';
           btn.className = 'btn-close btn-close-white btn-sm ms-1 voucher-chip-remove';
           btn.setAttribute('aria-label', i18n.remove_tag || defaultI18n.remove_tag);
+
+          // Double click to edit
+          chip.addEventListener('dblclick', function (e) {
+            if (e.target.classList.contains('voucher-chip-remove')) return;
+            var inputEdit = document.createElement('input');
+            inputEdit.type = 'text';
+            inputEdit.value = t;
+            inputEdit.className = 'form-control form-control-sm voucher-chip-edit-input';
+            inputEdit.style.minWidth = '80px';
+            chip.replaceChild(inputEdit, text);
+            inputEdit.focus();
+            inputEdit.select();
+
+            var finishEdit = function (save) {
+              var newValue = inputEdit.value.trim();
+              if (save && newValue && newValue !== t && tags.indexOf(newValue) === -1) {
+                tags[idx] = newValue;
+              }
+              render();
+            };
+
+            inputEdit.addEventListener('keydown', function (ev) {
+              if (ev.key === 'Enter') {
+                finishEdit(true);
+              } else if (ev.key === 'Escape') {
+                finishEdit(false);
+              }
+            });
+            inputEdit.addEventListener('blur', function () {
+              finishEdit(true);
+            });
+          });
 
           chip.appendChild(text);
           chip.appendChild(btn);
