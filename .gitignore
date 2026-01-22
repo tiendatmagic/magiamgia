@@ -7,6 +7,8 @@
 /public/storage/general
 /public/storage/members
 /public/storage/news
+/public/storage/homepage
+/public/storage/ma-giam-gia
 /storage/*.key
 /vendor
 .DS_Store
