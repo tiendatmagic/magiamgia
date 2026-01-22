@@ -87,8 +87,8 @@
 
 	@if($hotVouchers->isNotEmpty())
 		<div class="">
-			<div>
-				<h4 class="tw-text-xl tw-pb-[8px] tw-font-semibold tw-text-[#464646]">{{ __('plugins/voucher::voucher.public.hot_voucher') }}</h4>
+			<div class="tw-mb-3">
+				<h4 class="tw-text-xl tw-font-semibold tw-text-[#464646]">{{ __('plugins/voucher::voucher.public.hot_voucher') }}</h4>
 			</div>
 
 			<div class="tw-mx-auto tw-w-full">
@@ -126,8 +126,8 @@
 <div class="tw-bg-gray-50 tw-mb-10 tw-p-5">
 	<div class="container">
 		<div class="">
-			<div>
-				<h4 class="tw-text-xl tw-pb-[8px] tw-font-semibold tw-text-[#464646]">{{ __('plugins/voucher::voucher.public.categories') }}</h4>
+			<div  class="tw-mb-3">
+				<h4 class="tw-text-xl tw-font-semibold tw-text-[#464646]">{{ __('plugins/voucher::voucher.public.categories') }}</h4>
 			</div>
 			<div class="tw-mx-auto tw-w-full">
 				<div class="tw-relative tw-mb-4">
@@ -235,8 +235,8 @@
 
 	@if(! empty($providerAccordionsFooter))
 	<div class="tw-bg-white tw-border tw-border-gray-100 tw-rounded-xl tw-shadow-lg tw-p-5 tw-my-10">
-		<div>
-			<h4 class="tw-text-xl tw-pb-[8px] tw-font-semibold tw-text-black">{{ __('plugins/voucher::voucher.public.faq') }}</h4>
+		<div class="tw-mb-3">
+			<h4 class="tw-text-xl tw-font-semibold tw-text-black">{{ __('plugins/voucher::voucher.public.faq') }}</h4>
 		</div>
 		<div class="tw-mx-auto tw-w-full">
 			<div>
