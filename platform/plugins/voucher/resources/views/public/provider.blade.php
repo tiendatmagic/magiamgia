@@ -11,7 +11,7 @@
 @endphp
 
 <div class="container">
-	<div class="tw-bg-white tw-border tw-border-gray-100 tw-rounded-xl tw-shadow-lg tw-p-5">
+	<div class="tw-bg-white tw-border tw-border-gray-100 tw-rounded-xl tw-shadow-lg tw-p-5 sm:tw-p-8">
 		<div class="tw-flex tw-flex-col sm:tw-flex-row tw-items-center">
 			<div class="sm:tw-w-1/4 lg:tw-w-1/5 tw-w-full tw-flex tw-justify-center tw-mb-4 sm:tw-mb-0">
 				@if($provider->logo)
@@ -82,22 +82,22 @@
 	</div>
 </div>
 
-<div class="tw-bg-gray-50 tw-mt-10 tw-p-5">
+<div class="tw-bg-gray-50 tw-mt-10 tw-p-5 sm:tw-p-8">
 	<div class="container">
 
 	@if($hotVouchers->isNotEmpty())
 		<div class="">
-			<div class="tw-mb-3">
+			<div class="tw-mb-5">
 				<h4 class="tw-text-xl tw-font-semibold tw-text-[#464646]">{{ __('plugins/voucher::voucher.public.hot_voucher') }}</h4>
 			</div>
 
 			<div class="tw-mx-auto tw-w-full">
-				<div id="hot-voucher-list" class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-3" data-offset="{{ $hotVouchers->count() }}">
+				<div id="hot-voucher-list" class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-5" data-offset="{{ $hotVouchers->count() }}">
 					@include('plugins/voucher::public.partials.voucher-items', ['vouchers' => $hotVouchers, 'provider' => $provider])
 				</div>
 
 				<div class="">
-					<div id="loadMoreHot" class="see-more tw-rounded-2xl tw-flex tw-flex-col tw-items-center tw-justify-center tw-cursor-pointer tw-text-center tw-mt-4" style="{{ $hotVouchers->count() < 9 ? 'display:none;' : '' }}">
+					<div id="loadMoreHot" class="see-more tw-rounded-2xl tw-flex tw-flex-col tw-items-center tw-justify-center tw-cursor-pointer tw-text-center tw-mt-5" style="{{ $hotVouchers->count() < 9 ? 'display:none;' : '' }}">
 						<svg class="arrows" width="60" height="72" viewBox="0 0 60 72" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M0 0 L30 32 L60 0" class="a1" stroke="currentColor" stroke-width="2" fill="none"></path>
 							<path d="M0 20 L30 52 L60 20" class="a2" stroke="currentColor" stroke-width="2" fill="none"></path>
@@ -123,14 +123,14 @@
 	</div>
 </div>
 
-<div class="tw-bg-gray-50 tw-mb-10 tw-p-5">
+<div class="tw-bg-gray-50 tw-mb-10 tw-p-5 sm:tw-p-8">
 	<div class="container">
 		<div class="">
-			<div  class="tw-mb-3">
+			<div  class="tw-mb-5">
 				<h4 class="tw-text-xl tw-font-semibold tw-text-[#464646]">{{ __('plugins/voucher::voucher.public.categories') }}</h4>
 			</div>
 			<div class="tw-mx-auto tw-w-full">
-				<div class="tw-relative tw-mb-4">
+				<div class="tw-relative tw-mb-5">
 					<button id="categoryPrevBtn" class="tw-absolute tw-left-0 tw-top-1/2 -tw-translate-y-1/2 tw-z-10 tw-bg-white tw-border-2 tw-border-gray-200 tw-rounded-full tw-w-8 tw-h-8 tw-flex tw-items-center tw-justify-center tw-shadow-md hover:tw-bg-gray-50 tw-transition-colors" style="margin-left: -16px;">
 						<svg class="tw-w-5 tw-h-5 tw-text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
@@ -172,13 +172,13 @@
 						</div>
 					</div>
 
-					<div id="voucher-list" class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-3" data-provider="{{ optional($provider->slugable)->key }}" data-offset="{{ $initialCount }}">
+					<div id="voucher-list" class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-5" data-provider="{{ optional($provider->slugable)->key }}" data-offset="{{ $initialCount }}">
 					@include('plugins/voucher::public.partials.voucher-items', ['vouchers' => $vouchers, 'provider' => $provider])
 					</div>
 				</div>
 
 				<div class="">
-					<div id="loadMore" class="see-more tw-rounded-2xl tw-flex tw-flex-col tw-items-center tw-justify-center tw-cursor-pointer tw-text-center tw-mt-4">
+					<div id="loadMore" class="see-more tw-rounded-2xl tw-flex tw-flex-col tw-items-center tw-justify-center tw-cursor-pointer tw-text-center tw-mt-5">
 						<svg class="arrows" width="60" height="72" viewBox="0 0 60 72" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M0 0 L30 32 L60 0" class="a1" stroke="currentColor" stroke-width="2" fill="none"></path>
 							<path d="M0 20 L30 52 L60 20" class="a2" stroke="currentColor" stroke-width="2" fill="none"></path>
@@ -204,12 +204,12 @@
 <div class="container">
 @php
 	$interestPosts = $interestPosts ?? collect();
-	$gridClass = $gridClass ?? 'tw-grid tw-grid-cols-2 md:tw-grid-cols-3 lg:tw-grid-cols-3 xl:tw-grid-cols-4 tw-gap-6 grid-interest-posts';
+	$gridClass = 'tw-grid tw-grid-cols-2 md:tw-grid-cols-3 lg:tw-grid-cols-3 xl:tw-grid-cols-4 tw-gap-5 tw-mt-3 grid-interest-posts';
 @endphp
 
 @if ($interestPosts->isNotEmpty())
 	<section class="tw-mt-10">
-		<h4 class="tw-text-xl tw-font-semibold tw-mb-3">{{ __('plugins/voucher::voucher.public.promo_news') }}</h4>
+		<h4 class="tw-text-xl tw-font-semibold tw-mb-5">{{ __('plugins/voucher::voucher.public.promo_news') }}</h4>
 		<div class="{{ $gridClass }}">
 			@foreach ($interestPosts as $relatedItem)
 				<article class="post post__horizontal tw-rounded-xl tw-overflow-hidden tw-shadow-md hover:tw-shadow-xl tw-border-gray-100 tw-border tw-flex tw-flex-col tw-transition-all clearfix">
@@ -234,8 +234,8 @@
 @endif
 
 	@if(! empty($providerAccordionsFooter))
-	<div class="tw-bg-white tw-border tw-border-gray-100 tw-rounded-xl tw-shadow-lg tw-p-5 tw-my-10">
-		<div class="tw-mb-3">
+	<div class="tw-bg-white tw-border tw-border-gray-100 tw-rounded-xl tw-shadow-lg tw-p-5 sm:tw-p-8 tw-my-10">
+		<div class="tw-mb-5">
 			<h4 class="tw-text-xl tw-font-semibold tw-text-black">{{ __('plugins/voucher::voucher.public.faq') }}</h4>
 		</div>
 		<div class="tw-mx-auto tw-w-full">

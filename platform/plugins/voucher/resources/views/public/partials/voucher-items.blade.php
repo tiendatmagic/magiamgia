@@ -70,17 +70,17 @@
                         </span>
                     @elseif($showCountdown)
                         @if($minutesLeft < 60)
-                            <span class="tw-bg-red-500 tw-text-white tw-font-semibold tw-px-2 tw-py-1 tw-rounded-lg tw-text-xs tw-inline-flex tw-items-center tw-gap-1 tw-border tw-border-gray-200">
+                            <span class="tw-bg-[#f00] tw-text-white tw-font-semibold tw-px-2 tw-py-1 tw-rounded-lg tw-text-xs tw-inline-flex tw-items-center tw-gap-1 tw-border tw-border-gray-200">
                                 <i class="fa fa-clock"></i>
                                 {{ __('plugins/voucher::voucher.public.minutes_left', ['minutes' => $minutesLeftSafe]) }}
                             </span>
                         @elseif($hoursLeft < 24)
-                            <span class="tw-bg-red-500 tw-text-white tw-font-semibold tw-px-2 tw-py-1 tw-rounded-lg tw-text-xs tw-inline-flex tw-items-center tw-gap-1 tw-border tw-border-gray-200">
+                            <span class="tw-bg-[#f00] tw-text-white tw-font-semibold tw-px-2 tw-py-1 tw-rounded-lg tw-text-xs tw-inline-flex tw-items-center tw-gap-1 tw-border tw-border-gray-200">
                                 <i class="fa fa-clock"></i>
                                 {{ __('plugins/voucher::voucher.public.hours_left', ['hours' => $hoursLeftSafe]) }}
                             </span>
                         @else
-                            <span class="tw-bg-red-500 tw-text-white tw-font-semibold tw-px-2 tw-py-1 tw-rounded-lg tw-text-xs tw-inline-flex tw-items-center tw-gap-1 tw-border tw-border-gray-200">
+                            <span class="tw-bg-[#f00] tw-text-white tw-font-semibold tw-px-2 tw-py-1 tw-rounded-lg tw-text-xs tw-inline-flex tw-items-center tw-gap-1 tw-border tw-border-gray-200">
                                 <i class="fa fa-clock"></i>
                                 {{ __('plugins/voucher::voucher.public.days_left', ['days' => $daysLeftSafe]) }}
                             </span>
@@ -120,10 +120,10 @@
             </div>
 
             <div>
-                <div class="tw-flex tw-w-full tw-items-center tw-justify-between">
+                <div class="tw-flex tw-w-full tw-items-center tw-justify-between tw-mt-3">
                     <a href="{{ $voucher->apply_url ?: '###' }}" class="tw-text-xs tw-italic tw-underline hover:tw-underline tw-text-[#08bce0]" target="_blank" rel="nofollow">{{ __('plugins/voucher::voucher.public.apply_list') }}</a>
 
-                    <a href="{{ $voucher->banner_url ?: '###' }}" class="tw-text-xs tw-font-medium tw-px-5 tw-py-1.5 tw-text-white tw-bg-[#d96a09] tw-rounded-lg w-ml-1" target="_blank" rel="nofollow">{{ __('plugins/voucher::voucher.public.to_banner') }}</a>
+                    <a href="{{ $voucher->banner_url ?: '###' }}" class="tw-text-xs tw-font-medium tw-px-3 xl:tw-px-5 tw-py-1.5 tw-text-white tw-bg-[#d96a09] tw-rounded-lg w-ml-1" target="_blank" rel="nofollow">{{ __('plugins/voucher::voucher.public.to_banner') }}</a>
                 </div>
             </div>
         </div>
@@ -158,7 +158,7 @@
         <div class="tw-flex tw-w-full tw-items-center tw-justify-between tw-mt-3">
             <a href="{{ $voucher->apply_url ?: '###' }}" class="tw-text-sm tw-italic tw-underline tw-text-[#08bce0]" target="_blank" rel="nofollow">{{ __('plugins/voucher::voucher.public.apply_list') }}</a>
 
-            <a href="{{ $voucher->banner_url ?: '###' }}" class="tw-text-sm tw-font-medium tw-px-5 tw-py-1.5 tw-text-white tw-bg-[#d96a09] tw-rounded w-ml-1" target="_blank" rel="nofollow">{{ __('plugins/voucher::voucher.public.to_banner') }}</a>
+            <a href="{{ $voucher->banner_url ?: '###' }}" class="tw-text-sm tw-font-medium tw-px-3 xl:tw-px-5 tw-py-1.5 tw-text-white tw-bg-[#d96a09] tw-rounded w-ml-1" target="_blank" rel="nofollow">{{ __('plugins/voucher::voucher.public.to_banner') }}</a>
         </div>
     </div>
 </div>

@@ -2,7 +2,7 @@
    <div class="row">
      <div class="col-lg-12">
 
-       <h3 class="tw-text-2xl tw-font-bold tw-mb-3">
+       <h3 class="tw-text-2xl tw-font-bold tw-mb-5">
          {{ theme_option('home_title', 'Nhà cung cấp nổi bật') }}
        </h3>
 
@@ -79,9 +79,9 @@
        <div>
          <!-- mã giảm giá hot -->
 
-         <div class="tw-bg-gray-50 tw-border tw-border-gray-100 tw-rounded-xl tw-shadow-lg tw-p-5 tw-my-10">
+         <div class="tw-bg-gray-50 tw-border tw-border-gray-100 tw-rounded-xl tw-shadow-lg tw-p-5 xl:tw-p-8 tw-my-10">
           @if(isset($hotVouchers) && $hotVouchers->count() > 0)
-            <div class="tw-mb-3">
+            <div class="tw-mb-5">
               <h4 class="tw-text-xl tw-font-semibold">
                   {{ theme_option('hot_vouchers_title', 'Mã giảm giá hot') }}
               </h4>
@@ -108,7 +108,7 @@
                </div>
 
                <div id="hot-voucher-list"
-                 class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-3 tw-mb-0"
+                 class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-5 tw-mb-0"
                  data-offset="{{ $hotVouchers->count() }}">
                  @foreach($hotVouchers as $voucher)
                  <div class="tw-h-full">
@@ -121,7 +121,7 @@
                </div>
              </div>
 
-             <div class="tw-text-center tw-mt-4">
+             <div class="tw-text-center tw-mt-5">
                <div id="loadMoreHot"
                  class="see-more tw-rounded-2xl tw-flex tw-flex-col tw-items-center tw-justify-center tw-cursor-pointer"
                  style="{{ isset($hotVouchers) && $hotVouchers->count() < 9 ? 'display:none;' : '' }}">
@@ -258,7 +258,7 @@
          @php($homeFaqs = json_decode(theme_option('home_faqs', '[]'), true) ?: [])
          @if(! empty($homeFaqs))
          <div class="tw-mt-10">
-           <div class="tw-mb-3">
+           <div class="tw-mb-5">
              <h4 class="tw-text-xl tw-font-semibold">
                {{ theme_option('home_faqs_title', 'Câu hỏi thường gặp') }}
              </h4>
@@ -304,8 +304,8 @@
         {{-- tin khuyến mãi --}}
         @if (isset($promoPosts) && $promoPosts->isNotEmpty())
         <section class="tw-my-10">
-          <h4 class="tw-text-xl tw-font-semibold tw-mb-3">{{ __('plugins/voucher::voucher.public.promo_news') }}</h4>
-          <div class="tw-grid tw-grid-cols-2 md:tw-grid-cols-3 lg:tw-grid-cols-3 xl:tw-grid-cols-4 tw-gap-6 tw-mt-3 grid-interest-posts">
+          <h4 class="tw-text-xl tw-font-semibold tw-mb-5">{{ __('plugins/voucher::voucher.public.promo_news') }}</h4>
+          <div class="tw-grid tw-grid-cols-2 md:tw-grid-cols-3 lg:tw-grid-cols-3 xl:tw-grid-cols-4 tw-gap-5 tw-mt-3 grid-interest-posts">
             @foreach ($promoPosts as $relatedItem)
             <article class="post post__horizontal tw-rounded-xl tw-overflow-hidden tw-shadow-md hover:tw-shadow-xl tw-border-gray-100 tw-border tw-flex tw-flex-col tw-transition-all clearfix">
               <div class="post__thumbnail tw-relative" style="width: 100%">
